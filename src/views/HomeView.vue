@@ -20,7 +20,6 @@ const tabs = {
 const tabBox = useTemplateRef('tab-box')
 
 onMounted(() => {
-  console.log(tabBox.value);
   window.onscroll = function () {
     const rect = tabBox.value.getBoundingClientRect()
     if (rect.top <= 0) {
@@ -69,8 +68,10 @@ onUnmounted(() => {
     </div>
     <div class="tab-box" ref="tab-box">
       <div class="nav">
-        <button v-for="(_, tab) in tabs" @click="currentTab = tab" :key="tab" class="f-s-m nav-item"
-          :class="{ 'active': currentTab === tab }">{{ tab }}</button>
+        <button v-for="(_, tab) in tabs" @click="currentTab = tab" :key="tab" class="nav-item"
+          :class="{ 'active': currentTab === tab }">
+          <h3>{{ tab }}</h3>
+        </button>
       </div>
       <button>
         <span>更多</span>
@@ -158,7 +159,7 @@ onUnmounted(() => {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: 40%;
+  width: 60%;
   height: 4px;
   background-color: var(--main-color);
 }

@@ -1,8 +1,8 @@
 <template>
   <div class="details-view">
     <Swiper />
-    <header>
-      <h4 class="title f-s-m">{{ goodsStore.good.name }}</h4>
+    <header class="mb-1 p-1">
+      <h3 class="title mb-1">{{ goodsStore.good.name }}</h3>
       <div class="sub-title">{{ goodsStore.good.desc }}</div>
       <div class="specification">
         <div class="items">
@@ -46,18 +46,18 @@
     <RecoDessert :dessert="goodsStore.good.dessert" v-model:dessertSelected="goodsSelected.dessert" />
     <div>{{ goodsSelected.dessert }}</div>
     <RecoItems :reco="goodsStore.good.recommend" />
-    <div class="cont">
-      <h4 class="cont-title f-s-m">商品详情</h4>
+    <div class="cont mb-1">
+      <h4 class="cont-title">商品详情</h4>
       <img src="" alt="">
     </div>
     <Guarantee @show-guarantee="isShowModal = true" />
-    <div class="cont">
-      <h4 class="cont-title f-s-m">主要原料</h4>
+    <div class="cont mb-1">
+      <h4 class="cont-title">主要原料</h4>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt omnis eius dolore temporibus velit voluptate
         ipsa esse commodi dignissimos animi!</p>
     </div>
-    <div class="cont cont-price" :class="{ 'show-cont-all': isShow }">
-      <h4 class="cont-title f-s-m">价格说明</h4>
+    <div class="cont mb-1 cont-price" :class="{ 'show-cont-all': isShow }">
+      <h4 class="cont-title">价格说明</h4>
       <ul class="sn">
         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ducimus labore ullam ratione excepturi
           facere delectus laboriosam molestiae quas optio sed eaque in, aut corrupti. Nam porro saepe repellendus quis.
@@ -88,7 +88,7 @@
         </div>
         <div class="nums">
           <button class="btn dec" @click="goodsSelected.quantity--">-</button>
-          <span class="num">{{ goodsSelected.quantity }}</span>
+          <span class="num f-s-m">{{ goodsSelected.quantity }}</span>
           <button class="btn inc" @click="goodsSelected.quantity++">+</button>
         </div>
       </div>
@@ -224,14 +224,8 @@ onMounted(() => {
 
 header {
   position: relative;
-  padding: 1rem;
   border-radius: 1rem;
   background-color: var(--bg-color);
-  margin-bottom: 1rem;
-}
-
-header .title {
-  margin-bottom: 1rem;
 }
 
 header .sub-title {
@@ -251,7 +245,7 @@ header .sub-title {
 .specification .item label {
   display: inline-block;
   background-color: var(--second-bg-color);
-  width: 80px;
+  width: 8rem;
   text-align: center;
 }
 
@@ -279,7 +273,6 @@ header .sub-title {
   border-radius: 1rem;
   background-color: var(--bg-color);
   padding: 2rem 1rem;
-  margin-bottom: 1rem;
 }
 
 .cont .more {
@@ -329,9 +322,6 @@ footer {
 
 .nums {
   display: flex;
-  gap: var(--p-m-g);
-  font-size: 1.8rem;
-  font-weight: 600;
 }
 
 .nums .btn {
@@ -345,6 +335,14 @@ footer {
 
 .nums .dec {
   border: 1px solid var(--main-color);
+}
+
+.nums .num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
 }
 
 .nums .inc {

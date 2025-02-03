@@ -1,7 +1,7 @@
 <template>
   <div class="guarantee f-s-m">
     <Security />
-    <h4 class="em">小程序交易保障</h4>
+    <h3 class="em">小程序交易保障</h3>
     <span class="ellipsis">先行赔付 · 消费者权益保护</span>
     <button class="btn" @click.stop="handleGuarantee">详情</button>
   </div>

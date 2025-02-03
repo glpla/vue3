@@ -14,7 +14,6 @@ export const useCartStore = defineStore("cart", () => {
     //   console.log("1");
     // }
     const res = cart.value.filter((item) => item.id === product.id)[0];
-    console.log("res", res);
     if (res) {
       res.quantity += product.quantity;
     } else {

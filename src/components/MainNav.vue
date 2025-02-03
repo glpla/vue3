@@ -7,37 +7,37 @@
     <div class="item">
       <span class="iconfont icon-login-"></span>
       <h3>到店取</h3>
-      <p>提前点单免排队</p>
+      <p class="f-s-s">提前点单免排队</p>
     </div>
     <div class="item">
       <span class="iconfont icon-shipment-upload"></span>
       <h3>幸运送</h3>
-      <p>外卖及时送达</p>
+      <p class="f-s-s">外卖及时送达</p>
     </div>
     <div class="item">
       <span class="iconfont icon-shopping-cart-download"></span>
       <h3>电商购</h3>
-      <p>屯咖啡买周边</p>
+      <p class="f-s-s">屯咖啡买周边</p>
     </div>
     <div class="item">
       <span class="iconfont icon-money-wallet-open"></span>
       <h4>充4赠3</h4>
-      <p>咖啡钱包</p>
+      <p class="f-s-s">咖啡钱包</p>
     </div>
     <div class="item">
       <span class="iconfont icon-show-hat-magician-"></span>
       <h4>礼品卡</h4>
-      <p>送Ta咖啡</p>
+      <p class="f-s-s">送Ta咖啡</p>
     </div>
     <div class="item">
       <span class="iconfont icon-human-resources-search-employees"></span>
       <h4>多人团聚</h4>
-      <p>一键开票</p>
+      <p class="f-s-s">一键开票</p>
     </div>
     <div class="item">
       <span class="iconfont icon-shopping-bag-heart"></span>
       <h4>拼单满减</h4>
-      <p>一起买更划算</p>
+      <p class="f-s-s">一起买更划算</p>
     </div>
   </div>
 </template>
@@ -96,9 +96,5 @@ const toLogin = () => {
   justify-content: center;
   aspect-ratio: 2/3;
   width: 25%;
-}
-
-.item p {
-  font-size: 1.2rem;
 }
 </style>

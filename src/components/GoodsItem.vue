@@ -1,8 +1,8 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item mb-1">
     <img class="img" :src="'https://glpla.github.io/utils' + product.img" alt="">
     <div class="info">
-      <h4 class="title f-s-m">{{ product.name }} <span class="flavour">{{ product.flavour }}</span> </h4>
+      <h3 class="title mb-1">{{ product.name }} <span class="flavour f-s-s">{{ product.flavour }}</span> </h3>
       <div class="desc">{{ product.desc }}</div>
       <div class="price f-b">
         <span>&yen;{{ product.price }}</span>
@@ -10,7 +10,7 @@
       </div>
       <div class="price-discount warn">预估到手 <span>&yen;{{ getDiscount(product) }}</span></div>
     </div>
-    <router-link class="btn add-btn" :to="'/details/' + product.id">
+    <router-link class="btn add-btn p-1" :to="'/details/' + product.id">
       <span class="iconfont icon-gouwuche_o"></span>
       <span class="quantity">{{ product.quantity }}</span>
     </router-link>
@@ -40,7 +40,6 @@ const getDiscount = computed(() => {
   display: grid;
   grid-template-columns: 120px 1fr auto;
   gap: var(--p-m-g);
-  margin-bottom: 1rem;
 
   img {
     width: 100%;
@@ -52,11 +51,9 @@ const getDiscount = computed(() => {
     overflow: hidden;
 
     .title {
-      margin-bottom: var(--p-m-g);
 
       .flavour {
         border: 1px solid #999;
-        font-size: 1.2rem;
         padding: 0 var(--p-m-g);
         border-radius: var(--p-m-g);
         font-weight: normal;
@@ -105,7 +102,6 @@ const getDiscount = computed(() => {
     background-color: var(--main-color);
     color: #fff;
     align-self: center;
-    padding: var(--p-m-g);
 
     &:hover {
       background-color: var(--main-color);

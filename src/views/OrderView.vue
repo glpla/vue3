@@ -2,9 +2,11 @@
   <div class="w order-view">
     <div class="flex address-box">
       <div>
-        <p class="f-s-m">Lorem ipsum dolor sit amet.&nbsp;<span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-        </p>
-        <p>树先生 &nbsp; 137xxxx5481</p>
+        <div class="title f-s-m">
+          <span>Lorem ipsum dolor sit amet.&nbsp;</span>
+          <button><span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span></button>
+        </div>
+        <div>树先生 &nbsp; 137xxxx5481</div>
       </div>
       <div class="flex switch f-s-s">
         <span>自提</span>
@@ -13,7 +15,7 @@
     </div>
     <div class="flex delivery-box">
       <div>
-        <p class="f-s-m">立即可取，约10:21可取</p>
+        <h4 class="">立即可取，约10:21可取</h4>
         <p>金牌咖啡正在等你下单</p>
       </div>
       <img :src="logo" alt="">
@@ -34,7 +36,7 @@
       </div>
     </div>
     <div class="flex pay-box">
-      <p>支付方式</p>
+      <h4>支付方式</h4>
       <button class="">
         <span class="iconfont icon-weixin wx"></span>
         <span>&nbsp;微信支付</span>
@@ -42,19 +44,19 @@
       </button>
     </div>
     <div class="flex tips-box">
-      <p>备注特别要求</p>
+      <h4>备注特别要求</h4>
       <button>
         <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
       </button>
     </div>
-    <div class="f-s-s p-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur esse iure itaque nam
+    <div class="p-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur esse iure itaque nam
       atque,
       tempora nostrum laudantium fugiat sit suscipit vero excepturi voluptate voluptates sed illum eum doloribus facilis
       vel?</div>
     <footer class="w flex submit-box">
       <div>
         <p>
-          <span class="f-s-s">应付&nbsp;</span>
+          <span class="">应付&nbsp;</span>
           <span class="f-s-b f-b">&yen;9.88</span>
         </p>
         <p class="warn f-s-s">总计优惠&nbsp;&yen;8.8</p>
@@ -71,9 +73,6 @@ import itemImg from '@/assets/logo.png'
 
 <style scoped>
 .flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: var(--p-m-g);
 }
 

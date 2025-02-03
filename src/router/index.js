@@ -135,6 +135,7 @@ const router = createRouter({
 router.afterEach((to, from) => {
   if (to.meta.showNav) {
     document.title = to.meta.title;
+    console.log("title", to.meta.title);
   }
 });
 router.options.linkActiveClass = "nav-color";

@@ -6,10 +6,10 @@
           <input type="checkbox" id="all">
           <label for="all">已选择商品（{{ getQuantity() }}件）</label>
         </div>
-        <div class="clear" @click.stop="cartStore.clearCart">
+        <button class="clear" @click.stop="cartStore.clearCart">
           <span class="iconfont icon-shanchu_o"></span>
           <span>清空购物车</span>
-        </div>
+        </button>
       </header>
       <div class="item" v-for="(item, ind) in cartStore.cart" :key="item.id">
         <input type="checkbox" name="" id="">
@@ -190,12 +190,12 @@ onMounted(() => {
   display: flex;
 }
 
-.oper span {
+.oper .num {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
 }
 

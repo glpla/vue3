@@ -1,8 +1,8 @@
 <template>
-  <div class="app-nav flex">
+  <div class="app-nav flex p-1">
     <router-link class="nav-item" v-for="(item, ind) in nav" :to="item.path" :key="item.id">
       <span class="iconfont" :class="item.icon"></span>
-      <div class="title">{{ item.title }}</div>
+      <div>{{ item.title }}</div>
     </router-link>
   </div>
 </template>
@@ -21,7 +21,6 @@ const nav = ref([
 <style scoped>
 .app-nav {
   background-color: #fff;
-  padding: var(--p-m-g);
 }
 
 .nav-item {
