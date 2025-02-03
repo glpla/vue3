@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="contact-view register">
     <form class="form" @submit.prevent="submitForm">
       <h2 class="title">contact us</h2>
       <div class="ipt-box">

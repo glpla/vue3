@@ -43,10 +43,10 @@ onUnmounted(() => {
     <div class="promotion-box">
       <div class="mb-1 flex">
         <h3>我的优惠专区</h3>
-        <p>
+        <button>
           <span>查看全部</span>
           <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-        </p>
+        </button>
       </div>
       <div class="promotion-cont grid">
         <div class="item"></div>
@@ -57,10 +57,10 @@ onUnmounted(() => {
     <div class="welfare-box">
       <div class="mb-1 flex">
         <h3>福利中心</h3>
-        <p>
+        <button>
           <span>查看全部</span>
           <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-        </p>
+        </button>
       </div>
       <div class="welfare-cont grid">
         <div class="item"></div>
@@ -72,10 +72,10 @@ onUnmounted(() => {
         <button v-for="(_, tab) in tabs" @click="currentTab = tab" :key="tab" class="f-s-m nav-item"
           :class="{ 'active': currentTab === tab }">{{ tab }}</button>
       </div>
-      <p>
+      <button>
         <span>更多</span>
         <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-      </p>
+      </button>
     </div>
     <div class="tab-cont">
       <component :is="tabs[currentTab]" class="tab"></component>

@@ -7,7 +7,6 @@
       <span class="label">xit</span>
       <span class="label">ggs</span>
       <span class="label">hj</span>
-      <span class="label">gzxh</span>
     </div>
     <div class="price f-s-m f-b warn">&yen;88.8</div>
     <div class="tips">

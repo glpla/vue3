@@ -1,6 +1,7 @@
 <template>
   <div class="w login-guide flex">
-    <img src="@/assets/panda.png" alt="">
+    <img class="mt" src="@/assets/bg0.webp" alt="">
+    <img class="mb" src="@/assets/R-C.png" alt="">
     <button class="btn cell f-s-m" style="--color:#0022aa">手机号安全登录</button>
     <button class="btn wx f-s-m" style="--color:#41b883">一键登录</button>
     <div class="ipt">
@@ -18,14 +19,20 @@
 .login-guide {
   flex-direction: column;
   gap: calc(2*var(--p-m-g));
-  padding: var(--p-m-g);
+  padding-left: var(--p-m-g);
+  padding-right: var(--p-m-g);
   height: 100vh;
 }
 
 .login-guide img {
-  width: 100%;
+  max-width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
+}
+
+.mb {
+  width: 20rem;
+  margin-bottom: auto;
 }
 
 button {
@@ -36,8 +43,16 @@ button {
   color: #fff;
 }
 
+.cell {
+  margin-top: auto;
+}
+
 .ipt {
   margin-top: auto;
+}
+
+input {
+  vertical-align: middle;
 }
 
 label span {

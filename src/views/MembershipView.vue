@@ -1,6 +1,5 @@
 <template>
   <div class="membership-view">
-    to do
   </div>
 </template>
 
@@ -12,5 +11,10 @@
 .membership-view {
   padding-left: var(--p-m-g);
   padding-right: var(--p-m-g);
+  height: 100vh;
+  background-image: url('@/assets/bg4.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 </style>

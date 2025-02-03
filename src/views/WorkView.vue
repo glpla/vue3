@@ -1,6 +1,6 @@
 <template>
-  <div class="team-view">
-    team
+  <div class="work-view">
+    work
   </div>
 </template>
 

@@ -18,7 +18,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="goods">
+  <div class="goods-view">
     <template v-if="goodsStore.goods.length">
       <GoodsItem v-for="(item, ind) in goodsStore.goods" :key="item.id" :product="item" />
     </template>
@@ -28,7 +28,7 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.goods {
+.goods-view {
   width: 100%;
   padding-left: var(--p-m-g);
   padding-right: var(--p-m-g);

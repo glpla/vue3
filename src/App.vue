@@ -5,7 +5,7 @@ import AppNav from './components/AppNav.vue';
 <template>
 
   <router-view class="rw"></router-view>
-  <AppNav v-if="!$route.meta.showNav" class="w app-nav" />
+  <AppNav v-if="$route.meta.showNav" class="w app-nav" />
 </template>
 
 <style scoped>

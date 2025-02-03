@@ -1,6 +1,6 @@
 <template>
-  <div class="details">
-    <!-- <Swiper /> -->
+  <div class="details-view">
+    <Swiper />
     <header>
       <h4 class="title f-s-m">{{ goodsStore.good.name }}</h4>
       <div class="sub-title">{{ goodsStore.good.desc }}</div>
@@ -75,10 +75,10 @@
           enim ea voluptatibus distinctio? Magni recusandae, aspernatur optio ullam dicta accusamus impedit mollitia
           eligendi corrupti unde.</li>
       </ul>
-      <span class="more" @click="isShow = !isShow">
+      <button class="more" @click="isShow = !isShow">
         <span v-if="isShow" class="iconfont icon-jiantou_liebiaoshouqi_o"></span>
         <span v-else class="iconfont icon-jiantou_liebiaozhankai_o"></span>
-      </span>
+      </button>
     </div>
     <footer class="w">
       <div class="info">
@@ -217,7 +217,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.details {
+.details-view {
   background-color: #f5f5f5;
   padding: 1rem 1rem 12rem;
 }

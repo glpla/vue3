@@ -2,7 +2,8 @@
   <div class="w order-view">
     <div class="flex address-box">
       <div>
-        <p>Lorem ipsum dolor sit amet.&nbsp;<span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span> </p>
+        <p class="f-s-m">Lorem ipsum dolor sit amet.&nbsp;<span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
+        </p>
         <p>树先生 &nbsp; 137xxxx5481</p>
       </div>
       <div class="flex switch f-s-s">
@@ -12,13 +13,13 @@
     </div>
     <div class="flex delivery-box">
       <div>
-        <p>立即可取，约10:21可取</p>
+        <p class="f-s-m">立即可取，约10:21可取</p>
         <p>金牌咖啡正在等你下单</p>
       </div>
       <img :src="logo" alt="">
     </div>
     <div class="good-box">
-      <div class="flex item" v-for="item in 10" :key="item.id">
+      <div class="flex item" v-for="item in 5" :key="item.id">
         <img :src="itemImg" alt="" class="img">
         <div class="info">
           <h4 class="f-s-m">title</h4>
@@ -46,7 +47,8 @@
         <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
       </button>
     </div>
-    <div class="f-s-s">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur esse iure itaque nam atque,
+    <div class="f-s-s p-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur esse iure itaque nam
+      atque,
       tempora nostrum laudantium fugiat sit suscipit vero excepturi voluptate voluptates sed illum eum doloribus facilis
       vel?</div>
     <footer class="w flex submit-box">
