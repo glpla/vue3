@@ -1,0 +1,9 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  line-height: 3;
+}
+
+thead tr th:not(:last-child) {
+  text-align: left;
+}
