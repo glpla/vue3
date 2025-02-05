@@ -1,18 +1,9 @@
 <script setup>
 import { onMounted } from 'vue';
 import GoodsItem from '@/components/GoodsItem.vue';
-import Cart from '@/components/Cart.vue';
 import { useGoodsStore } from '@/stores/goods';
-import { useCartStore } from '@/stores/cart';
 const goodsStore = useGoodsStore();
-const cartStore = useCartStore();
 onMounted(() => {
-  // let json = fetch('https://glpla.github.io/utils/data/coffee.json')
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data.cont);
-  //     goods.value = data.cont
-  //   })
   goodsStore.getGoods()
 })
 </script>
@@ -21,24 +12,17 @@ onMounted(() => {
   <div class="goods-view">
     <template v-if="goodsStore.goods.length">
       <GoodsItem v-for="(item, ind) in goodsStore.goods" :key="item.id" :product="item" />
+      <footer class="f-s-s">我是有底线的~</footer>
     </template>
-    <div v-else>lists empty</div>
-    <Cart class="w cart" v-if="cartStore.cart.length" />
+    <div v-else>购物车为空</div>
   </div>
 </template>
 
 <style scoped>
-.goods-view {
-  width: 100%;
-  padding-left: var(--p-m-g);
-  padding-right: var(--p-m-g);
-}
-
-.cart {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 99;
+footer {
+  text-align: center;
+  color: #808080;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
 }
 </style>

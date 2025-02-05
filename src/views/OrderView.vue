@@ -1,21 +1,21 @@
 <template>
   <div class="w order-view">
     <div class="flex address-box">
-      <div>
+      <div class="loc">
         <div class="title f-s-m">
-          <span>Lorem ipsum dolor sit amet.&nbsp;</span>
+          <span>桂林万达广场店 | 0.5km&nbsp;</span>
           <button><span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span></button>
         </div>
         <div>树先生 &nbsp; 137xxxx5481</div>
       </div>
-      <div class="flex switch f-s-s">
+      <div class="flex switch">
         <span>自提</span>
         <span>外送</span>
       </div>
     </div>
     <div class="flex delivery-box">
       <div>
-        <h4 class="">立即可取，约10:21可取</h4>
+        <div class="f-s-m">立即可取，约10:21可取</div>
         <p>金牌咖啡正在等你下单</p>
       </div>
       <img :src="logo" alt="">
@@ -57,7 +57,7 @@
       <div>
         <p>
           <span class="">应付&nbsp;</span>
-          <span class="f-s-b f-b">&yen;9.88</span>
+          <span class="f-s-m f-b">&yen;9.88</span>
         </p>
         <p class="warn f-s-s">总计优惠&nbsp;&yen;8.8</p>
       </div>
@@ -85,6 +85,11 @@ import itemImg from '@/assets/logo.png'
   background-color: #fff;
   margin-bottom: var(--p-m-g);
   border-radius: var(--p-m-g);
+}
+
+.loc .title {
+  display: flex;
+  align-items: center;
 }
 
 .switch {

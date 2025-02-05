@@ -78,7 +78,7 @@ onUnmounted(() => {
         <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
       </button>
     </div>
-    <div class="tab-cont">
+    <div class="tab-cont p-1">
       <component :is="tabs[currentTab]" class="tab"></component>
     </div>
     <BackToTop />
@@ -142,11 +142,6 @@ onUnmounted(() => {
   top: 0;
   margin: 0;
   background-color: #fff;
-}
-
-.tab-cont {
-  margin: var(--p-m-g);
-  padding: var(--p-m-g);
 }
 
 .nav-item {

@@ -20,6 +20,18 @@ const router = createRouter({
       redirect: "/",
     },
     {
+      path: "/menu",
+      name: "menu",
+      component: () => import("../views/MenuView.vue"),
+      meta: { showNav: true, title: "菜单" },
+    },
+    {
+      path: "/goods",
+      name: "goods",
+      component: () => import("../views/GoodsView.vue"),
+      meta: { showNav: true, title: "商品列表" },
+    },
+    {
       path: "/mall",
       name: "mall",
       component: () => import("../views/MallView.vue"),
@@ -36,6 +48,30 @@ const router = createRouter({
       name: "mine",
       component: () => import("../views/MineView.vue"),
       meta: { showNav: true, title: "我的 - 个人中心" },
+    },
+    {
+      path: "/details/:id",
+      name: "details",
+      component: () => import("../views/DetailsView.vue"),
+      meta: { showNav: false, title: "商品详情" },
+    },
+    {
+      path: "/vip",
+      name: "vip",
+      component: () => import("../views/VipView.vue"),
+      meta: { showNav: false, title: "会员卡" },
+    },
+    {
+      path: "/rank",
+      name: "rank",
+      component: () => import("../views/RankView.vue"),
+      meta: { showNav: false, title: "年度封神榜单" },
+    },
+    {
+      path: "/favorite",
+      name: "favorite",
+      component: () => import("../views/FavoriteView.vue"),
+      meta: { showNav: false, title: "我的常点" },
     },
     {
       path: "/work",
@@ -77,18 +113,6 @@ const router = createRouter({
       name: "team",
       component: () => import("../views/TeamView.vue"),
       meta: { showNav: false, title: "团队" },
-    },
-    {
-      path: "/goods",
-      name: "goods",
-      component: () => import("../views/GoodsView.vue"),
-      meta: { showNav: true, title: "菜单" },
-    },
-    {
-      path: "/details/:id",
-      name: "details",
-      component: () => import("../views/DetailsView.vue"),
-      meta: { showNav: false, title: "商品详情" },
     },
     {
       path: "/order",

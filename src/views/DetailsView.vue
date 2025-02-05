@@ -83,7 +83,7 @@
     <footer class="w">
       <div class="info">
         <div class="price">
-          <span class="f-b f-s-b">&yen;12.16&nbsp;</span>
+          <span class="f-b f-s-m">&yen;12.16&nbsp;</span>
           <span class="f-s-s">预估到手</span>
         </div>
         <div class="nums">
@@ -190,7 +190,7 @@ const addToCart = () => {
   console.log(goodsSelected.value);
 
   alert('添加成功')
-  router.push('/goods')
+  router.push('/menu')
 }
 
 const toOrder = () => {
@@ -355,7 +355,8 @@ footer {
   gap: var(--p-m-g);
 }
 
-button {
+.buy,
+.add {
   flex: 1;
   height: 40px;
   border-radius: 20px;
@@ -409,6 +410,7 @@ button {
 }
 
 .modal-btn {
+  display: block;
   width: max-content;
   margin: 0 auto;
 }

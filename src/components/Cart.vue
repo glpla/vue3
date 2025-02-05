@@ -35,7 +35,7 @@
       <div class="price">
         <div>
           <span>预计到手 </span>
-          <span class="total-price f-s-b f-b">&yen;{{ getPrice().toFixed(2) }}</span>
+          <span class="total-price f-s-m f-b">&yen;{{ getPrice().toFixed(2) }}</span>
         </div>
         <div class="total-promotion f-s-s">
           <span>已享受更多优惠，共减免 </span>

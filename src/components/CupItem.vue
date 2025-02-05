@@ -48,7 +48,7 @@ import lc from '@/assets/cup.jpg';
 
 .labels .label {
   background-color: #f404;
-  padding: 0 var(--p-m-g);
+  padding: 0 calc(var(--p-m-g)/2);
 }
 
 .badge {

@@ -2,20 +2,35 @@
   <div class="swiper">
     <swiper-container loop="true" pagination="true" autoplay-delay="3000">
       <swiper-slide>
-        <img loading="lazy" :src='img' alt="">
+        <img loading="lazy"
+          src='https://png.pngtree.com/thumb_back/fh260/background/20241124/pngtree-cozy-cup-of-coffee-and-a-book-on-soft-blanket-in-image_16634425.jpg'
+          alt="">
       </swiper-slide>
       <swiper-slide>
-        <img loading="lazy" src='/xh.jpg' alt="">
+        <img loading="lazy"
+          src='https://png.pngtree.com/thumb_back/fh260/background/20240923/pngtree-a-cup-of-coffee-and-on-table-with-cups-cappuccino-it-image_16242707.jpg'
+          alt="">
       </swiper-slide>
       <swiper-slide>
-        <img loading="lazy" src='https://cdn.pixabay.com/photo/2019/10/30/16/22/message-4589929_640.jpg' alt="">
+        <img loading="lazy"
+          src='https://png.pngtree.com/thumb_back/fh260/background/20210729/pngtree-blue-effect-coffee-cup-real-shot-combined-with-coffee-line-draft-image_753292.jpg'
+          alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <img loading="lazy"
+          src='https://png.pngtree.com/thumb_back/fh260/background/20240923/pngtree-female-hands-holding-cup-of-coffee-on-wooden-background-cozy-moment-image_16240678.jpg'
+          alt="">
+      </swiper-slide>
+      <swiper-slide>
+        <img loading="lazy"
+          src='https://png.pngtree.com/thumb_back/fh260/background/20240722/pngtree-a-cup-of-coffee-and-an-open-book-placed-on-a-photo-image_16083936.jpg'
+          alt="">
       </swiper-slide>
     </swiper-container>
   </div>
 </template>
 
 <script setup>
-import img from '@/assets/panda.png';
 import { register } from 'swiper/element/bundle';
 register();
 </script>
