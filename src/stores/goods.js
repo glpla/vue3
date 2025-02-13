@@ -5,6 +5,7 @@ import { getGoodsWithAxios, getGoodsWithFetch } from "@/api/api";
 export const useGoodsStore = defineStore("goods", () => {
   const goods = ref([]);
   const good = ref({});
+
   const getGoods = async () => {
     const { data } = await getGoodsWithAxios();
     goods.value = data.cont;
@@ -15,6 +16,7 @@ export const useGoodsStore = defineStore("goods", () => {
   //   console.log(data.cont);
   //   goods.value = data.cont;
   // };
+
   const getGoodById = async (id) => {
     const { data } = await getGoodsWithAxios();
     good.value = data.cont.find((item) => item.id == id);

@@ -10,7 +10,7 @@
       </div>
       <div class="price-discount warn">预估到手 <span>&yen;{{ getDiscount(product) }}</span></div>
     </div>
-    <router-link class="btn add-btn p-1" :to="'/details/' + product.id">
+    <router-link class="btn add-btn p-1" :to="'/details/' + product.id" replace>
       <span class="iconfont icon-gouwuche_o"></span>
       <span class="quantity">{{ product.quantity }}</span>
     </router-link>

@@ -28,7 +28,7 @@ const router = createRouter({
     {
       path: "/goods",
       name: "goods",
-      component: () => import("../views/GoodsView.vue"),
+      component: () => import("../components/Goods.vue"),
       meta: { showNav: true, title: "商品列表" },
     },
     {
@@ -58,19 +58,19 @@ const router = createRouter({
     {
       path: "/vip",
       name: "vip",
-      component: () => import("../views/VipView.vue"),
+      component: () => import("../components/Vip.vue"),
       meta: { showNav: false, title: "会员卡" },
     },
     {
       path: "/rank",
       name: "rank",
-      component: () => import("../views/RankView.vue"),
+      component: () => import("../components/Rank.vue"),
       meta: { showNav: false, title: "年度封神榜单" },
     },
     {
       path: "/favorite",
       name: "favorite",
-      component: () => import("../views/FavoriteView.vue"),
+      component: () => import("../components/Favorite.vue"),
       meta: { showNav: false, title: "我的常点" },
     },
     {

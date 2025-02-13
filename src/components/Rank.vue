@@ -1,5 +1,5 @@
 <template>
-  <div class="rank-view">
+  <div class="rank">
     <img :src="img" alt="">
   </div>
 </template>
@@ -25,11 +25,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.rank-view {
+.rank {
   text-align: center;
 }
 
-.rank-view img {
+.rank img {
   width: 300px;
 }
 </style>

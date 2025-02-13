@@ -31,6 +31,7 @@ export const useCartStore = defineStore("cart", () => {
     cart.value = data;
     console.log("cart", data);
   };
+
   const clearCart = () => {
     cart.value = [];
   };

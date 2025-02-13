@@ -1,5 +1,5 @@
 <template>
-  <div class="favorite-view">
+  <div class="favorite">
     <img :src="img" alt="">
   </div>
 </template>
@@ -26,11 +26,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.favorite-view {
+.favorite {
   text-align: center;
 }
 
-.favorite-view img {
+.favorite img {
   width: 300px;
 }
 </style>

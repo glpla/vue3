@@ -21,10 +21,10 @@
 import { ref } from 'vue'
 import { useCartStore } from '@/stores/cart'
 import Cart from '@/components/Cart.vue';
-import AsyncGoods from '@/views/GoodsView.vue'
-import AsyncVip from '@/views/VipView.vue'
-import AsyncRank from '@/views/RankView.vue'
-import AsyncFavorite from '@/views/FavoriteView.vue'
+import AsyncGoods from '@/components/Goods.vue'
+import AsyncVip from '@/components/Vip.vue'
+import AsyncRank from '@/components/Rank.vue'
+import AsyncFavorite from '@/components/Favorite.vue'
 const cartStore = useCartStore()
 
 const currentTab = ref('经典菜单')
@@ -41,6 +41,7 @@ const tabs = {
   display: flex;
   align-items: center;
   gap: calc(var(--p-m-g)/2);
+  padding: var(--p-m-g);
 }
 
 .tab-box {

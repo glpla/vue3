@@ -1,5 +1,5 @@
 <template>
-  <div class="vip-view">
+  <div class="vip">
     <img :src="img" alt="">
   </div>
 </template>
@@ -25,11 +25,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.vip-view {
+.vip {
   text-align: center;
 }
 
-.vip-view img {
+.vip img {
   width: 300px;
 }
 </style>

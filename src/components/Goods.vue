@@ -9,7 +9,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="goods-view">
+  <div class="goods">
     <template v-if="goodsStore.goods.length">
       <GoodsItem v-for="(item, ind) in goodsStore.goods" :key="item.id" :product="item" />
       <footer class="f-s-s">我是有底线的~</footer>

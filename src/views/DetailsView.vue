@@ -190,11 +190,11 @@ const addToCart = () => {
   console.log(goodsSelected.value);
 
   alert('添加成功')
-  router.push('/menu')
+  router.replace('/menu')
 }
 
 const toOrder = () => {
-  router.push('/order')
+  router.replace('/order')
 }
 
 const handleGoods = async (id) => {

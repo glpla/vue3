@@ -3,22 +3,24 @@
     <div class="cont">
       <header class="header">
         <div class="all">
-          <input type="checkbox" id="all">
-          <label for="all">已选择商品（{{ getQuantity() }}件）</label>
+          <input type="checkbox" id="all" v-model="isSelectAll">
+          <label for="all">已选择商品（{{ count }}件）</label>
         </div>
-        <button class="clear" @click.stop="cartStore.clearCart">
+        <button class="clear" @click.stop="clearCart">
           <span class="iconfont icon-shanchu_o"></span>
           <span>清空购物车</span>
         </button>
       </header>
       <div class="item" v-for="(item, ind) in cartStore.cart" :key="item.id">
-        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" id="" v-model="selectedGoods" :value="item">
         <img class="img" :src="`https://glpla.github.io/utils${item.img}`" alt="">
         <div class="info">
           <h4 class="title">{{ item.name }}</h4>
           <div class="sub-title">{{ item.desc }}</div>
-          <div><span class="price-new">&yen;{{ item.price }}</span><span class="price-old">&yen;{{ item.priceOrignal
-              }}</span></div>
+          <div>
+            <span class="price-new">&yen;{{ item.price }}</span>
+            <span class="price-old">&yen;{{ item.priceOrignal }}</span>
+          </div>
         </div>
         <div class="oper">
           <button class="btn dec" @click="item.quantity--">-</button>
@@ -28,63 +30,70 @@
       </div>
     </div>
     <footer>
-      <button class="btn cart-left" @click.stop="showCartDetail">
+      <button class="btn cart-left" @click.stop="isShowCartDetail = !isShowCartDetail">
         <span class="iconfont icon-icon_ruixingkafei"></span>
-        <span class="cart-num f-s-s">{{ getQuantity() }}</span>
+        <span class="cart-num f-s-s">{{ count }}</span>
       </button>
       <div class="price">
         <div>
           <span>预计到手 </span>
-          <span class="total-price f-s-m f-b">&yen;{{ getPrice().toFixed(2) }}</span>
+          <!-- <span class="total-price f-s-m f-b">&yen;{{ getPrice().toFixed(2) }}</span> -->
+          <span class="total-price f-s-m f-b">&yen;{{ sum.toFixed(2) }}</span>
         </div>
         <div class="total-promotion f-s-s">
           <span>已享受更多优惠，共减免 </span>
           <span>&yen;{{ getPriceDiscount().toFixed(2) }}</span>
         </div>
       </div>
-      <router-link class="btn pay-btn f-s-b" to="/order">去结算</router-link>
+      <router-link class="btn pay-btn f-s-b" to="/order" replace>去结算</router-link>
     </footer>
   </div>
 </template>
 
 <script setup>
-import logo from '@/assets/logo.png'
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useCartStore } from '@/stores/cart';
-const cartStore = useCartStore()
 const isShowCartDetail = ref(false)
-const showCartDetail = () => {
-  isShowCartDetail.value = !isShowCartDetail.value
-}
 
+const cartStore = useCartStore()
+const selectedGoods = ref([...cartStore.cart])
+const isSelectAll = ref(true)
+const sum = ref(0)
+const count = ref(0)
+let flag = true
+
+watch(selectedGoods, () => {
+  // select all
+  if (selectedGoods.value.length === cartStore.cart.length) {
+    isSelectAll.value = true
+    flag = true
+  } else {
+    isSelectAll.value = false
+    flag = false
+  }
+  // count sum
+  sum.value = selectedGoods.value.reduce((total, item) => total + item.price * item.quantity * (1 - item.discount), 0)
+  count.value = selectedGoods.value.reduce((total, item) => total + item.quantity, 0)
+}, { deep: true, immediate: true })
+
+watch(isSelectAll, (newVal) => {
+  if (newVal) {
+    selectedGoods.value = cartStore.cart
+  } else {
+    if (flag) selectedGoods.value = []
+  }
+})
+const clearCart = () => {
+  cartStore.clearCart()
+  selectedGoods.value = []
+  isSelectAll.value = false
+}
 const closeCartDetail = () => {
   isShowCartDetail.value = false
 }
-
-const getCartTotal = () => {
-  return cartStore.cart.reduce(
-    (total, item) => total + item.price * (1 - item.discount) * item.quantity,
-    0
-  );
-};
-
-const getPrice = () => {
-  return cartStore.cart.reduce(
-    (total, item) => total + item.price * (1 - item.discount) * item.quantity,
-    0
-  );
-};
-
 const getPriceDiscount = () => {
   return cartStore.cart.reduce(
     (total, item) => total + item.price * item.discount * item.quantity,
-    0
-  );
-};
-
-const getQuantity = () => {
-  return cartStore.cart.reduce(
-    (total, item) => total + item.quantity,
     0
   );
 };
