@@ -1,25 +1,22 @@
 <template>
   <div class="test">
-
+    <div> {{ msg.title }} - {{ msg.dis }}m</div>
+    <div> {{ com.title }} - {{ com.dis }}m</div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, inject } from 'vue'
-const axios = inject('axios')
-
-onMounted(() => {
-  // url 1
-  axios.get('/api/get')
-    // url 2
-    // axios.get('/goods.json')
-    .then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
+import { ref, computed } from 'vue'
+const msg = ref({
+  title: '瑞幸咖啡(桂林一中店)',
+  dis: 594.94
 })
-
+const com = computed(() => {
+  return {
+    title: msg.value.title.replace('瑞幸咖啡(', '').replace(/\)/, ''),
+    dis: msg.value.dis.toFixed(0)
+  }
+})
 </script>
 
 <style scoped></style>

@@ -1,7 +1,6 @@
 <template>
   <div class="w login-guide flex">
-    <img class="mt" src="@/assets/bg0.webp" alt="">
-    <img class="mb" src="@/assets/R-C.png" alt="">
+    <img src="@/assets/R-C.png" alt="">
     <button class="btn cell f-s-m" style="--color:#0022aa">手机号安全登录</button>
     <button class="btn wx f-s-m" style="--color:#41b883">一键登录</button>
     <div class="ipt">
@@ -22,6 +21,7 @@
   padding-left: var(--p-m-g);
   padding-right: var(--p-m-g);
   height: 100vh;
+  background-color: #fff;
 }
 
 .login-guide img {
@@ -30,10 +30,6 @@
   object-fit: cover;
 }
 
-.mb {
-  width: 20rem;
-  margin-bottom: auto;
-}
 
 button {
   width: 80%;

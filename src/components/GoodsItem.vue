@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item mb-1">
+  <div class="goods-item m-b-2" @click.stop="$router.push('/details/' + product.id)">
     <img class="img" :src="'https://glpla.github.io/utils' + product.img" alt="">
     <div class="info">
       <h3 class="title mb-1">{{ product.name }} <span class="flavour f-s-s">{{ product.flavour }}</span> </h3>
@@ -10,10 +10,10 @@
       </div>
       <div class="price-discount warn">预估到手 <span>&yen;{{ getDiscount(product) }}</span></div>
     </div>
-    <router-link class="btn add-btn p-1" :to="'/details/' + product.id" replace>
+    <button class="btn add-btn p-1">
       <span class="iconfont icon-gouwuche_o"></span>
       <span class="quantity">{{ product.quantity }}</span>
-    </router-link>
+    </button>
     <!-- <div class="btn" @click="addCart(product.id)">
       <span class="iconfont icon-gouwuche_o"></span>
     </div> -->
@@ -44,7 +44,7 @@ const getDiscount = computed(() => {
   img {
     width: 100%;
     aspect-ratio: 1/1;
-    border-radius: var(--p-m-g);
+    border-radius: 50%;
   }
 
   .info {

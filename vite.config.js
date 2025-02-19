@@ -29,6 +29,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+      "/map-api": {
+        target: "https://apis.map.qq.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/map-api/, ""),
+      },
     },
   },
 });

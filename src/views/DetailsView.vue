@@ -3,7 +3,7 @@
     <Swiper />
     <header class="mb-1 p-1">
       <h3 class="title mb-1">{{ goodsStore.good.name }}</h3>
-      <div class="sub-title">{{ goodsStore.good.desc }}</div>
+      <div class="m-b-2">{{ goodsStore.good.desc }}</div>
       <div class="specification">
         <div class="items">
           <span>杯型</span>
@@ -12,7 +12,7 @@
             <label :for="`cup${item.id}`">{{ item.tag }}</label>
           </span>
         </div>
-        <div>{{ goodsSelected.cup }}</div>
+        <!-- <div>{{ goodsSelected.cup }}</div> -->
         <div class="items">
           <span>温度</span>
           <span class="item" v-for="item in goodsStore.good.ther">
@@ -21,7 +21,7 @@
             <label :for="`ther${item.id}`">{{ item.tag }}</label>
           </span>
         </div>
-        <div>{{ goodsSelected.ther }}</div>
+        <!-- <div>{{ goodsSelected.ther }}</div> -->
         <div class="items">
           <span>糖度</span>
           <span class="item" v-for="item in goodsStore.good.sugar">
@@ -30,7 +30,7 @@
             <label :for="`sugar${item.id}`">{{ item.tag }}</label>
           </span>
         </div>
-        <div>{{ goodsSelected.sugar }}</div>
+        <!-- <div>{{ goodsSelected.sugar }}</div> -->
       </div>
       <div class="favor">
         <button>
@@ -44,7 +44,7 @@
     <!-- <img v-if="qrCode" :src="qrCode" alt="QR Code" /> -->
     <!-- <button @click="generateQRCode">分享页面</button> -->
     <RecoDessert :dessert="goodsStore.good.dessert" v-model:dessertSelected="goodsSelected.dessert" />
-    <div>{{ goodsSelected.dessert }}</div>
+    <!-- <div>{{ goodsSelected.dessert }}</div> -->
     <RecoItems :reco="goodsStore.good.recommend" />
     <div class="cont mb-1">
       <h4 class="cont-title">商品详情</h4>
@@ -194,7 +194,7 @@ const addToCart = () => {
 }
 
 const toOrder = () => {
-  router.replace('/order')
+  router.push('/order')
 }
 
 const handleGoods = async (id) => {
@@ -212,6 +212,7 @@ const handleGoods = async (id) => {
 }
 
 onMounted(() => {
+  console.log(route.params.id);
   handleGoods(route.params.id)
 })
 </script>
@@ -219,7 +220,7 @@ onMounted(() => {
 <style scoped>
 .details-view {
   background-color: #f5f5f5;
-  padding: 1rem 1rem 12rem;
+  padding: 0 0 12rem;
 }
 
 header {
@@ -228,16 +229,9 @@ header {
   background-color: var(--bg-color);
 }
 
-header .sub-title {
-  margin-bottom: 2rem;
-}
-
-.specification {
-  margin-top: 4rem;
-}
-
 .specification .items {
   display: flex;
+  align-items: center;
   gap: var(--p-m-g);
   margin-bottom: 2rem;
 }
@@ -246,6 +240,7 @@ header .sub-title {
   display: inline-block;
   background-color: var(--second-bg-color);
   width: 8rem;
+  padding: 4px var(--p-m-g);
   text-align: center;
 }
 

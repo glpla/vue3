@@ -74,6 +74,18 @@ const router = createRouter({
       meta: { showNav: false, title: "我的常点" },
     },
     {
+      path: "/search",
+      name: "search",
+      component: () => import("../views/SearchView.vue"),
+      meta: { showNav: false, title: "搜索" },
+    },
+    {
+      path: "/location",
+      name: "location",
+      component: () => import("../views/LocationView.vue"),
+      meta: { showNav: false, title: "配送方式" },
+    },
+    {
       path: "/work",
       name: "work",
       component: () => import("../views/WorkView.vue"),
@@ -105,8 +117,15 @@ const router = createRouter({
     },
     {
       path: "/test",
+      name: "test",
       component: () => import("../components/Test.vue"),
-      meta: { showNav: false, title: "测试页" },
+      meta: { showNav: false, title: "测试页 test" },
+    },
+    {
+      path: "/demo",
+      name: "demo",
+      component: () => import("../components/Demo.vue"),
+      meta: { showNav: false, title: "测试页 demo" },
     },
     {
       path: "/team",
@@ -157,10 +176,7 @@ const router = createRouter({
   ],
 });
 router.afterEach((to, from) => {
-  if (to.meta.showNav) {
-    document.title = to.meta.title;
-    console.log("title", to.meta.title);
-  }
+  document.title = to.meta.title;
 });
 router.options.linkActiveClass = "nav-color";
 router.options.linkExactActiveClass = "nav-color";

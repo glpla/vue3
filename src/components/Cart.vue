@@ -45,7 +45,7 @@
           <span>&yen;{{ getPriceDiscount().toFixed(2) }}</span>
         </div>
       </div>
-      <router-link class="btn pay-btn f-s-b" to="/order" replace>去结算</router-link>
+      <router-link class="btn pay-btn f-s-b" to="/order">去结算</router-link>
     </footer>
   </div>
 </template>

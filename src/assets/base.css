@@ -3,8 +3,9 @@
   --main-color: #0022aa;
   --second-color: #cb9b73;
   --bg-color: #fff;
-  --second-bg-color: #f7f7f7;
+  --second-bg-color: #f0f0f0;
   --third-bg-color: #ebeeff;
+  --dark-bg-color: #ccc;
   --warn-color: #f40;
   --main-color-dark: #a00;
   --security-color: #41b883;
@@ -132,12 +133,21 @@ button {
   padding: var(--p-m-g);
 }
 
+.p-b-10 {
+  padding-bottom: 10rem;
+}
+
 .m-1 {
   margin: var(--p-m-g);
 }
 
-.mb-1 {
+.mb-1,
+.m-b-1 {
   margin-bottom: var(--p-m-g);
+}
+
+.m-b-2 {
+  margin-bottom: calc(var(--p-m-g) * 2);
 }
 
 .flex {

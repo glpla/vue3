@@ -2,20 +2,19 @@
   <div class="w order-view">
     <div class="flex address-box">
       <div class="loc">
-        <div class="title f-s-m">
+        <div class="title">
           <span>桂林万达广场店 | 0.5km&nbsp;</span>
-          <button><span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span></button>
+          <button @click="$router.push('/location')">
+            <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
+          </button>
         </div>
         <div>树先生 &nbsp; 137xxxx5481</div>
       </div>
-      <div class="flex switch">
-        <span>自提</span>
-        <span>外送</span>
-      </div>
+      <Delivery />
     </div>
     <div class="flex delivery-box">
       <div>
-        <div class="f-s-m">立即可取，约10:21可取</div>
+        <div>立即可取，约10:21可取</div>
         <p>金牌咖啡正在等你下单</p>
       </div>
       <img :src="logo" alt="">
@@ -67,6 +66,7 @@
 </template>
 
 <script setup>
+import Delivery from '@/components/Delivery.vue'
 import logo from '@/assets/luckin-coffee.png'
 import itemImg from '@/assets/logo.png'
 </script>
@@ -90,23 +90,6 @@ import itemImg from '@/assets/logo.png'
 .loc .title {
   display: flex;
   align-items: center;
-}
-
-.switch {
-  background-color: var(--second-bg-color);
-  border-radius: 2rem;
-  padding: 0;
-}
-
-.switch span {
-  border-radius: 2rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--second-bg-color);
-}
-
-.switch span:nth-child(1) {
-  background-color: var(--main-color);
-  color: #fff;
 }
 
 .delivery-box img {
