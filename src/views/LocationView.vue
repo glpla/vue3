@@ -26,7 +26,7 @@
         </div>
         <span class="iconfont icon-guanyu_o about f-s-b"></span>
       </div> -->
-      <div class="item" v-for="item in locs" :key="item">
+      <div class="item" v-for="item in mapStore.locs" :key="item">
         <h4 class="m-b-1">{{ item.title }}</h4>
         <div class="desc">
           <span class="iconfont icon-ditu_dingwei_o f-s-m"></span>
@@ -46,206 +46,12 @@
 
 <script setup>
 import { ref, onMounted, inject } from 'vue';
+import { useMapStore } from '@/stores/map';
 import Map from '@/components/Map.vue';
 import Switch from '@/components/Switch.vue';
 import Tabbar from '@/components/Tabbar.vue';
-import { apiKey, keyword, radius } from '@/assets/config/tbl';
-const axios = inject('axios');
+const mapStore = useMapStore();
 const currentTab = ref(0);
-const locs = ref([
-  {
-    "id": "1765361061766493899",
-    "title": "瑞幸咖啡(胜和广场店)",
-    "address": "广东省东莞市胜和路胜和商住广场A座一层大堂",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.021058,
-      "lng": 113.74849
-    },
-    "_distance": 341.19,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "3372697213968464134",
-    "title": "瑞幸咖啡(盈锋中心店)",
-    "address": "广东省东莞市胜和体育路26号盈锋中心1栋一层大堂",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.021181,
-      "lng": 113.75628
-    },
-    "_distance": 463.13,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "11946679672493798412",
-    "title": "瑞幸咖啡(尚书银座商务公寓店)",
-    "address": "广东省东莞市东莞市道鸿福路100号尚书银座1幢116室1号",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.013007,
-      "lng": 113.753635
-    },
-    "_distance": 873.67,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "3190288109658265820",
-    "title": "瑞幸咖啡(南城印象汇店)",
-    "address": "广东省东莞市鸿福路90号东莞南城印象汇一层1127号",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.014615,
-      "lng": 113.745974
-    },
-    "_distance": 900.1,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "6547077330904273153",
-    "title": "瑞幸咖啡(创意产业中心店)",
-    "address": "广东省东莞市莞太路34-A区3号楼",
-    "tel": "4000100100",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.021912,
-      "lng": 113.742777
-    },
-    "_distance": 934.21,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "1185483303661290556",
-    "title": "瑞幸咖啡(南城莱蒙店)",
-    "address": "广东省东莞市鸿福路88号莱蒙商业中心一层104号",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.015522,
-      "lng": 113.744446
-    },
-    "_distance": 946.07,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "14910365715777641222",
-    "title": "瑞幸咖啡",
-    "address": "广东省东莞市银丰路2号嘉荣购物广场(银丰店)",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.01946,
-      "lng": 113.742393
-    },
-    "_distance": 972.38,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "2049493828898145559",
-    "title": "瑞幸咖啡(南城中盛商务大厦店)",
-    "address": "广东省东莞市东莞市道中盛商务大厦108号1栋一层107-108室",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.0126,
-      "lng": 113.756453
-    },
-    "_distance": 1017.42,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "15574718306709915943",
-    "title": "瑞幸咖啡(华凯广场店)",
-    "address": "广东省东莞市元美路华凯广场B幢一层大堂",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.0129,
-      "lng": 113.74591
-    },
-    "_distance": 1054.26,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  },
-  {
-    "id": "8685746581155527282",
-    "title": "瑞幸咖啡(汇峰中心G栋大堂店)",
-    "address": "广东省东莞市东莞市道汇峰路1号汇峰中心1号楼231室底商",
-    "tel": "",
-    "category": "娱乐休闲:咖啡厅",
-    "type": 0,
-    "location": {
-      "lat": 23.025293,
-      "lng": 113.761507
-    },
-    "_distance": 1120.27,
-    "ad_info": {
-      "adcode": 441900,
-      "province": "广东省",
-      "city": "东莞市",
-      "district": "东莞市"
-    }
-  }
-]);
-const center = ref({ lat: 23.02067, lng: 113.75179 });
-const geometries = ref([])
 const tabs = [
   { title: '附近', keyword: 'nearby', path: '' },
   { title: '常用门店', keyword: 'common', path: '' }
@@ -256,28 +62,9 @@ const switchs = ref([
 ])
 
 onMounted(() => {
-  // axios.get(`/map-api/ws/location/v1/ip?ip=&key=${apiKey}`)
-  //   .then(res => {
-  //     console.log('res', res);
-
-  //     center.value = res.data.result.location
-  //     axios.get(`/map-api/ws/place/v1/search?boundary=nearby(${center.value.lat},${center.value.lng},${radius})&keyword=${keyword}&page_size=10&page_index=1&key=${apiKey}`)
-  //       .then(res => {
-  //         console.log('res', res.data.data);
-
-  //         locs.value = res.data.data.map(item => ({
-  //           ...item,
-  //           title: item.title.replace(/瑞幸咖啡\(/, '').replace(/\)/, ''),
-  //           open: '08:30 - 21:30'
-  //         }))
-  //         geometries.value = res.data.data.map(item => ({
-  //           styleId: 'marker',
-  //           position: item.location,
-  //           content: item.title
-  //         }));
-  //       })
-  //   })
+  mapStore.updateMarker()
 })
+
 </script>
 
 <style scoped>

@@ -50,24 +50,23 @@ const getCenter = (res) => {
 }
 
 onMounted(() => {
-  //   axios.get(`https://apis.map.qq.com/ws/location/v1/ip?ip=&key=${apiKey}&output=jsonp&callback=getCenter
-  // `)
-  // .then(res => {
-  //   center.value = res.data.result.location
-  //   axios.get(`https://apis.map.qq.com/ws/place/v1/search?boundary=nearby(${center.value.lat},${center.value.lng},${radius})&keyword=${keyword}&page_size=10&page_index=1&key=${apiKey}`)
-  //     .then(res => {
-  //       city.value = { title: res.data.data[0].title.replace(/瑞幸咖啡\(/, '').replace(/\)/, ''), distance: res.data.data[0]._distance.toFixed(0) }
-  //       locs.value = res.data.data.map(item => ({
-  //         ...item,
-  //         open: '08:30 - 21:30'
-  //       }))
-  //       geometries.value = res.data.data.map(item => ({
-  //         styleId: 'marker',
-  //         position: item.location,
-  //         content: item.title
-  //       }));
-  //     })
-  // })
+  axios.get(`/map-api/ws/location/v1/ip?ip=&key=${apiKey}`)
+    .then(res => {
+      center.value = res.data.result.location
+      axios.get(`/map-api/ws/place/v1/search?boundary=nearby(${center.value.lat},${center.value.lng},${radius})&keyword=${keyword}&page_size=10&page_index=1&key=${apiKey}`)
+        .then(res => {
+          city.value = { title: res.data.data[0].title.replace(/瑞幸咖啡\(/, '').replace(/\)/, ''), distance: res.data.data[0]._distance.toFixed(0) }
+          locs.value = res.data.data.map(item => ({
+            ...item,
+            open: '08:30 - 21:30'
+          }))
+          geometries.value = res.data.data.map(item => ({
+            styleId: 'marker',
+            position: item.location,
+            content: item.title
+          }));
+        })
+    })
 })
 
 </script>
