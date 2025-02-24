@@ -1,14 +1,13 @@
 <template>
-  <div> demo </div>
+  <div> {{ tmp }} </div>
+  <button @click="inc">inc</button>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-const router = useRouter();
-onMounted(() => {
-  console.log(router);
-})
+const props = defineProps(['tmp'])
+const inc = () => {
+  props.tmp++
+}
 </script>
 
 <style scoped></style>

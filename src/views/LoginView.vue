@@ -1,76 +1,127 @@
 <template>
-  <div class="register">
-    <form class="form" @submit.prevent="submitForm">
-      <h2 class="title">login</h2>
-      <div class="ipt-box">
-        <label class="leading"><span class="iconfont icon-suoding_o"></span></label>
-        <input class="ipt" type="password" placeholder="your password" maxlength="12" name="upass"
-          v-model="user.pass"></input>
-      </div>
-      <div class="ipt-box">
-        <label class="leading"><span class="iconfont icon-youjian_o"></span></label>
-        <input class="ipt" type="email" placeholder="your email" maxlength="18" name="umail"
-          v-model="user.email"></input>
-      </div>
-      <div class="ipt-box">
-        <button type="submit" class="btn submit-btn">submit</button>
-        <button type="reset" class="btn reset-btn" @click="resetForm">reset</button>
-      </div>
-      <div class="icon-box">
-        <span class="iconfont icon-qq0"></span>
-        <span class="iconfont icon-weixin0"></span>
-        <span class="iconfont icon-twitter"></span>
-        <span class="iconfont icon-sina"></span>
-        <span class="iconfont icon-zhifubao0"></span>
-      </div>
-    </form>
+  <div class="login-view">
+    <img class="img" src="@/assets/logo.png" alt="">
+    <h3>大树</h3>
+    <p>欢迎回来</p>
+    <div class="ipt-box">
+      <input class="ipt" type="tel" placeholder="请输入手机号" maxlength="11" v-model="user.tel" required></input>
+      <span class="iconfont icon-guanbi_o cell" :class="{ 'show': user.tel.length }" @click.stop="user.tel = ''"></span>
+    </div>
+    <div class="ipt-box">
+      <input class="ipt" type="text" placeholder="请输入手机验证码" maxlength="6" v-model="user.code" required
+        pattern="\d{6}"></input>
+      <span class="code" :class="{ 'show': user.tel.length }" @click="sendVerificationCode">获取验证码</span>
+    </div>
+    <div class="ipt">
+      <input type="checkbox" class="cb-custom" id="cb" v-model="user.agree">
+      <label for="cb">我已经阅读并同意
+        <a href="">《瑞幸咖啡用户协议》</a> 、<a href="">《瑞幸咖啡隐私权政策》</a></label>
+    </div>
+    <button class="f-s-m" @click="submit">确定</button>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
 const user = ref({
-  pass: '',
-  email: '',
+  tel: '',
+  code: '',
+  agree: false
 })
-const submitForm = () => {
-  // todo
-  console.log(user.value)
-}
-const resetForm = () => {
-  user.value = {
-    pass: '',
-    email: '',
+const sendVerificationCode = () => {
+  if (user.value.tel.length !== 11) {
+    alert('请输入正确的手机号')
+    return
   }
+  alert('验证码已发送')
+}
+
+const submit = () => {
+  if (user.value.tel.length !== 11) {
+    alert('请输入正确的手机号')
+    return
+  }
+  if (user.value.code.length !== 6) {
+    console.log(user.value.code);
+
+    alert('请输入正确的验证码')
+    return
+  }
+  if (!user.value.agree) {
+    alert('请先阅读并同意用户协议和隐私政策')
+    return
+  }
+  // 这里可以添加登录逻辑
+  alert('登录成功')
 }
 </script>
 
 <style scoped>
-@import url(../assets/form.css);
-
-
-.icon-box {
+.login-view {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  height: 8rem;
+  justify-content: center;
+  height: 100vh;
+  padding: 6rem var(--p-m-g);
+  background-color: #fff;
+  gap: var(--p-m-g);
 }
 
-.icon-box .iconfont {
-  height: 4rem;
-  width: 4rem;
+.img {
+  width: 120px;
+}
+
+.ipt-box {
+  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-  transition: 0.5s;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  width: 100%;
+  height: 4rem;
+  background-color: var(--second-bg-color);
+  border-radius: 4rem;
+}
+
+.ipt-box input {
+  height: 100%;
+  padding: 0 var(--p-m-g);
+}
+
+.ipt-box span {
+  position: absolute;
+  right: var(--p-m-g);
+}
+
+.cell {
+  display: none;
+  font-size: 2rem;
+}
+
+.cell.show {
+  display: block;
+}
+
+.code {
+  color: #666;
   cursor: pointer;
 }
 
-.icon-box .iconfont:hover {
-  color: #fff;
+.code.show {
+  color: var(--main-color);
+}
+
+button {
+  width: 100%;
   background-color: var(--main-color);
+  opacity: 0.6;
+  height: 4rem;
+  border-radius: 4rem;
+  color: #fff;
+}
+
+a {
+  color: var(--main-color);
 }
 </style>

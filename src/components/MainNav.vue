@@ -2,7 +2,7 @@
   <div class="main-nav">
     <header class="header flex">
       <span>Hey，来给幸运打个招呼</span>
-      <button @click="toLogin">登录/注册</button>
+      <button @click.stop="$router.push('/login-guide')">登录/注册</button>
     </header>
     <div class="item">
       <span class="iconfont icon-login-"></span>
@@ -43,12 +43,6 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-const router = useRouter()
-const toLogin = () => {
-  // window.open('https://www.luckincoffee.com/login')
-  router.push('/login-guide')
-}
 </script>
 
 <style scoped>

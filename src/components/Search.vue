@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <span class="iconfont icon-sousuo_o"></span>
-    <input class="ipt" type="text" v-model.trim="search" placeholder="小黄杏美式">
+    <input class="ipt" type="text" placeholder="小黄杏美式">
     <div class="clear" ref="clear-ref">
       <span class="iconfont icon-guanbi_o"></span>
     </div>

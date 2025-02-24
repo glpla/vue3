@@ -1,10 +1,8 @@
 <script setup>
 import Swiper from '@/components/Swiper.vue';
 import { defineAsyncComponent, ref, onMounted, useTemplateRef, onUnmounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router';
 import MainNav from '@/components/MainNav.vue';
 import BackToTop from '@/components/BackToTop.vue';
-const route = useRoute();
 
 // const AsyncGoods = defineAsyncComponent(() => import('@/components/TabGoods.vue'))
 // const AsyncCup = defineAsyncComponent(() => import('@/components/TabCup.vue'))
@@ -16,9 +14,7 @@ const tabs = {
   "随享瑞幸": AsyncGoods,
   "颜值水杯": AsyncCup
 }
-
 const tabBox = useTemplateRef('tab-box')
-
 onMounted(() => {
   window.onscroll = function () {
     const rect = tabBox.value.getBoundingClientRect()

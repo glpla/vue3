@@ -1,31 +1,33 @@
 <template>
   <div class="tabbar" ref="tabbar">
-    <div class="tab">
-      <button v-for="(item, ind) in tabs" @click="currentInd = ind" :key="ind" class="tab-item"
-        :class="{ 'active': currentInd === ind }">
+    <button v-for="(item, ind) in tabs" :key="ind" class="tab-item" @click.stop="navToItem(item)"
+      :class="{ active: currentInd === ind }">
+      <h3>{{ item.title }}</h3>
+    </button>
+    <!-- <RouterLink v-for="(item, ind) in tabs" :key="ind" class="tab-item" :to="item.path">
         <h3>{{ item.title }}</h3>
-      </button>
-    </div>
+      </RouterLink> -->
     <slot></slot>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const props = defineProps(['tabs'])
 const currentInd = ref(0)
+const navToItem = (item) => {
+  router.push(item.path)
+  currentInd.value = item.ind
+}
 </script>
 
 <style scoped>
 .tabbar {
   display: flex;
   align-items: center;
-}
-
-.tab {
-  display: flex;
-  gap: var(--p-m-g);
-  margin-right: auto;
+  justify-content: space-between;
   line-height: 2.4;
 }
 
@@ -40,7 +42,7 @@ const currentInd = ref(0)
   bottom: 0;
   transform: translateX(-50%);
   width: 60%;
-  height: 2px;
+  height: 4px;
   background-color: var(--main-color);
 }
 </style>

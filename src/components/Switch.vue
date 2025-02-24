@@ -25,7 +25,6 @@ const currentInd = ref(0)
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--p-m-g);
   background-color: var(--second-bg-color);
   border-radius: 2rem;
 }

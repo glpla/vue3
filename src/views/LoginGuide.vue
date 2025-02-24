@@ -1,17 +1,17 @@
 <template>
   <div class="w login-guide flex">
     <img src="@/assets/R-C.png" alt="">
-    <button class="btn cell f-s-m" style="--color:#0022aa">手机号安全登录</button>
+    <button class="btn cell f-s-m" style="--color:#0022aa" @click.stop="$router.push('/login')">手机号安全登录</button>
     <button class="btn wx f-s-m" style="--color:#41b883">一键登录</button>
     <div class="ipt">
-      <input type="checkbox" name="" id="cb">
-      <label for="cb">我已经阅读并同意<span>《瑞幸咖啡用户协议》</span> 、<span>《瑞幸咖啡隐私权政策》</span></label>
+      <input type="checkbox" class="cb-custom" id="cb">
+      <label for="cb">我已经阅读并同意
+        <a href="">《瑞幸咖啡用户协议》</a> 、<a href="">《瑞幸咖啡隐私权政策》</a></label>
     </div>
   </div>
 </template>
 
 <script setup>
-
 </script>
 
 <style scoped>
@@ -22,10 +22,11 @@
   padding-right: var(--p-m-g);
   height: 100vh;
   background-color: #fff;
+  padding-top: 10rem;
 }
 
 .login-guide img {
-  max-width: 100%;
+  max-width: 80%;
   aspect-ratio: 16/9;
   object-fit: cover;
 }
@@ -51,7 +52,7 @@ input {
   vertical-align: middle;
 }
 
-label span {
+a {
   color: var(--main-color);
 }
 </style>

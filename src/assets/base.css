@@ -21,6 +21,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -81,6 +82,16 @@ ul {
   list-style: none;
 }
 
+input[type='tel'],
+input[type='text'] {
+  width: 100%;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
 button {
   display: inline-flex;
   justify-content: center;
@@ -91,78 +102,4 @@ button {
   font: inherit;
   color: inherit;
   cursor: pointer;
-}
-
-.iconfont {
-  font-size: 2.4rem;
-}
-
-.ellipsis {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.w {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.warn {
-  color: var(--warn-color);
-}
-
-.f-b {
-  font-weight: 600;
-}
-
-.f-s-s {
-  font-size: 1.2rem;
-}
-
-.f-s-m {
-  font-size: 1.6rem;
-}
-
-.f-s-b {
-  font-size: 1.8rem;
-}
-
-.p-1 {
-  padding: var(--p-m-g);
-}
-
-.p-b-10 {
-  padding-bottom: 10rem;
-}
-
-.m-1 {
-  margin: var(--p-m-g);
-}
-
-.mb-1,
-.m-b-1 {
-  margin-bottom: var(--p-m-g);
-}
-
-.m-b-2 {
-  margin-bottom: calc(var(--p-m-g) * 2);
-}
-
-.flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--p-m-g);
-}
-
-/* router style */
-.nav-color {
-  color: var(--main-color);
 }
