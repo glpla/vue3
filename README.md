@@ -1,3 +1,8 @@
+# update
+
+请替换为自己的 api-key
+注册并申请 api-key
+
 # vite-demo
 
 This template should help get you started developing with Vue 3 in Vite.
