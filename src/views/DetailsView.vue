@@ -214,6 +214,7 @@ const handleGoods = async (id) => {
 onMounted(() => {
   console.log(route.params.id);
   handleGoods(route.params.id)
+  // window.scrollTo(0, 0)
 })
 </script>
 

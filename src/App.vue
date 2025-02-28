@@ -15,4 +15,8 @@ import AppNav from './components/AppNav.vue';
   right: 0;
   text-align: center;
 }
+
+.p-b-10 {
+  background-color: #fff;
+}
 </style>
