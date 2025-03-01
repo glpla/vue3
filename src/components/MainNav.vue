@@ -86,9 +86,17 @@
   aspect-ratio: 2/2;
 }
 
+.item .iconfont {
+  color: var(--main-color);
+}
+
 .main-nav .item:nth-of-type(n+4) {
   justify-content: center;
   aspect-ratio: 2/3;
   width: 25%;
+}
+
+.main-nav .item:nth-of-type(n+4) .iconfont {
+  color: initial;
 }
 </style>

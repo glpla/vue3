@@ -5,6 +5,15 @@ import { useGoodsStore } from '@/stores/goods';
 const goodsStore = useGoodsStore();
 onMounted(() => {
   goodsStore.getGoods()
+  // window.addEventListener('scroll', () => {
+  //   let scrollTop = document.documentElement.scrollTop;
+  //   let windowHeight = document.documentElement.clientHeight;
+  //   let scrollHeight = document.documentElement.scrollHeight;
+  //   if (scrollTop + windowHeight >= scrollHeight) {
+  //     goodsStore.getGoods()
+  //   }
+  // })
+
 })
 </script>
 

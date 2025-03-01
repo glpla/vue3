@@ -11,6 +11,5 @@ import CardItem from '@/components/CardItem.vue';
 <style scoped>
 .tab-goods.grid {
   grid-auto-rows: auto;
-  background-color: var(--second-bg-color);
 }
 </style>

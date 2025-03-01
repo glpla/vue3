@@ -6,7 +6,9 @@
   --second-bg-color: #f0f0f0;
   --third-bg-color: #ebeeff;
   --dark-bg-color: #ccc;
-  --warn-color: #f40;
+  --base-color: 255, 68, 0;
+  --warn-color: rgba(var(--base-color), 1);
+  --warn-color-light: rgba(var(--base-color), 0.05);
   --main-color-dark: #a00;
   --security-color: #41b883;
   --tips-color: #273d6f;

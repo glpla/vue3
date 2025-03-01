@@ -47,7 +47,7 @@ import lc from '@/assets/cup.jpg';
 }
 
 .labels .label {
-  background-color: #f404;
+  background-color: var(--warn-color-light);
   padding: 0 calc(var(--p-m-g)/2);
 }
 

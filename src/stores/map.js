@@ -4,7 +4,7 @@ import { apiKey, keyword, radius } from "@/assets/config/tbl";
 
 export const useMapStore = defineStore("map", () => {
   const axios = inject("axios");
-  const center = ref({ lat: 23.02067, lng: 113.75179 });
+  const center = ref({ lat: 22.99889, lng: 113.76611 });
   const locs = ref([]);
   const geometries = ref([]);
   const updateMarker = () => {

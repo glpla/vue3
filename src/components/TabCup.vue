@@ -1,6 +1,6 @@
 <template>
   <div class="tab-cup grid">
-    <CupItem v-for="item in 5" :key="item"></CupItem>
+    <CupItem v-for="item in 6" :key="item"></CupItem>
   </div>
 </template>
 
@@ -11,6 +11,5 @@ import CupItem from '@/components/CupItem.vue';
 <style scoped>
 .tab-cup.grid {
   grid-auto-rows: auto;
-  background-color: var(--second-bg-color);
 }
 </style>
