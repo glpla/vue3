@@ -4,7 +4,6 @@ import AppNav from './components/AppNav.vue';
 const isHide = ref(false)
 onMounted(() => {
   window.addEventListener('scroll', () => {
-    console.log(window.scrollY);
     window.scrollY > 100 ? isHide.value = true : isHide.value = false
   })
 
@@ -24,10 +23,7 @@ onMounted(() => {
   right: 0;
   text-align: center;
   transition: .5s;
-}
-
-.p-b-10 {
-  background-color: #fff;
+  z-index: 99;
 }
 
 .hide {

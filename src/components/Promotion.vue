@@ -89,6 +89,10 @@
 .item {
   background-color: var(--second-bg-color);
   border-radius: var(--p-m-g);
+  background-image: url('@/assets/logo.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .item:first-child {

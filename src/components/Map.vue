@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import src from '@/assets/logo.svg'
+import src from '@/assets/logo-small.png'
 import { useMapStore } from '@/stores/map'
 const mapStore = useMapStore()
 const mapRef = ref(null)
@@ -42,8 +42,9 @@ const onDragEnd = (e) => {
 
 const setMapCenter = () => {
   // mapRef.value.map.setCenter({ lat: 30.91799, lng: 110.397027 });
-  mapStore.center = { lat: 23.02067, lng: 113.75179 }
+  mapStore.center = { lat: 22.99889, lng: 113.76611 }
   console.log(mapStore.center.value);
+  mapStore.updateMarker()
 }
 
 // mapRef.value.map.on('click', onClick);
@@ -67,8 +68,8 @@ const onMarkerClick = (e) => {
 
 const styles = ref({
   marker: {
-    width: 20,
-    height: 25,
+    width: 40,
+    height: 40,
     anchor: { x: 10, y: 30 },
     src: src
   },

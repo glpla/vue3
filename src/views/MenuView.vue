@@ -10,7 +10,7 @@
       <button><span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span></button>
     </div>
     <Tabbar :tabs="tabs"></Tabbar>
-    <RouterView class="p-1" />
+    <RouterView class="sub-view p-1" />
     <Cart class="w cart" v-if="cartStore.cart.length" :class="{ 'pos': $route.meta.showNav }"></Cart>
   </div>
 </template>
@@ -119,5 +119,9 @@ onMounted(() => {
 
 .cart.pos {
   bottom: var(--app-nav-h);
+}
+
+.sub-view {
+  background-color: #fff;
 }
 </style>

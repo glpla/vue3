@@ -18,6 +18,16 @@ const tabs = {
   "颜值水杯": AsyncCup
 }
 const tabBox = useTemplateRef('tab-box')
+
+const toCoupon = () => {
+  console.log('to coupon');
+  alert('to coupon')
+}
+const toWelfare = () => {
+  console.log('to welfare');
+  alert('to welfare')
+}
+
 onMounted(() => {
   window.onscroll = function () {
     const rect = tabBox.value.getBoundingClientRect()
@@ -39,11 +49,11 @@ onUnmounted(() => {
     <Swiper />
     <MainNav class="m-1" />
     <div class="section">
-      <Title title="我的优惠专区" />
+      <Title title="我的优惠专区" :handle="toCoupon" />
       <Promotion />
     </div>
     <div class="section">
-      <Title title="福利中心" />
+      <Title title="福利中心" :handle="toWelfare" />
       <Welfare />
     </div>
     <div class="tab-box" ref="tab-box">
@@ -53,7 +63,7 @@ onUnmounted(() => {
           <h3>{{ tab }}</h3>
         </button>
       </div>
-      <button>
+      <button @click="$router.replace('/mall')">
         <span>更多</span>
         <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
       </button>
@@ -66,10 +76,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.home-view {
-  background-color: var(--second-bg-color);
-}
-
 .section {
   padding: var(--p-m-g);
   background-color: #fff;
@@ -118,7 +124,7 @@ onUnmounted(() => {
 
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
+  bottom: 10rem;
   right: 2rem;
 }
 </style>

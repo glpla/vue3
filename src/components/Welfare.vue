@@ -36,4 +36,8 @@ register();
 .cont div {
   color: var(--warn-color);
 }
+
+.cont .iconfont {
+  font-size: 1.6rem;
+}
 </style>
