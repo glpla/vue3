@@ -65,14 +65,14 @@
   right: 0;
   top: -5rem;
   height: 5rem;
-  background-color: #333;
+  background-color: var(--txt-color);
   color: var(--second-color);
   padding: 0 var(--p-m-g);
 }
 
 .header button {
   background-color: var(--second-color);
-  color: #333;
+  color: var(--txt-color);
   border-radius: var(--p-m-g);
   padding: 0 var(--p-m-g);
 }
@@ -82,6 +82,7 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  color: #333;
   width: calc(100%/3);
   aspect-ratio: 2/2;
 }

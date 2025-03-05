@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import Demo from './Demo.vue';
 import Tabbar from './Tabbar.vue';
 const tabs = ref([{ title: '附近', keyword: 'nearby' },

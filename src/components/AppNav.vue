@@ -26,5 +26,8 @@ const nav = ref([
 
 .nav-item {
   padding: 0 var(--p-m-g);
+  color: #333;
 }
+
+.nav-item div {}
 </style>

@@ -1,13 +1,16 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, getCurrentInstance } from 'vue';
 import AppNav from './components/AppNav.vue';
 const isHide = ref(false)
 onMounted(() => {
   window.addEventListener('scroll', () => {
     window.scrollY > 100 ? isHide.value = true : isHide.value = false
   })
+  const ins = getCurrentInstance()
+  console.log(ins);
 
 })
+
 </script>
 
 <template>

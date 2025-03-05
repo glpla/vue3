@@ -87,7 +87,7 @@
 }
 
 .item {
-  background-color: var(--second-bg-color);
+  background-color: var(--warn-color-light);
   border-radius: var(--p-m-g);
   background-image: url('@/assets/logo.png');
   background-size: contain;

@@ -1,6 +1,7 @@
 <script setup>
 import Swiper from '@/components/Swiper.vue';
 import { defineAsyncComponent, ref, onMounted, useTemplateRef, onUnmounted } from 'vue'
+import Theme from '@/components/Theme.vue';
 import MainNav from '@/components/MainNav.vue';
 import BackToTop from '@/components/BackToTop.vue';
 import Title from '@/components/Title.vue';
@@ -46,6 +47,7 @@ onUnmounted(() => {
 
 <template>
   <div class="home-view">
+    <Theme />
     <Swiper />
     <MainNav class="m-1" />
     <div class="section">
@@ -63,7 +65,7 @@ onUnmounted(() => {
           <h3>{{ tab }}</h3>
         </button>
       </div>
-      <button @click="$router.replace('/mall')">
+      <button class="more" @click="$router.replace('/mall')">
         <span>更多</span>
         <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
       </button>
@@ -76,6 +78,18 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
+.home-view {
+  position: relative;
+}
+
+.theme {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 99;
+  color: var(--bg-color);
+}
+
 .section {
   padding: var(--p-m-g);
   background-color: #fff;
@@ -111,6 +125,14 @@ onUnmounted(() => {
   position: relative;
 }
 
+.nav-item h3 {
+  color: var(--txt-color);
+}
+
+.more {
+  color: var(--txt-color);
+}
+
 .nav-item.active::after {
   content: '';
   position: absolute;
@@ -120,6 +142,11 @@ onUnmounted(() => {
   width: 60%;
   height: 4px;
   background-color: var(--main-color);
+}
+
+html[data-theme='dark'] .tab-box.sticky h3,
+html[data-theme='dark'] .tab-box.sticky .more {
+  color: var(--bg-color);
 }
 
 .back-to-top {

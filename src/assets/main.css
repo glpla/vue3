@@ -104,6 +104,6 @@
 }
 
 /* router style */
-.nav-color {
+.app-nav a.nav-color {
   color: var(--main-color);
 }

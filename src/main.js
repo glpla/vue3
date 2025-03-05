@@ -7,7 +7,11 @@ import TlbsMap from "tlbs-map-vue";
 import App from "./App.vue";
 import router from "./router";
 
+// Vue.protoType.axios = axios;
+
 const app = createApp(App);
+// app.config.globalProperties.axios = axios;
+
 app.provide("axios", axios);
 app.use(createPinia());
 app.use(router);
