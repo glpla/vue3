@@ -104,6 +104,11 @@
 }
 
 /* router style */
-.app-nav a.nav-color {
+
+.nav-color {
+  color: var(--main-color);
+}
+
+.exact-nav-color {
   color: var(--main-color);
 }

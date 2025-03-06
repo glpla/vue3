@@ -152,11 +152,13 @@ const router = createRouter({
       component: h("p", { style: "color: red" }, "Pages Not Found 404"),
     },
   ],
+  linkActiveClass: "nav-color",
+  linkExactActiveClass: "exact-nav-color",
 });
 router.afterEach((to, from) => {
   document.title = to.meta.title;
   window.scrollTo(0, 0);
 });
-router.options.linkActiveClass = "nav-color";
-router.options.linkExactActiveClass = "nav-color";
+// router.options.linkActiveClass = "nav-color";
+// router.options.linkExactActiveClass = "nav-color";
 export default router;

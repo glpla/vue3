@@ -51,11 +51,11 @@ onUnmounted(() => {
     <Swiper />
     <MainNav class="m-1" />
     <div class="section">
-      <Title title="我的优惠专区" :handle="toCoupon" />
+      <Title title="我的优惠专区" :handle="toCoupon"></Title>
       <Promotion />
     </div>
     <div class="section">
-      <Title title="福利中心" :handle="toWelfare" />
+      <Title title="福利中心" :handle="toWelfare"></Title>
       <Welfare />
     </div>
     <div class="tab-box" ref="tab-box">

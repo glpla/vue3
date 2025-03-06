@@ -5,18 +5,20 @@
       <h3>{{ item.title }}</h3>
     </button>
     <!-- <RouterLink v-for="(item, ind) in tabs" :key="ind" class="tab-item" :to="item.path">
-        <h3>{{ item.title }}</h3>
-      </RouterLink> -->
+      <h3>{{ item.title }}</h3>
+    </RouterLink> -->
     <slot></slot>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
+const route = useRoute()
 const props = defineProps(['tabs'])
 const currentInd = ref(0)
+
 const navToItem = (item) => {
   router.push(item.path)
   currentInd.value = item.ind
