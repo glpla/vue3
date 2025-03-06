@@ -227,7 +227,7 @@ onMounted(() => {
 header {
   position: relative;
   border-radius: 1rem;
-  background-color: var(--bg-color);
+  background-color: #fff;
 }
 
 .specification .items {
@@ -267,7 +267,7 @@ header {
 .cont {
   position: relative;
   border-radius: 1rem;
-  background-color: var(--bg-color);
+  background-color: #fff;
   padding: 2rem 1rem;
 }
 
@@ -302,7 +302,7 @@ footer {
   bottom: 0;
   padding: 2rem 1rem;
   z-index: 99;
-  background-color: var(--bg-color);
+  background-color: #fff;
 }
 
 .info {
@@ -384,7 +384,7 @@ footer {
   position: absolute;
   left: 50%;
   bottom: 0;
-  background-color: var(--bg-color);
+  background-color: #fff;
   padding: 2rem 1rem;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;

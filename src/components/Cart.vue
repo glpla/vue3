@@ -121,10 +121,10 @@ onMounted(() => {
 }
 
 .cont {
-  background-color: var(--bg-color);
+  background-color: #fff;
   overflow: hidden;
   max-height: 0;
-  padding: 0 var(--p-m-g) var(--p-m-g);
+  transition: padding 0s, max-height 0.1s;
 }
 
 .show-cont-all .cont {
@@ -133,7 +133,7 @@ onMounted(() => {
   bottom: 0;
   width: 100%;
   max-height: 50vh;
-  padding-bottom: calc(6rem + var(--p-m-g));
+  padding: 0 var(--p-m-g) calc(6rem + var(--p-m-g));
   overflow-y: auto;
 }
 
@@ -144,7 +144,6 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   gap: 4px;
-  background-color: var(--bg-color);
   border-bottom: 1px solid var(--second-bg-color);
 }
 
@@ -232,7 +231,7 @@ footer {
   align-items: center;
   gap: var(--p-m-g);
   height: 6rem;
-  background-color: var(--bg-color);
+  background-color: #fff;
   border-radius: 3rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
