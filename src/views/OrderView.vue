@@ -4,9 +4,7 @@
       <div class="loc">
         <div class="title">
           <span>桂林万达广场店 | 0.5km&nbsp;</span>
-          <button @click="$router.push('/location')">
-            <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-          </button>
+          <button @click="$router.push('/location')">&gt;</button>
         </div>
         <div>树先生 &nbsp; 137xxxx5481</div>
       </div>
@@ -44,9 +42,7 @@
     </div>
     <div class="flex tips-box">
       <h4>备注特别要求</h4>
-      <button>
-        <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-      </button>
+      <button>&gt;</button>
     </div>
     <div class="p-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur esse iure itaque nam
       atque,

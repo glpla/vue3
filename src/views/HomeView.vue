@@ -65,10 +65,7 @@ onUnmounted(() => {
           <h3>{{ tab }}</h3>
         </button>
       </div>
-      <button class="more" @click="$router.replace('/mall')">
-        <span>更多</span>
-        <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-      </button>
+      <button class="more" @click="$router.replace('/mall')">更多 &gt;</button>
     </div>
     <div class="tab-cont">
       <component :is="tabs[currentTab]" class="tab"></component>

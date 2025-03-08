@@ -1,5 +1,5 @@
 @import './base.css';
-@import '//at.alicdn.com/t/c/font_3859342_bsn47r5x52b.css';
+@import '//at.alicdn.com/t/c/font_3859342_k2avexb0kme.css';
 
 .sn {
   counter-reset: sn;
@@ -52,6 +52,10 @@
 .cb-custom:checked::before {
   content: '\eb78';
   font-family: 'iconfont';
+}
+
+.txt-center {
+  text-align: center;
 }
 
 .f-b {
