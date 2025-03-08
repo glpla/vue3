@@ -10,12 +10,12 @@ export const useGoodsStore = defineStore("goods", () => {
     const { data } = await getGoodsWithAxios();
     goods.value = data.cont;
   };
-  // const getGoodsFetch = async () => {
-  //   const json = await getGoodsWithFetch();
-  //   const data = await json.json();
-  //   console.log(data.cont);
-  //   goods.value = data.cont;
-  // };
+  const getGoodsFetch = async () => {
+    const json = await getGoodsWithFetch();
+    const data = await json.json();
+    console.log(data.cont);
+    goods.value = data.cont;
+  };
 
   const getGoodById = async (id) => {
     const { data } = await getGoodsWithAxios();

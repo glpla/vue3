@@ -1,5 +1,7 @@
 import axios from "axios";
-export const getGoods = () => axios.get("@/data/goods.json");
+// axios.defaults.baseURL = "https://glpla.github.io/utils/data";
+
+// test
 export const getGoodsWithAxios = () =>
   axios.get("https://glpla.github.io/utils/data/coffee.json");
 export const getGoodsWithFetch = () =>

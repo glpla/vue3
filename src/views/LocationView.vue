@@ -117,6 +117,15 @@ onMounted(() => {
   overflow-y: auto;
 }
 
+.list::-webkit-scrollbar {
+  width: 6px;
+  background-color: #fff;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+}
+
 .item {
   position: relative;
 }
