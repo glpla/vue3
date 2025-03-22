@@ -1,6 +1,6 @@
 <template>
   <div class="details-view">
-    <Swiper />
+    <Swiper :imgs="imgsUrl" />
     <header class="mb-1 p-1">
       <h3 class="title mb-1">{{ goodsStore.good.name }}</h3>
       <div class="m-b-2">{{ goodsStore.good.desc }}</div>
@@ -137,7 +137,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useCartStore } from '@/stores/cart';
 import { useGoodsStore } from '@/stores/goods';
@@ -155,6 +155,10 @@ const qrCode = ref(null);
 const isShow = ref(false)
 const isShowModal = ref(false)
 const goodsSelected = ref({})
+const imgs = ref(['swiper0.jpg', 'swiper1.jpg', 'swiper2.jpg', 'swiper3.jpg', 'swiper4.jpg', 'swiper5.jpg', 'swiper6.jpg'])
+const imgsUrl = computed(() => {
+  return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
+})
 
 const generateQRCode = () => {
   const urlStr = window.location.href;

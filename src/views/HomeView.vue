@@ -1,6 +1,6 @@
 <script setup>
+import { defineAsyncComponent, ref, computed, onMounted, useTemplateRef, onUnmounted } from 'vue'
 import Swiper from '@/components/Swiper.vue';
-import { defineAsyncComponent, ref, onMounted, useTemplateRef, onUnmounted } from 'vue'
 import Theme from '@/components/Theme.vue';
 import MainNav from '@/components/MainNav.vue';
 import BackToTop from '@/components/BackToTop.vue';
@@ -12,7 +12,10 @@ import Welfare from '@/components/Welfare.vue';
 // const AsyncCup = defineAsyncComponent(() => import('@/components/TabCup.vue'))
 import AsyncGoods from '@/components/TabGoods.vue'
 import AsyncCup from '@/components/TabCup.vue'
-
+const imgs = ref(['deer0.jpg', 'deer1.jpg', 'deer2.jpg', 'deer3.jpg', 'deer4.jpg', 'deer5.jpg', 'deer6.jpg'])
+const imgsUrl = computed(() => {
+  return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
+})
 const currentTab = ref('随享瑞幸')
 const tabs = {
   "随享瑞幸": AsyncGoods,
@@ -47,8 +50,8 @@ onUnmounted(() => {
 
 <template>
   <div class="home-view">
-    <Theme />
-    <Swiper />
+    <!-- <Theme /> -->
+    <Swiper :imgs="imgsUrl" />
     <MainNav class="m-1" />
     <div class="section">
       <Title title="我的优惠专区" :handle="toCoupon"></Title>

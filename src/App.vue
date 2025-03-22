@@ -21,6 +21,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.bread {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #000;
+}
+
 .app-nav {
   position: fixed;
   bottom: 0;

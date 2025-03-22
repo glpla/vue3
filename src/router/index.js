@@ -118,6 +118,12 @@ const router = createRouter({
       meta: { showNav: false, title: "确认订单" },
     },
     {
+      path: "/center",
+      name: "center",
+      component: () => import("@/views/CenterView.vue"),
+      meta: { showNav: false, title: "个人资料" },
+    },
+    {
       path: "/register",
       name: "register",
       component: () => import("@/views/RegisterView.vue"),

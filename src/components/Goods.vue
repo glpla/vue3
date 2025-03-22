@@ -23,7 +23,7 @@ onMounted(() => {
       <GoodsItem v-for="(item, ind) in goodsStore.goods" :key="item.id" :product="item" />
       <footer class="f-s-s">我是有底线的~</footer>
     </template>
-    <div v-else>购物车为空</div>
+    <div v-else>商品获取失败，请刷新页面</div>
   </div>
 </template>
 

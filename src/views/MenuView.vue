@@ -26,6 +26,8 @@ import Cart from '@/components/Cart.vue';
 const cartStore = useCartStore()
 const axios = inject('axios');
 const city = ref({})
+// lat 23.060754
+// lng 113.580752
 const center = ref({})
 const locs = ref({})
 const geometries = ref({})
@@ -45,14 +47,15 @@ const getCenter = (res) => {
   console.log(res);
   center.value = res.data.result.location
 
-  // axios.get(`https://apis.map.qq.com/ws/place/v1/search?boundary=nearby(${center.value.lat},${center.value.lng},${radius})&keyword=${keyword}&page_size=10&page_index=1&key=${apiKey}`)
-  //   .then(res => { })
 }
+const getCenterJsonp = (res) => {
+  console.log(res);
 
+}
 onMounted(() => {
   axios.get(`/map-api/ws/location/v1/ip?ip=&key=${apiKey}`)
     .then(res => {
-      center.value = res.data.result.location
+      center.value = res.data.result.location || { lat: 23.060754, lng: 113.580752 };
       axios.get(`/map-api/ws/place/v1/search?boundary=nearby(${center.value.lat},${center.value.lng},${radius})&keyword=${keyword}&page_size=10&page_index=1&key=${apiKey}`)
         .then(res => {
           city.value = { title: res.data.data[0].title.replace(/瑞幸咖啡\(/, '').replace(/\)/, ''), distance: res.data.data[0]._distance.toFixed(0) }

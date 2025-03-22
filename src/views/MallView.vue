@@ -1,6 +1,6 @@
 <template>
   <div class="mall-view">
-    <Swiper />
+    <Swiper :imgs="imgsUrl" />
     <div class="header">
       <div class="item" v-for="item in linksUrl">
         <img :src="item.src" alt="">
@@ -52,6 +52,10 @@ const linksUrl = computed(() => {
     ...item,
     src: new URL(item.src, import.meta.url).href
   }))
+})
+const imgs = ref(['hill0.jpg', 'hill1.jpg', 'hill2.jpg', 'hill3.jpg', 'hill4.jpg', 'hill5.jpg', 'hill6.jpg'])
+const imgsUrl = computed(() => {
+  return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
 })
 </script>
 
