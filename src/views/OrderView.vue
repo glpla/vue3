@@ -73,8 +73,7 @@ import itemImg from '@/assets/logo.png'
 }
 
 .order-view {
-  background-color: var(--second-bg-color);
-  padding: var(--p-m-g) var(--p-m-g) 8rem;
+  padding: var(--p-m-g);
 }
 
 .order-view>div {
@@ -119,10 +118,10 @@ import itemImg from '@/assets/logo.png'
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 8rem;
+  /* height: 8rem; */
   background-color: #fff;
   bottom: 0;
-  padding: 0 var(--p-m-g);
+  padding: var(--p-m-g);
 }
 
 .submit-box .warn {
@@ -133,7 +132,7 @@ import itemImg from '@/assets/logo.png'
   background-color: var(--warn-color);
   color: #fff;
   width: 15rem;
-  height: 4rem;
-  border-radius: 2rem;
+  height: var(--el-h);
+  border-radius: var(--el-h);
 }
 </style>

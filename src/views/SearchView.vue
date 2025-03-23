@@ -68,10 +68,10 @@ const doSearch = () => {
   display: flex;
   align-items: center;
   flex: 1;
-  height: 3.4rem;
+  height: var(--el-h);
   background-color: var(--second-bg-color);
   padding: 0 var(--p-m-g);
-  border-radius: 1.7rem;
+  border-radius: var(--el-h);
 }
 
 .ipt {

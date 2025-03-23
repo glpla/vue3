@@ -26,12 +26,13 @@ const currentInd = ref(0)
   justify-content: center;
   align-items: center;
   background-color: var(--second-bg-color);
-  border-radius: 2rem;
+  border-radius: var(--el-h);
 }
 
 .switch-item {
-  height: 3rem;
-  border-radius: 2rem;
+  min-width: calc(1.5*var(--el-h));
+  height: var(--el-h);
+  border-radius: var(--el-h);
   padding: 0 var(--p-m-g);
 }
 

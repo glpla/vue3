@@ -32,7 +32,7 @@
 
 button {
   width: 80%;
-  height: 4rem;
+  height: var(--el-h);
   border-radius: 2rem;
   background-color: var(--color);
   color: #fff;

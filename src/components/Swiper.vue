@@ -1,6 +1,7 @@
 <template>
   <div class="swiper">
-    <swiper-container loop="true" pagination="true" autoplay-delay="3000" grabCursor="true" keyboard-enabled="true">
+    <swiper-container loop="true" :pagination-type="type" pagination-clickable="true" autoplay-delay="3000"
+      grabCursor="true" keyboard-enabled="true">
       <swiper-slide v-for="item in imgs" :key="item">
         <img loading="lazy" :src='item' alt="">
       </swiper-slide>
@@ -14,6 +15,10 @@ const props = defineProps({
   imgs: {
     type: Array,
     default: () => []
+  },
+  type: {
+    type: String,
+    default: 'bullets'
   }
 })
 register();
@@ -28,18 +33,19 @@ img {
 }
 
 swiper-container::part(bullet) {
-  width: 6px;
-  height: 6px;
-  border-radius: var(--p-m-g);
+  /* width: 6px; */
+  /* height: 6px; */
+  /* border-radius: 3px; */
   background-color: #fff;
   opacity: 0.6;
-  transition: 0.4s;
+  /* transition: 0.4s; */
 }
 
+
 swiper-container::part(bullet-active) {
-  width: 6px;
-  height: 12px;
-  border-radius: var(--p-m-g);
+  /* width: 12px; */
+  /* height: 12px; */
+  /* border-radius: 3px; */
   background-color: #fff;
   opacity: 1;
 }
@@ -55,5 +61,6 @@ swiper-container::part(pagination) {
   align-items: center;
   justify-content: center;
   gap: var(--p-m-g);
+  color: #fff;
 }
 </style>

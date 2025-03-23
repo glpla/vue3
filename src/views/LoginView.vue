@@ -79,9 +79,9 @@ const submit = () => {
   justify-content: space-between;
   margin-bottom: 2rem;
   width: 100%;
-  height: 4rem;
+  height: var(--el-h);
   background-color: var(--second-bg-color);
-  border-radius: 4rem;
+  border-radius: var(--el-h);
 }
 
 .ipt-box input {
@@ -116,8 +116,8 @@ button {
   width: 100%;
   background-color: var(--main-color);
   opacity: 0.6;
-  height: 4rem;
-  border-radius: 4rem;
+  height: var(--el-h);
+  border-radius: var(--el-h);
   color: #fff;
 }
 

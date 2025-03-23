@@ -358,7 +358,7 @@ footer {
 .buy,
 .add {
   flex: 1;
-  height: 40px;
+  height: var(--el-h);
   border-radius: 20px;
 }
 
