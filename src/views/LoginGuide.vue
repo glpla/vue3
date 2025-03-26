@@ -18,11 +18,9 @@
 .login-guide {
   flex-direction: column;
   gap: calc(2*var(--p-m-g));
-  padding-left: var(--p-m-g);
-  padding-right: var(--p-m-g);
+  padding: calc(4*var(--p-m-g)) calc(2*var(--p-m-g));
   height: 100vh;
-  background-color: #fff;
-  padding-top: 10rem;
+  margin: 0;
 }
 
 .login-guide img {

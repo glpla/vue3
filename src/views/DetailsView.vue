@@ -1,7 +1,7 @@
 <template>
   <div class="details-view">
     <Swiper :imgs="imgsUrl" />
-    <header class="mb-1 p-1">
+    <div class="header m-1 p-1">
       <h3 class="title mb-1">{{ goodsStore.good.name }}</h3>
       <div class="m-b-2">{{ goodsStore.good.desc }}</div>
       <div class="specification">
@@ -40,23 +40,23 @@
           <span class="iconfont icon-fenxiang_o"></span>
         </button>
       </div>
-    </header>
+    </div>
     <!-- <img v-if="qrCode" :src="qrCode" alt="QR Code" /> -->
     <!-- <button @click="generateQRCode">分享页面</button> -->
-    <RecoDessert :dessert="goodsStore.good.dessert" v-model:dessertSelected="goodsSelected.dessert" />
+    <RecoDessert class="m-1" :dessert="goodsStore.good.dessert" v-model:dessertSelected="goodsSelected.dessert" />
     <!-- <div>{{ goodsSelected.dessert }}</div> -->
-    <RecoItems :reco="goodsStore.good.recommend" />
-    <div class="cont mb-1">
+    <RecoItems class="m-1" :reco="goodsStore.good.recommend" />
+    <div class="cont m-1">
       <h4 class="cont-title">商品详情</h4>
       <img src="" alt="">
     </div>
-    <Guarantee @show-guarantee="isShowModal = true" />
-    <div class="cont mb-1">
+    <Guarantee class="m-1" @show-guarantee="isShowModal = true" />
+    <div class="cont m-1">
       <h4 class="cont-title">主要原料</h4>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt omnis eius dolore temporibus velit voluptate
         ipsa esse commodi dignissimos animi!</p>
     </div>
-    <div class="cont mb-1 cont-price" :class="{ 'show-cont-all': isShow }">
+    <div class="cont m-1 cont-price" :class="{ 'show-cont-all': isShow }">
       <h4 class="cont-title">价格说明</h4>
       <ul class="sn">
         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ducimus labore ullam ratione excepturi
@@ -228,7 +228,7 @@ onMounted(() => {
   padding: 0 0 12rem;
 }
 
-header {
+.header {
   position: relative;
   border-radius: 1rem;
   background-color: #fff;
@@ -264,7 +264,6 @@ header {
 
 .reco-dessert,
 .reco-items {
-  margin-bottom: 1rem;
   border-radius: 1rem;
 }
 
@@ -295,7 +294,6 @@ header {
 }
 
 .guarantee {
-  margin-bottom: 1rem;
   border-radius: 1rem;
 }
 

@@ -2,7 +2,7 @@
   <div class="mall-view">
     <Swiper :imgs="imgsUrl" />
     <div class="header">
-      <div class="item" v-for="item in linksUrl">
+      <div class="item" v-for="item in links">
         <img :src="item.src" alt="">
         <p>{{ item.title }}</p>
       </div>
@@ -27,30 +27,30 @@ const links = ref([
   {
     id: 1,
     title: '冻干咖啡',
-    src: '../assets/m0.png'
+    src: new URL('../assets/icons/m0.png', import.meta.url).href
   },
   {
     id: 2,
     title: '挂耳咖啡',
-    src: '../assets/m1.png'
+    src: new URL('../assets/icons/m1.png', import.meta.url).href
   }, {
     id: 3,
     title: '咖啡液',
-    src: '../assets/m2.png'
+    src: new URL('../assets/icons/m2.png', import.meta.url).href
   }, {
     id: 4,
     title: '咖啡豆',
-    src: '../assets/m3.png'
+    src: new URL('../assets/icons/m3.png', import.meta.url).href
   }, {
     id: 5,
     title: '胶囊咖啡',
-    src: '../assets/m4.png'
+    src: new URL('../assets/icons/m4.png', import.meta.url).href
   }
 ])
 const linksUrl = computed(() => {
   return links.value.map(item => ({
     ...item,
-    src: new URL(item.src, import.meta.url).href
+    src: new URL(`${item.src}`, import.meta.url).href
   }))
 })
 const imgs = ref(['hill0.jpg', 'hill1.jpg', 'hill2.jpg', 'hill3.jpg', 'hill4.jpg', 'hill5.jpg', 'hill6.jpg'])

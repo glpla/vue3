@@ -1,58 +1,62 @@
 <template>
   <div class="login-view">
-    <img class="img" src="@/assets/logo.png" alt="">
-    <h3>大树</h3>
-    <p>欢迎回来</p>
-    <div class="ipt-box">
-      <input class="ipt" type="tel" placeholder="请输入手机号" maxlength="11" v-model="user.tel" required></input>
-      <span class="iconfont icon-guanbi_o cell" :class="{ 'show': user.tel.length }" @click.stop="user.tel = ''"></span>
+    <img src="/xh.jpg" alt="">
+    <h3 class="title f-b">广州新华学院</h3>
+    <p class="greeting">欢迎回来</p>
+    <div class="item">
+      <input type="text" v-model.trim="user.cell" required maxlength="11" @focus="isFocus = true"
+        @blur="isFocus = false">
+      <span class="tips tips-cell" :class="{ 'active': isFocus && !user.cell }">请输入手机号</span>
+      <!-- <span class="tips tips-cell" v-show="isFocus && !user.cell">请输入手机号</span> -->
     </div>
-    <div class="ipt-box">
-      <input class="ipt" type="text" placeholder="请输入手机验证码" maxlength="6" v-model="user.code" required
-        pattern="\d{6}"></input>
-      <span class="code" :class="{ 'show': user.tel.length }" @click="sendVerificationCode">获取验证码</span>
+    <div class="item">
+      <input type="text" v-model.number="user.code" required maxlength="6">
+      <button class="tips tips-code" :disabled="isCellActive" @click="getCode">获取验证码</button>
     </div>
-    <div class="ipt">
-      <input type="checkbox" class="cb-custom" id="cb" v-model="user.agree">
-      <label for="cb">我已经阅读并同意
-        <a href="">《瑞幸咖啡用户协议》</a> 、<a href="">《瑞幸咖啡隐私权政策》</a></label>
+    <div class="item">
+      <label>
+        <input type="checkbox" v-model="user.isAgree">
+        <span>我已经阅读并同意
+          <a href="">《瑞幸咖啡用户协议》</a> 、<a href="">《瑞幸咖啡隐私权政策》</a></span>
+      </label>
     </div>
-    <button class="f-s-m" @click="submit">确定</button>
+    <div class="item f-s-m">
+      <button class="submit-btn" @click.stop="submit" :disabled="!isReady">确认</button>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 const user = ref({
-  tel: '',
-  code: '',
-  agree: false
+  cell: '',
+  code: null,
+  isAgree: false,
+  code: null
 })
-const sendVerificationCode = () => {
-  if (user.value.tel.length !== 11) {
-    alert('请输入正确的手机号')
-    return
+const isFocus = ref(false)
+// const isReady = ref(true)
+const isCellActive = ref(true)
+const isReady = computed(() => {
+  return !isCellActive.value && user.value.isAgree && user.value.code
+})
+watch(() => user.value.cell, (n, o) => {
+  if (/^1[3-9]\d{9}$/.test(n)) {
+    isCellActive.value = false
+  } else {
+    isCellActive.value = true
   }
-  alert('验证码已发送')
+})
+const getCode = () => {
+  user.value.code = Math.floor(Math.random() * 1000000).toString().padStart(6, '0')
+  alert(`${user.value.code}\n验证码已发送`)
 }
-
 const submit = () => {
-  if (user.value.tel.length !== 11) {
-    alert('请输入正确的手机号')
-    return
-  }
-  if (user.value.code.length !== 6) {
-    console.log(user.value.code);
-
-    alert('请输入正确的验证码')
-    return
-  }
-  if (!user.value.agree) {
-    alert('请先阅读并同意用户协议和隐私政策')
-    return
-  }
-  // 这里可以添加登录逻辑
-  alert('登录成功')
+  alert(`${user.value.cell}\n登录成功`)
+  router.replace('/menu')
+  localStorage.setItem('user', JSON.stringify(user.value))
 }
 </script>
 
@@ -62,66 +66,82 @@ const submit = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  padding: 6rem var(--p-m-g);
-  background-color: #fff;
   gap: var(--p-m-g);
+  width: 90%;
+  max-width: 800px;
+  height: 100vh;
+  margin: 0 auto;
 }
 
-.img {
-  width: 120px;
+.greeting {
+  margin-bottom: var(--p-m-g);
 }
 
-.ipt-box {
+.item {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  width: 100%;
+}
+
+img {
+  width: calc(3*var(--el-h));
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+
+.submit-btn,
+input[type="text"] {
   width: 100%;
   height: var(--el-h);
-  background-color: var(--second-bg-color);
-  border-radius: var(--el-h);
+  background-color: #eee;
+  border: none;
+  outline: none;
+  font: inherit;
+  color: inherit;
+  border-radius: 20px;
 }
 
-.ipt-box input {
-  height: 100%;
-  padding: 0 var(--p-m-g);
+input[type="text"] {
+  padding: 0 20px;
 }
 
-.ipt-box span {
-  position: absolute;
-  right: var(--p-m-g);
+input[type="checkbox"] {
+  margin-right: var(--p-m-g);
+  accent-color: #0087d2;
+  border-radius: 50%;
 }
 
-.cell {
-  display: none;
-  font-size: 2rem;
-}
-
-.cell.show {
-  display: block;
-}
-
-.code {
-  color: #666;
-  cursor: pointer;
-}
-
-.code.show {
-  color: var(--main-color);
-}
-
-button {
-  width: 100%;
-  background-color: var(--main-color);
-  opacity: 0.6;
-  height: var(--el-h);
-  border-radius: var(--el-h);
+.submit-btn {
+  background-color: #0087d2;
   color: #fff;
 }
 
-a {
+.submit-btn:disabled {
+  background-color: #ccc;
+}
+
+.tips {
+  position: absolute;
+  top: 0;
+  color: #666;
+  line-height: var(--el-h);
+}
+
+.tips-cell {
+  left: calc(2*var(--p-m-g));
+  display: none;
+}
+
+.tips-cell.active {
+  display: block;
+}
+
+.tips-code {
+  right: calc(2*var(--p-m-g));
   color: var(--main-color);
+}
+
+.tips-code:disabled {
+  color: #666;
 }
 </style>

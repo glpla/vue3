@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <router-view class=" rw p-b-10"></router-view>
+  <router-view class="p-b-10"></router-view>
   <AppNav v-if="$route.meta.showNav" class="w app-nav" :class="{ 'hide': isHide && $route.path == '/menu' }" />
 </template>
 
@@ -36,10 +36,6 @@ onMounted(() => {
   text-align: center;
   transition: .5s;
   z-index: 99;
-}
-
-.rw {
-  background-color: var(--second-bg-color);
 }
 
 .hide {
