@@ -47,17 +47,17 @@
     <!-- <div>{{ goodsSelected.dessert }}</div> -->
     <RecoItems class="m-1" :reco="goodsStore.good.recommend" />
     <div class="cont m-1">
-      <h4 class="cont-title">商品详情</h4>
+      <h3 class="cont-title">商品详情</h3>
       <img src="" alt="">
     </div>
     <Guarantee class="m-1" @show-guarantee="isShowModal = true" />
     <div class="cont m-1">
-      <h4 class="cont-title">主要原料</h4>
+      <h3 class="cont-title">主要原料</h3>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt omnis eius dolore temporibus velit voluptate
         ipsa esse commodi dignissimos animi!</p>
     </div>
     <div class="cont m-1 cont-price" :class="{ 'show-cont-all': isShow }">
-      <h4 class="cont-title">价格说明</h4>
+      <h3 class="cont-title">价格说明</h3>
       <ul class="sn">
         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ducimus labore ullam ratione excepturi
           facere delectus laboriosam molestiae quas optio sed eaque in, aut corrupti. Nam porro saepe repellendus quis.
@@ -105,27 +105,27 @@
         <div class="modal-header">
           <div class="modal-title">
             <Security />
-            <h4>交易保障</h4>
+            <h3>交易保障</h3>
           </div>
           <div class="modal-sub-title">以获得小程序交易保障认证</div>
         </div>
         <div class="modal-items">
           <span class="iconfont icon-balance"></span>
           <div class="modal-item">
-            <h4>先行赔付</h4>
+            <h3>先行赔付</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sapiente autem ut impedit? Quis,
               suscipit!</p>
           </div>
           <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
           <span class="iconfont icon-si-glyph-balance"></span>
           <div class="modal-item">
-            <h4>消费者权益保障</h4>
+            <h3>消费者权益保障</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, omnis.</p>
           </div>
           <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
           <span class="iconfont icon-kefu"></span>
           <div class="modal-item">
-            <h4>客服应答</h4>
+            <h3>客服应答</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
           </div>
           <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>

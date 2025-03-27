@@ -20,6 +20,7 @@ const handleGuarantee = () => {
 <style scoped>
 .guarantee {
   display: flex;
+  align-items: center;
   gap: var(--p-m-g);
   padding: 2rem 1rem;
   background-color: #fff;

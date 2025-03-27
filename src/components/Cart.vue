@@ -15,7 +15,7 @@
         <input type="checkbox" name="" id="" v-model="selectedGoods" :value="item">
         <img class="img" :src="`https://glpla.github.io/utils${item.img}`" alt="">
         <div class="info">
-          <h4 class="title">{{ item.name }}</h4>
+          <h3 class="title">{{ item.name }}</h3>
           <div class="sub-title">{{ item.desc }}</div>
           <div>
             <span class="price-new">&yen;{{ item.price }}</span>
@@ -229,7 +229,6 @@ footer {
   bottom: var(--p-m-g);
   display: flex;
   align-items: center;
-  gap: var(--p-m-g);
   height: 6rem;
   background-color: #fff;
   border-radius: 3rem;
@@ -242,9 +241,7 @@ footer .cart-left {
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 0 var(--p-m-g);
   color: var(--main-color);
-  font-size: 3.2rem;
 }
 
 footer .cart-left .iconfont {
@@ -269,6 +266,7 @@ footer .cart-left .cart-num {
 
 footer .price {
   flex: 1;
+  padding: var(--p-m-g);
 }
 
 footer .total-price {
@@ -280,12 +278,13 @@ footer .total-promotion {
 }
 
 footer .pay-btn {
-  width: 10rem;
+  /* width: 10rem; */
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--main-color);
   color: #fff;
+  padding: 0 var(--p-m-g);
 }
 </style>

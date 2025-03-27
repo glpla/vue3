@@ -16,6 +16,7 @@
   --p-m-g: 1rem;
   --app-nav-h: 8rem;
   --el-h: 4rem;
+  --base-font-size: 1.5rem;
 }
 
 *,
@@ -58,7 +59,7 @@ body {
     'Droid Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: 1.4rem;
+  font-size: var(--base-font-size);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -71,15 +72,15 @@ a {
 
 h1 {
   text-transform: capitalize;
-  font-size: 2rem;
+  font-size: 1.9rem;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
 h3 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: #333;
 }
 

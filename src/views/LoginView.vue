@@ -17,7 +17,7 @@
       <label>
         <input type="checkbox" v-model="user.isAgree">
         <span>我已经阅读并同意
-          <a href="">《瑞幸咖啡用户协议》</a> 、<a href="">《瑞幸咖啡隐私权政策》</a></span>
+          <a href="#">《瑞幸咖啡用户协议》</a> 、<a href="#">《瑞幸咖啡隐私权政策》</a></span>
       </label>
     </div>
     <div class="item f-s-m">
@@ -88,6 +88,9 @@ img {
   border-radius: 50%;
 }
 
+.item a {
+  color: var(--main-color);
+}
 
 .submit-btn,
 input[type="text"] {
@@ -107,12 +110,12 @@ input[type="text"] {
 
 input[type="checkbox"] {
   margin-right: var(--p-m-g);
-  accent-color: #0087d2;
+  accent-color: var(--main-color);
   border-radius: 50%;
 }
 
 .submit-btn {
-  background-color: #0087d2;
+  background-color: var(--main-color);
   color: #fff;
 }
 

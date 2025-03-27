@@ -108,6 +108,7 @@ onUnmounted(() => {
   padding: var(--p-m-g);
   z-index: 90;
   transition: 0.5s;
+  line-height: 4rem;
 }
 
 .tab-box.sticky {

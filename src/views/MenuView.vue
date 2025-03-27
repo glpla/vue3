@@ -6,7 +6,7 @@
     </div>
     <div class="loc-box" @click="$router.push('/location')">
       <span class="iconfont icon-didiandingwei_o"></span>
-      <span><span class="f-s-m f-b">{{ city.title }}</span> | {{ city.distance }}m</span>
+      <span><span class="f-b">{{ city.title }}</span> | {{ city.distance }}m</span>
       <button>&gt;</button>
     </div>
     <Tabbar :tabs="tabs"></Tabbar>
