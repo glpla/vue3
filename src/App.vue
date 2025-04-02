@@ -1,16 +1,16 @@
 <script setup>
-import { ref, onMounted, inject } from 'vue';
+import { ref, onMounted, onUnmounted, inject } from 'vue';
 import AppNav from './components/AppNav.vue';
 const isHide = ref(false)
 const axios = inject('axios')
+const handle = () => {
+  isHide.value = window.scrollY > 100 ? true : false
+}
 onMounted(() => {
-  window.addEventListener('scroll', () => {
-    window.scrollY > 100 ? isHide.value = true : isHide.value = false
-  })
-  // axios.get('/api/getCoffee')
-  //   .then(res => {
-  //     console.log(res);
-  //   })
+  window.addEventListener('scroll', handle)
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', handle)
 })
 
 </script>
@@ -21,13 +21,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.bread {
-  position: fixed;
-  left: 0;
-  top: 0;
-  background: #000;
-}
-
 .app-nav {
   position: fixed;
   bottom: 0;

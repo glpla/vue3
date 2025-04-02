@@ -1,8 +1,9 @@
 <template>
   <div class="w login-guide flex">
     <img src="@/assets/login.png" alt="">
-    <button class="btn cell f-s-m" style="--color:#0022aa" @click.stop="$router.push('/login')">手机号安全登录</button>
-    <button class="btn wx f-s-m" style="--color:#3ac13c">一键登录</button>
+    <button class="btn email" style="--color:#5e4435" @click.stop="$router.push('/login-email')">邮件登录</button>
+    <button class="btn cell" style="--color:#0022aa" @click.stop="$router.push('/login')">手机号安全登录</button>
+    <button class="btn wx" style="--color:#3ac13c">一键登录</button>
     <div class="ipt">
       <input type="checkbox" class="cb-custom" id="cb">
       <label for="cb">我已经阅读并同意
@@ -36,7 +37,7 @@ button {
   color: #fff;
 }
 
-.cell {
+.email {
   margin-top: auto;
 }
 

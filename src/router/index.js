@@ -139,7 +139,19 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: () => import("@/views/LoginView.vue"),
-      meta: { showNav: false, title: "账户登录" },
+      meta: { showNav: false, title: "账户登录 - 手机" },
+    },
+    {
+      path: "/register-email",
+      name: "register-email",
+      component: () => import("@/views/RegisterEmailView.vue"),
+      meta: { showNav: false, title: "账户注册 - 邮件" },
+    },
+    {
+      path: "/login-email",
+      name: "login-email",
+      component: () => import("@/views/LoginEmailView.vue"),
+      meta: { showNav: false, title: "账户登录 - 邮件" },
     },
     {
       path: "/contact",

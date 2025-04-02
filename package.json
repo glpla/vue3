@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.3",
     "axios": "^1.7.9",
     "nanoid": "^5.0.9",
     "pinia": "^2.3.0",

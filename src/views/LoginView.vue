@@ -15,12 +15,12 @@
     </div>
     <div class="item">
       <label>
-        <input type="checkbox" v-model="user.isAgree">
+        <input class="cb-custom" type="checkbox" v-model="user.isAgree">
         <span>我已经阅读并同意
           <a href="#">《瑞幸咖啡用户协议》</a> 、<a href="#">《瑞幸咖啡隐私权政策》</a></span>
       </label>
     </div>
-    <div class="item f-s-m">
+    <div class="item">
       <button class="submit-btn" @click.stop="submit" :disabled="!isReady">确认</button>
     </div>
   </div>
