@@ -19,7 +19,7 @@
           <div class="sub-title">{{ item.desc }}</div>
           <div>
             <span class="price-new">&yen;{{ item.price }}</span>
-            <span class="price-old">&yen;{{ item.priceOrignal }}</span>
+            <span class="price-old">&yen;{{ item.price_original }}</span>
           </div>
         </div>
         <div class="oper">

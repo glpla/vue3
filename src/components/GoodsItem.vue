@@ -6,7 +6,7 @@
       <div class="desc">{{ product.desc }}</div>
       <div class="price f-b">
         <span>&yen;{{ product.price }}</span>
-        <span class="price-inner"> (市场价<span>&yen;{{ product.priceOrignal }}</span>)</span>
+        <span class="price-inner"> (市场价<span>&yen;{{ product.price_original }}</span>)</span>
       </div>
       <div class="price-discount warn">预估到手 <span>&yen;{{ getDiscount(product) }}</span></div>
     </div>

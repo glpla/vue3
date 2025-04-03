@@ -10,7 +10,9 @@
       <button>&gt;</button>
     </div>
     <Tabbar :tabs="tabs"></Tabbar>
-    <RouterView class="sub-view p-1" />
+    <KeepAlive>
+      <RouterView class="sub-view p-1" />
+    </KeepAlive>
     <Cart class="w cart" v-if="cartStore.cart.length" :class="{ 'pos': $route.meta.showNav }"></Cart>
   </div>
 </template>

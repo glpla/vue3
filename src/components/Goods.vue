@@ -4,7 +4,8 @@ import GoodsItem from '@/components/GoodsItem.vue';
 import { useGoodsStore } from '@/stores/goods';
 const goodsStore = useGoodsStore();
 onMounted(() => {
-  goodsStore.getGoods()
+  goodsStore.getGoodsWithSupabse()
+  // goodsStore.getGoods()
   // window.addEventListener('scroll', () => {
   //   let scrollTop = document.documentElement.scrollTop;
   //   let windowHeight = document.documentElement.clientHeight;

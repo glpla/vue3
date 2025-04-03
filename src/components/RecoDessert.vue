@@ -7,7 +7,7 @@
         <p>{{ item.title }}</p>
         <div class="price">
           <span class="f-b">&yen;{{ dis(item) }}&nbsp;</span>
-          <span class="f-s-s">&yen;{{ item.priceOrignal }}</span>
+          <span class="f-s-s">&yen;{{ item.price_original }}</span>
         </div>
       </label>
     </div>
@@ -19,7 +19,7 @@ import { computed } from 'vue';
 const props = defineProps(['dessert'])
 
 const dis = computed((item) => {
-  return (item) => item.priceOrignal * (1 - item.discount)
+  return (item) => item.price_original * (1 - item.discount)
 })
 const dessertSelected = defineModel('dessertSelected', { default: [] })
 </script>

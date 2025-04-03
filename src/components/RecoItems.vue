@@ -6,7 +6,7 @@
         <h4 class="title f-s-m">{{ item.title }}</h4>
         <p class="ellipsis">{{ item.desc }}</p>
         <p class="price warn">
-          <span class="f-b f-s-m ">&yen;{{ item.priceOrignal }}&nbsp;</span>
+          <span class="f-b f-s-m ">&yen;{{ item.price_original }}&nbsp;</span>
           <span>起</span>
         </p>
       </div>

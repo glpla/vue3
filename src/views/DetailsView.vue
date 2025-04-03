@@ -202,7 +202,8 @@ const toOrder = () => {
 }
 
 const handleGoods = async (id) => {
-  const res = await goodsStore.getGoodById(id);
+  const res = await goodsStore.getGoodsByIdWithSupabse(id);
+  console.log('res', res);
 
   goodsSelected.value = {
     ...res,
