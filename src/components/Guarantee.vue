@@ -24,8 +24,8 @@ const handleGuarantee = () => {
   gap: var(--p-m-g);
   padding: 2rem 1rem;
   background-color: #fff;
+  font-size: 1.5rem;
 }
-
 
 .em {
   color: #41b883;

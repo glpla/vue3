@@ -1,25 +1,44 @@
 <template>
   <div class="test">
-
+    <div class="tabs">
+      <span class="tab" v-for="(item, ind) in tabs" :key="item.id" @click="selectTab(item.id)"
+        :class="{ active: selectedTab === item.id }">{{ item.label }}</span>
+    </div>
+    <div class="cont">预估到手价：Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis, tempora!</div>
+    <div>[{"id":0,"label":"满折"},{"id":1,"label":"赠品"}]</div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { supabase } from '@/assets/utils/supabase';
-const coffee = ref([])
-onMounted(async () => {
-  // let { data, error } = await supabase
-  //   .from('coffee')
-  //   .select('*')
-  // coffee.value = data
-  // console.log(coffee.value);
-  let { data, error } = await supabase
-    .from('coffee')
-    .select('*')
-    .eq('id', 1)
-  console.log(data);
+import { ref, onMounted, watch } from 'vue';
+const selectedTab = ref('cup');
+const tabs = [
+  { id: 'cup', label: '杯子' },
+  { id: 'coffee', label: '咖啡' }
+];
+const selectTab = (id) => {
+  selectedTab.value = id;
+};
+
+
+watch(selectedTab, (newVal, oldVal) => {
+
+}, {
+  immediate: true
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  cursor: pointer;
+}
+
+.tab.active {
+  color: red;
+}
+</style>

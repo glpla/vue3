@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-view p-b-10">
+  <div class="menu-view">
     <div class="header">
       <Switch :switchs="switchs"></Switch>
       <Search class="search" @click="$router.push('/search')" />
@@ -10,9 +10,9 @@
       <button>&gt;</button>
     </div>
     <Tabbar :tabs="tabs"></Tabbar>
-    <KeepAlive>
-      <RouterView class="sub-view p-1" />
-    </KeepAlive>
+    <div class="sub-view p-1">
+      <RouterView />
+    </div>
     <Cart class="w cart" v-if="cartStore.cart.length" :class="{ 'pos': $route.meta.showNav }"></Cart>
   </div>
 </template>
@@ -98,16 +98,16 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: calc(var(--p-m-g)/2);
-  padding: var(--p-m-g);
-  background-color: #fff;
+  padding: 0 var(--p-m-g);
+  height: 5rem;
 }
 
 .tabbar {
   position: sticky;
   top: 5rem;
-  padding: var(--p-m-g);
+  padding: 0 var(--p-m-g);
   background-color: #fff;
-  line-height: 4rem;
+  height: 5rem;
   margin-bottom: calc(2*var(--p-m-g));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1;
@@ -128,5 +128,6 @@ onMounted(() => {
 
 .sub-view {
   background-color: #fff;
+  padding-bottom: var(--app-nav-h);
 }
 </style>

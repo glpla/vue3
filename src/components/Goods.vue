@@ -4,7 +4,7 @@ import GoodsItem from '@/components/GoodsItem.vue';
 import { useGoodsStore } from '@/stores/goods';
 const goodsStore = useGoodsStore();
 onMounted(() => {
-  goodsStore.getGoodsWithSupabse()
+  goodsStore.getGoods()
   // goodsStore.getGoods()
   // window.addEventListener('scroll', () => {
   //   let scrollTop = document.documentElement.scrollTop;
@@ -20,7 +20,8 @@ onMounted(() => {
 
 <template>
   <div class="goods">
-    <template v-if="goodsStore.goods.length">
+    <div class="loading" v-if="goodsStore.isLoading">loading...</div>
+    <template v-else-if="goodsStore.goods.length">
       <GoodsItem v-for="(item, ind) in goodsStore.goods" :key="item.id" :product="item" />
       <footer class="f-s-s">我是有底线的~</footer>
     </template>
@@ -29,6 +30,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.loading {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 footer {
   text-align: center;
   color: #808080;

@@ -1,138 +1,151 @@
 <template>
   <div class="details-view">
-    <Swiper :imgs="imgsUrl" />
-    <div class="header m-1 p-1">
-      <h3 class="title mb-1">{{ goodsStore.good.name }}</h3>
-      <div class="m-b-2">{{ goodsStore.good.desc }}</div>
-      <div class="specification">
-        <div class="items">
-          <span>杯型</span>
-          <span class="item" v-for="item in goodsStore.good.cup">
-            <input type="radio" name="cup" :id="`cup${item.id}`" :value="item.tag" hidden v-model="goodsSelected.cup">
-            <label :for="`cup${item.id}`">{{ item.tag }}</label>
-          </span>
-        </div>
-        <!-- <div>{{ goodsSelected.cup }}</div> -->
-        <div class="items">
-          <span>温度</span>
-          <span class="item" v-for="item in goodsStore.good.ther">
-            <input type="radio" name="ther" :id="`ther${item.id}`" :value="item.tag" hidden
-              v-model="goodsSelected.ther">
-            <label :for="`ther${item.id}`">{{ item.tag }}</label>
-          </span>
-        </div>
-        <!-- <div>{{ goodsSelected.ther }}</div> -->
-        <div class="items">
-          <span>糖度</span>
-          <span class="item" v-for="item in goodsStore.good.sugar">
-            <input type="radio" name="sugar" :id="`sugar${item.id}`" :value="item.tag" hidden
-              v-model="goodsSelected.sugar">
-            <label :for="`sugar${item.id}`">{{ item.tag }}</label>
-          </span>
-        </div>
-        <!-- <div>{{ goodsSelected.sugar }}</div> -->
-      </div>
-      <div class="favor">
-        <button>
-          <span class="iconfont icon-heart-like"></span>
-        </button>
-        <button @click.stop="sharePage">
-          <span class="iconfont icon-fenxiang_o"></span>
-        </button>
-      </div>
-    </div>
-    <!-- <img v-if="qrCode" :src="qrCode" alt="QR Code" /> -->
-    <!-- <button @click="generateQRCode">分享页面</button> -->
-    <RecoDessert class="m-1" :dessert="goodsStore.good.dessert" v-model:dessertSelected="goodsSelected.dessert" />
-    <!-- <div>{{ goodsSelected.dessert }}</div> -->
-    <RecoItems class="m-1" :reco="goodsStore.good.recommend" />
-    <div class="cont m-1">
-      <h3 class="cont-title">商品详情</h3>
-      <img src="" alt="">
-    </div>
-    <Guarantee class="m-1" @show-guarantee="isShowModal = true" />
-    <div class="cont m-1">
-      <h3 class="cont-title">主要原料</h3>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt omnis eius dolore temporibus velit voluptate
-        ipsa esse commodi dignissimos animi!</p>
-    </div>
-    <div class="cont m-1 cont-price" :class="{ 'show-cont-all': isShow }">
-      <h3 class="cont-title">价格说明</h3>
-      <ul class="sn">
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ducimus labore ullam ratione excepturi
-          facere delectus laboriosam molestiae quas optio sed eaque in, aut corrupti. Nam porro saepe repellendus quis.
-        </li>
-        <li>Ad quis porro vel laborum quidem tempore aspernatur maiores enim illum mollitia nobis quasi, quod voluptates
-          temporibus eos labore quibusdam. Consequatur tenetur aliquid ab deserunt pariatur asperiores qui delectus
-          fuga!</li>
-        <li>Praesentium placeat eaque id quidem repudiandae minima in assumenda vitae ducimus commodi molestiae ipsa,
-          nam quo qui? Deleniti error iure facere minima voluptatem tempora, placeat eligendi. Rerum excepturi quisquam
-          ipsum.</li>
-        <li>Tempora ad harum labore ab vitae quisquam, rem consectetur, cupiditate illum perferendis recusandae
-          accusamus facere, et commodi voluptate molestias dignissimos magnam amet ea incidunt? Repellat illo cumque
-          quas nostrum vitae.</li>
-        <li>Non quae necessitatibus odit vel enim rem veritatis facilis beatae. Suscipit cumque exercitationem ducimus,
-          enim ea voluptatibus distinctio? Magni recusandae, aspernatur optio ullam dicta accusamus impedit mollitia
-          eligendi corrupti unde.</li>
-      </ul>
-      <button class="more" @click="isShow = !isShow">
-        <span v-if="isShow" class="iconfont icon-jiantou_liebiaoshouqi_o"></span>
-        <span v-else class="iconfont icon-jiantou_liebiaozhankai_o"></span>
-      </button>
-    </div>
-    <footer class="w">
-      <div class="info">
-        <div class="price">
-          <span class="f-b f-s-m">&yen;12.16&nbsp;</span>
-          <span class="f-s-s">预估到手</span>
-        </div>
-        <div class="nums">
-          <button class="btn dec" @click="goodsSelected.quantity--">-</button>
-          <span class="num f-s-m">{{ goodsSelected.quantity }}</span>
-          <button class="btn inc" @click="goodsSelected.quantity++">+</button>
-        </div>
-      </div>
-      <div class="btns">
-        <button class="buy f-s-m" @click="toOrder">立即购买</button>
-        <button class="add f-s-m" @click="addToCart">加入购物车</button>
-      </div>
-    </footer>
-    <div class="modal" :class="{ 'show': isShowModal }" @click.self="isShowModal = false">
-      <div class="w modal-cont">
-        <button class="btn modal-btn" @click.prevent="isShowModal = false">
-          <span class="iconfont icon-jiantou_liebiaozhankai_o"></span>
-        </button>
-        <div class="modal-header">
-          <div class="modal-title">
-            <Security />
-            <h3>交易保障</h3>
+    <div class="loading" v-if="goodsStore.isLoading">loading...</div>
+    <template v-else>
+      <Swiper :imgs="imgsUrl" />
+      <div class="cont">
+        <div class="header p-1">
+          <h3 class="title mb-1">{{ goodsStore.good.name }}</h3>
+          <div class="m-b-2">{{ goodsStore.good.desc }}</div>
+          <div class="specification">
+            <div class="items">
+              <span>杯型</span>
+              <span class="item" v-for="item in goodsStore.good.cup">
+                <input type="radio" name="cup" :id="`cup${item.id}`" :value="item.tag" hidden
+                  v-model="goodsSelected.cup">
+                <label :for="`cup${item.id}`">{{ item.tag }}</label>
+              </span>
+            </div>
+            <!-- <div>{{ goodsSelected.cup }}</div> -->
+            <div class="items">
+              <span>温度</span>
+              <span class="item" v-for="item in goodsStore.good.ther">
+                <input type="radio" name="ther" :id="`ther${item.id}`" :value="item.tag" hidden
+                  v-model="goodsSelected.ther">
+                <label :for="`ther${item.id}`">{{ item.tag }}</label>
+              </span>
+            </div>
+            <!-- <div>{{ goodsSelected.ther }}</div> -->
+            <div class="items">
+              <span>糖度</span>
+              <span class="item" v-for="item in goodsStore.good.sugar">
+                <input type="radio" name="sugar" :id="`sugar${item.id}`" :value="item.tag" hidden
+                  v-model="goodsSelected.sugar">
+                <label :for="`sugar${item.id}`">{{ item.tag }}</label>
+              </span>
+            </div>
+            <!-- <div>{{ goodsSelected.sugar }}</div> -->
           </div>
-          <div class="modal-sub-title">以获得小程序交易保障认证</div>
+          <div class="favor">
+            <button>
+              <span class="iconfont icon-heart-like"></span>
+            </button>
+            <button @click.stop="sharePage">
+              <span class="iconfont icon-fenxiang_o"></span>
+            </button>
+          </div>
         </div>
-        <div class="modal-items">
-          <span class="iconfont icon-balance"></span>
-          <div class="modal-item">
-            <h3>先行赔付</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sapiente autem ut impedit? Quis,
-              suscipit!</p>
-          </div>
-          <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-          <span class="iconfont icon-si-glyph-balance"></span>
-          <div class="modal-item">
-            <h3>消费者权益保障</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, omnis.</p>
-          </div>
-          <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-          <span class="iconfont icon-kefu"></span>
-          <div class="modal-item">
-            <h3>客服应答</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-          </div>
-          <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
+        <!-- <img v-if="qrCode" :src="qrCode" alt="QR Code" /> -->
+        <!-- <button @click="generateQRCode">分享页面</button> -->
+        <RecoDessert :dessert="goodsStore.good.dessert" v-model:dessertSelected="goodsSelected.dessert" />
+        <!-- <div>{{ goodsSelected.dessert }}</div> -->
+        <RecoItems :reco="goodsStore.good.recommend" />
+        <div class="">
+          <h3 class="cont-title">商品详情</h3>
+          <img src="" alt="">
         </div>
-        <h4 class="modal-help">交易遇到问题？</h4>
+        <Guarantee @show-guarantee="isShowModal = true" />
+        <div>
+          <h3 class="cont-title">主要原料</h3>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt omnis eius dolore temporibus velit
+            voluptate
+            ipsa esse commodi dignissimos animi!</p>
+        </div>
+        <div class="cont-price" :class="{ 'show-cont-all': isShow }">
+          <h3 class="cont-title">价格说明</h3>
+          <ul class="sn">
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ducimus labore ullam ratione
+              excepturi
+              facere delectus laboriosam molestiae quas optio sed eaque in, aut corrupti. Nam porro saepe repellendus
+              quis.
+            </li>
+            <li>Ad quis porro vel laborum quidem tempore aspernatur maiores enim illum mollitia nobis quasi, quod
+              voluptates
+              temporibus eos labore quibusdam. Consequatur tenetur aliquid ab deserunt pariatur asperiores qui delectus
+              fuga!</li>
+            <li>Praesentium placeat eaque id quidem repudiandae minima in assumenda vitae ducimus commodi molestiae
+              ipsa,
+              nam quo qui? Deleniti error iure facere minima voluptatem tempora, placeat eligendi. Rerum excepturi
+              quisquam
+              ipsum.</li>
+            <li>Tempora ad harum labore ab vitae quisquam, rem consectetur, cupiditate illum perferendis recusandae
+              accusamus facere, et commodi voluptate molestias dignissimos magnam amet ea incidunt? Repellat illo cumque
+              quas nostrum vitae.</li>
+            <li>Non quae necessitatibus odit vel enim rem veritatis facilis beatae. Suscipit cumque exercitationem
+              ducimus,
+              enim ea voluptatibus distinctio? Magni recusandae, aspernatur optio ullam dicta accusamus impedit mollitia
+              eligendi corrupti unde.</li>
+          </ul>
+          <button class="more" @click="isShow = !isShow">
+            <span v-if="isShow" class="iconfont icon-jiantou_liebiaoshouqi_o"></span>
+            <span v-else class="iconfont icon-jiantou_liebiaozhankai_o"></span>
+          </button>
+        </div>
       </div>
-    </div>
+      <footer class="w">
+        <div class="info">
+          <div class="price">
+            <span class="f-b f-s-m">&yen;12.16&nbsp;</span>
+            <span class="f-s-s">预估到手</span>
+          </div>
+          <div class="nums">
+            <button class="btn dec" @click="goodsSelected.quantity--">-</button>
+            <span class="num f-s-m">{{ goodsSelected.quantity }}</span>
+            <button class="btn inc" @click="goodsSelected.quantity++">+</button>
+          </div>
+        </div>
+        <div class="btns">
+          <button class="buy" @click="toOrder">立即购买</button>
+          <button class="add" @click="addToCart">加入购物车</button>
+        </div>
+      </footer>
+      <div class="modal" :class="{ 'show': isShowModal }" @click.self="isShowModal = false">
+        <div class="w modal-cont">
+          <button class="btn modal-btn" @click.prevent="isShowModal = false">
+            <span class="iconfont icon-jiantou_liebiaozhankai_o"></span>
+          </button>
+          <div class="modal-header">
+            <div class="modal-title">
+              <Security />
+              <h3>交易保障</h3>
+            </div>
+            <div class="modal-sub-title">以获得小程序交易保障认证</div>
+          </div>
+          <div class="modal-items">
+            <span class="iconfont icon-balance"></span>
+            <div class="modal-item">
+              <h3>先行赔付</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sapiente autem ut impedit? Quis,
+                suscipit!</p>
+            </div>
+            <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
+            <span class="iconfont icon-si-glyph-balance"></span>
+            <div class="modal-item">
+              <h3>消费者权益保障</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, omnis.</p>
+            </div>
+            <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
+            <span class="iconfont icon-kefu"></span>
+            <div class="modal-item">
+              <h3>客服应答</h3>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
+          </div>
+          <h4 class="modal-help">交易遇到问题？</h4>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -202,8 +215,7 @@ const toOrder = () => {
 }
 
 const handleGoods = async (id) => {
-  const res = await goodsStore.getGoodsByIdWithSupabse(id);
-  console.log('res', res);
+  const res = await goodsStore.getGoodById(id);
 
   goodsSelected.value = {
     ...res,
@@ -217,16 +229,17 @@ const handleGoods = async (id) => {
 }
 
 onMounted(() => {
-  console.log(route.params.id);
   handleGoods(route.params.id)
-  // window.scrollTo(0, 0)
 })
 </script>
 
 <style scoped>
 .details-view {
   background-color: #f5f5f5;
-  padding: 0 0 12rem;
+}
+
+.cont {
+  padding: var(--p-m-g);
 }
 
 .header {
@@ -268,17 +281,22 @@ onMounted(() => {
   border-radius: 1rem;
 }
 
-.cont {
+.cont>* {
   position: relative;
   border-radius: 1rem;
   background-color: #fff;
   padding: 2rem 1rem;
+  margin-bottom: var(--p-m-g);
 }
 
 .cont .more {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+
+.cont-price {
+  margin-bottom: calc(var(--app-nav-h) + 2*var(--p-m-g));
 }
 
 .cont-price ul {
@@ -377,7 +395,7 @@ footer {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 100;
+  z-index: 99;
   background-color: rgba(0, 0, 0, 0.2);
   transform: translateY(100%);
   overflow: hidden;
@@ -449,5 +467,14 @@ footer {
 .modal-help {
   text-align: center;
   color: var(--tips-color);
+}
+
+.loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
 }
 </style>

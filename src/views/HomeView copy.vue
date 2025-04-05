@@ -91,6 +91,7 @@ onUnmounted(() => {
 }
 
 .section {
+  padding: var(--p-m-g);
   background-color: #fff;
   border-radius: var(--p-m-g);
   margin: var(--p-m-g);
@@ -104,7 +105,7 @@ onUnmounted(() => {
 .tab-box {
   display: flex;
   justify-content: space-between;
-  margin: var(--p-m-g);
+  padding: var(--p-m-g);
   z-index: 90;
   transition: 0.5s;
   line-height: 4rem;
@@ -113,13 +114,12 @@ onUnmounted(() => {
 .tab-box.sticky {
   position: sticky;
   top: 0;
+  margin: 0;
   background-color: #fff;
-  padding: var(--p-m-g) 0;
 }
 
 .tab-cont {
-  margin: var(--p-m-g);
-  padding-bottom: var(--app-nav-h);
+  padding: var(--p-m-g);
 }
 
 .nav-item {

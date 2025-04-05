@@ -50,7 +50,7 @@
       <span></span>
       <span>&gt;</span>
     </div>
-    <button class="btn f-s-b">退出登录</button>
+    <button class="btn">退出登录</button>
   </div>
 </template>
 
@@ -61,7 +61,6 @@ import src from '@/assets/avatar.jpg';
 <style scoped>
 .center-view {
   padding: var(--p-m-g);
-  background-color: #fff;
   margin: var(--p-m-g);
 }
 
@@ -69,7 +68,7 @@ import src from '@/assets/avatar.jpg';
   display: flex;
   align-items: center;
   gap: var(--p-m-g);
-  margin: var(--p-m-g) 0;
+  line-height: 4rem;
 }
 
 .item span:first-child {

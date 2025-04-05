@@ -53,8 +53,7 @@ const doSearch = () => {
 
 <style scoped>
 .search-view {
-  padding: var(--p-m-g);
-  background-color: #fff;
+  margin: var(--p-m-g);
 }
 
 .search-box {

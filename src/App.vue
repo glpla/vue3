@@ -16,8 +16,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <router-view class="p-b-10"></router-view>
-  <AppNav v-if="$route.meta.showNav" class="w app-nav" :class="{ 'hide': isHide && $route.path == '/menu' }" />
+  <router-view></router-view>
+  <!-- <AppNav v-if="$route.meta.showNav" class="w app-nav" :class="{ 'hide': isHide && $route.path == '/menu' }" /> -->
+  <AppNav v-if="$route.meta.showNav" class="w app-nav" />
 </template>
 
 <style scoped>

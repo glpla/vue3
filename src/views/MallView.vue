@@ -94,6 +94,7 @@ const imgsUrl = computed(() => {
 
 .tab-goods {
   margin: var(--p-m-g);
+  margin-bottom: var(--app-nav-h);
 }
 
 .mall-cart {
