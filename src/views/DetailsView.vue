@@ -1,6 +1,7 @@
 <template>
   <div class="details-view">
     <div class="loading" v-if="goodsStore.isLoading">loading...</div>
+    <div class="loading" v-else-if="!goodsStore.good">产品不存在</div>
     <template v-else>
       <Swiper :imgs="imgsUrl" />
       <div class="cont">
@@ -95,7 +96,7 @@
       <footer class="w">
         <div class="info">
           <div class="price">
-            <span class="f-b f-s-m">&yen;12.16&nbsp;</span>
+            <span class="f-b f-s-m">&yen;{{ sum }}&nbsp;</span>
             <span class="f-s-s">预估到手</span>
           </div>
           <div class="nums">
@@ -150,7 +151,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useCartStore } from '@/stores/cart';
 import { useGoodsStore } from '@/stores/goods';
@@ -216,6 +217,7 @@ const toOrder = () => {
 
 const handleGoods = async (id) => {
   const res = await goodsStore.getGoodById(id);
+  console.log('res', res);
 
   goodsSelected.value = {
     ...res,
@@ -227,6 +229,14 @@ const handleGoods = async (id) => {
     recommend: []
   }
 }
+
+const sum = computed(() => {
+  return goodsSelected.value.quantity * goodsSelected.value.price
+})
+
+watch(() => route.params.id, (newId, oldId) => {
+  handleGoods(newId)
+})
 
 onMounted(() => {
   handleGoods(route.params.id)

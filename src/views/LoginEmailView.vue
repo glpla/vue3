@@ -9,7 +9,7 @@
         <span class="iconfont icon-youjian_o"></span>
       </div>
       <div class="item">
-        <input type="password" v-model="user.password" required maxlength="8" placeholder="密码，最少6位">
+        <input type="password" v-model="user.password" required maxlength="12" placeholder="密码，最少6位">
         <span class="iconfont icon-suoding_o"></span>
       </div>
       <div class="item">
@@ -22,7 +22,11 @@
       <div class="item">
         <button class="submit-btn" type="submit">登录</button>
       </div>
+      <!-- <div class="item">
+        <button class="submit-btn" type="button" @click="getSession">获取会话</button>
+      </div> -->
     </form>
+    <span class="warn" @click="retrivePassword">忘记密码？</span>
     <span>还没有账户？请 <RouterLink class="link" to="/register-email">注册</RouterLink></span>
   </div>
 </template>
@@ -30,7 +34,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { login } from '../assets/utils/authen'
+// import { login } from '../assets/utils/authen'
+import { supabase } from '../assets/utils/supabase'
 const router = useRouter()
 const user = ref({
   email: '',
@@ -43,11 +48,40 @@ const submit = async () => {
     alert('请先同意用户协议')
     return;
   }
-  const res = await login(user.value)
-  if (res) {
-    router.replace('/menu')
-    // localStorage.setItem('user', JSON.stringify(user.value))
+  // const res = await login(user.value)
+  // if (res) {
+  //   router.replace('/menu')
+  //   localStorage.setItem('user', JSON.stringify(user.value))
+  // }
+
+  let { data, error } = await supabase.auth.signInWithPassword({
+    email: user.value.email,
+    password: user.value.password,
+  })
+  if (error) {
+    console.log('login fail', error);
+    return
   }
+  console.log('login ok', data);
+  router.replace('/menu')
+}
+
+// import { supabase } from '../assets/utils/supabase'
+// const getSession = async () => {
+//   const { data, error } = await supabase.auth.getSession()
+//   console.log(data, error);
+
+// }
+const retrivePassword = async () => {
+  console.log('retrivePassword');
+
+  let { data, error } = await supabase.auth.resetPasswordForEmail(user.value.email)
+  console.log(error);
+  console.log(data);
+  if (!error) {
+    alert('已发送邮件，请查收')
+  }
+
 }
 </script>
 

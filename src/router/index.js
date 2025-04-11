@@ -154,6 +154,12 @@ const router = createRouter({
       meta: { showNav: false, title: "账户登录 - 邮件" },
     },
     {
+      path: "/reset-password",
+      name: "reset-password",
+      component: () => import("@/views/ResetPasswordView.vue"),
+      meta: { showNav: false, title: "密码重置" },
+    },
+    {
       path: "/contact",
       name: "contact",
       component: () => import("@/views/ContactView.vue"),

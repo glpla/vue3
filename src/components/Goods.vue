@@ -5,6 +5,7 @@ import { useGoodsStore } from '@/stores/goods';
 const goodsStore = useGoodsStore();
 onMounted(() => {
   goodsStore.getGoods()
+
   // goodsStore.getGoods()
   // window.addEventListener('scroll', () => {
   //   let scrollTop = document.documentElement.scrollTop;

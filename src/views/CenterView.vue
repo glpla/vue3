@@ -2,7 +2,13 @@
   <div class="center-view">
     <div class="item">
       <span>头像</span>
+      <input type="file" @change="handleAvatarImg">
       <img :src="src" alt="">
+      <span>&gt;</span>
+    </div>
+    <div class="item">
+      <span>邮箱</span>
+      <span>{{ user.email }}</span>
       <span>&gt;</span>
     </div>
     <div class="item">
@@ -50,12 +56,57 @@
       <span></span>
       <span>&gt;</span>
     </div>
-    <button class="btn">退出登录</button>
+    <button class="btn" @click="logOut">退出登录</button>
   </div>
 </template>
 
 <script setup>
-import src from '@/assets/avatar.jpg';
+import { ref, onMounted } from 'vue';
+import { supabase } from '@/assets/utils/supabase';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const user = ref({});
+const src = ref('')
+const handleAvatarImg = async (e) => {
+  const avatarFile = e.target.files[0]
+  src.value = URL.createObjectURL(avatarFile);
+  const { data, error } = await supabase.storage
+    .from('avatars')
+    .upload('avatar.jpg', avatarFile, {
+      upsert: true
+    })
+  if (error) {
+    console.log(error);
+    return
+  }
+  console.log('upload', data);
+  return data;
+}
+const uploadAvatarImg = async () => {
+  const avatarFile = event.target.files[0]
+  const { data, error } = await supabase.storage
+    .from('avatars')
+    .upload('public/avatar.png', avatarFile)
+  if (error) {
+    console.log(error);
+    return
+  }
+  return data;
+};
+const logOut = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('已退出登录');
+    router.replace('/')
+  }
+}
+onMounted(async () => {
+  const { data, error } = await supabase.auth.getSession()
+  user.value = data.session.user
+  console.log('user', user.value.email);
+})
 </script>
 
 <style scoped>

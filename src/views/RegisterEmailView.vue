@@ -39,7 +39,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { register } from '../assets/utils/authen'
+// import { register } from '../assets/utils/authen'
+import { supabase } from '../assets/utils/supabase'
 const router = useRouter()
 const user = ref({
   username: '',
@@ -62,11 +63,27 @@ const submit = async () => {
     alert('两次密码不一致')
     return
   }
-  const res = await register(user.value)
-  if (res) {
-    router.replace('/menu')
-    // localStorage.setItem('user', JSON.stringify(user.value))
+  // const res = await register(user.value)
+  // if (res) {
+  //   router.replace('/menu')
+  //   localStorage.setItem('user', JSON.stringify(user.value))
+  // }
+  let { data, error } = await supabase.auth.signUp({
+    email: user.value.email,
+    password: user.value.password,
+    options: {
+      data: {
+        name: user.value.username,
+        avatar: "/avatar.png",
+      },
+    },
+  });
+  if (error) {
+    console.log(error);
+    return
   }
+  console.log(data);
+  router.replace('/menu')
 }
 </script>
 

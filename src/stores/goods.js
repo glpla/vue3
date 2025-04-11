@@ -13,7 +13,8 @@ export const useGoodsStore = defineStore("goods", () => {
       isLoading.value = true;
       const { data, error } = await supabase.from("coffee").select("*");
       if (error) {
-        throw new Error(error.message); // 如果有错误，抛出异常
+        console.log("error", error);
+        return;
       }
       goods.value = data;
     } catch (error) {
@@ -31,7 +32,8 @@ export const useGoodsStore = defineStore("goods", () => {
         .select("*")
         .eq("id", id);
       if (error) {
-        throw new Error(error.message); // 如果有错误，抛出异常
+        console.log("error", error);
+        return;
       }
       good.value = data[0];
       return data[0];

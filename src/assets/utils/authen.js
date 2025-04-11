@@ -5,6 +5,12 @@ export const register = async (formData) => {
   let { data, error } = await supabase.auth.signUp({
     email: formData.email,
     password: formData.password,
+    options: {
+      data: {
+        name: formData.username,
+        avatar: "/avatar.png",
+      },
+    },
   });
 
   if (error) {
@@ -12,8 +18,8 @@ export const register = async (formData) => {
     alert("Register Fail");
     return;
   }
-  // insert fprofile
-  userAuth.setAuth(data.session);
+  // insert fprofile: id
+  // userAuth.setAuth(data.session);
   return true;
 };
 export const login = async (formData) => {
@@ -27,6 +33,6 @@ export const login = async (formData) => {
     alert("Login Fail");
     return;
   }
-  userAuth.setAuth(data.session);
+  // userAuth.setAuth(data.session);
   return true;
 };

@@ -3,7 +3,7 @@
     <header class="header">
       <img :src="src" alt="">
       <span>glpla.github.io</span>
-      <span @click="$router.push('/center')">&gt;</span>
+      <span @click="toCenter">&gt;</span>
     </header>
     <div class="rank">
       <div class="f-b f-s-m">Lv99 九色鹿</div>
@@ -72,8 +72,19 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import XinHua from '@/components/XinHua.vue';
 import src from '@/assets/avatar.jpg';
+import { supabase } from '@/assets/utils/supabase';
+const router = useRouter();
+const toCenter = async () => {
+  const { data, error } = await supabase.auth.getSession()
+  if (data.session) {
+    router.push('/center')
+  } else {
+    router.push('/login-email')
+  }
+};
 </script>
 
 <style scoped>
