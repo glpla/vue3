@@ -5,11 +5,11 @@
     <p class="greeting">欢迎回来</p>
     <form @submit.prevent="submit">
       <div class="item">
-        <input type="email" v-model.trim="user.email" required maxlength="30" placeholder="电子邮件">
+        <input type="email" v-model.trim.lazy="user.email" required maxlength="30" placeholder="电子邮件">
         <span class="iconfont icon-youjian_o"></span>
       </div>
       <div class="item">
-        <input type="password" v-model.trim="user.password" required maxlength="20" placeholder="密码，最少6位">
+        <input type="password" v-model.trim.lazy="user.password" required maxlength="20" placeholder="密码，最少6位">
         <span class="iconfont icon-suoding_o"></span>
       </div>
       <div class="item">

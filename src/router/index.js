@@ -8,7 +8,7 @@ import { h } from "vue";
 import { supabase } from "@/assets/utils/supabase";
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -165,6 +165,12 @@ const router = createRouter({
       name: "contact",
       component: () => import("@/views/ContactView.vue"),
       meta: { showNav: false, title: "联系我们" },
+    },
+    {
+      path: "/confirm",
+      name: "confirm",
+      component: () => import("@/views/ConfirmView.vue"),
+      meta: { showNav: false, title: "注册确认" },
     },
     // {
     //   path: "/about:pathMatch(.*)*",

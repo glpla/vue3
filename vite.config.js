@@ -21,7 +21,7 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  base: "./",
+  base: "/vue/pro/dist/",
   server: {
     proxy: {
       // "/api": {

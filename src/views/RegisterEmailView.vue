@@ -5,11 +5,11 @@
     <p class="greeting">欢迎回来</p>
     <form @submit.prevent="submit">
       <div class="item">
-        <input type="text" v-model.trim="user.username" required maxlength="12" placeholder="用户名，最多12位">
+        <input type="text" v-model.trim.lazy="user.username" required maxlength="12" placeholder="用户名，最多12位">
         <span class="iconfont icon-gerentouxiang_o"></span>
       </div>
       <div class="item">
-        <input type="email" v-model.trim="user.email" required maxlength="20" placeholder="电子邮箱">
+        <input type="email" v-model.trim.lazy="user.email" required maxlength="20" placeholder="电子邮箱">
         <span class="iconfont icon-youjian_o"></span>
       </div>
       <div class="item">
