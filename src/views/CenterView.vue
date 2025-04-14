@@ -2,8 +2,8 @@
   <div class="center-view">
     <div class="item">
       <span>头像</span>
-      <input type="file" @change="handleAvatarImg">
-      <img :src="src" alt="">
+      <!-- <input type="file" @change="handleAvatarImg"> -->
+      <img :src="user?.user_metadata?.avatar" alt="" v-show="user">
       <span>&gt;</span>
     </div>
     <div class="item">
@@ -104,8 +104,14 @@ const logOut = async () => {
 }
 onMounted(async () => {
   const { data, error } = await supabase.auth.getSession()
-  user.value = data.session.user
-  console.log('user', user.value.email);
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('data', data);
+    user.value = data.session.user
+    console.log('user', user.value);
+    console.log(user.value.user_metadata.avatar);
+  }
 })
 </script>
 

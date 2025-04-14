@@ -5,6 +5,7 @@ import {
 } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import { h } from "vue";
+import { supabase } from "@/assets/utils/supabase";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -121,7 +122,7 @@ const router = createRouter({
       path: "/center",
       name: "center",
       component: () => import("@/views/CenterView.vue"),
-      meta: { showNav: false, title: "个人资料" },
+      meta: { showNav: false, title: "个人资料", requireAuth: true },
     },
     {
       path: "/register",
@@ -170,14 +171,29 @@ const router = createRouter({
     //   name: "goods not-found",
     //   component: h("p", { style: "color: red" }, "goods 404 Not Found"),
     // },
-    {
-      path: "/:pathMatch(.*)*",
-      name: "page-not-found",
-      component: h("p", { style: "color: red" }, "Pages Not Found 404"),
-    },
+    // {
+    //   path: "/:pathMatch(.*)*",
+    //   name: "page-not-found",
+    //   component: h("p", { style: "color: red" }, "Pages Not Found 404"),
+    // },
   ],
   linkActiveClass: "nav-color",
   linkExactActiveClass: "exact-nav-color",
+});
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requireAuth) {
+    const { data, error } = await supabase.auth.getSession();
+    if (error) {
+      console.log(error);
+      console.log(data);
+
+      next({ name: "login-email" });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 router.afterEach((to, from) => {
   document.title = to.meta.title;

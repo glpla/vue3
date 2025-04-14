@@ -1,6 +1,5 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
-import { getGoodsWithAxios, getGoodsWithFetch } from "@/api/api";
 import { supabase } from "@/assets/utils/supabase";
 
 export const useGoodsStore = defineStore("goods", () => {
@@ -11,7 +10,7 @@ export const useGoodsStore = defineStore("goods", () => {
   const getGoods = async () => {
     try {
       isLoading.value = true;
-      const { data, error } = await supabase.from("coffee").select("*");
+      const { data, error } = await supabase.from("coffee").select();
       if (error) {
         console.log("error", error);
         return;

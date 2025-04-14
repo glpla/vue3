@@ -5,11 +5,11 @@
     <p class="greeting">欢迎回来</p>
     <form @submit.prevent="submit">
       <div class="item">
-        <input type="email" v-model.trim="user.email" required maxlength="20" placeholder="电子邮件">
+        <input type="email" v-model.trim="user.email" required maxlength="30" placeholder="电子邮件">
         <span class="iconfont icon-youjian_o"></span>
       </div>
       <div class="item">
-        <input type="password" v-model="user.password" required maxlength="12" placeholder="密码，最少6位">
+        <input type="password" v-model.trim="user.password" required maxlength="20" placeholder="密码，最少6位">
         <span class="iconfont icon-suoding_o"></span>
       </div>
       <div class="item">
@@ -26,7 +26,7 @@
         <button class="submit-btn" type="button" @click="getSession">获取会话</button>
       </div> -->
     </form>
-    <span class="warn" @click="retrivePassword">忘记密码？</span>
+    <!-- <span class="warn" @click="retrivePassword">忘记密码？</span> -->
     <span>还没有账户？请 <RouterLink class="link" to="/register-email">注册</RouterLink></span>
   </div>
 </template>
@@ -35,7 +35,8 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 // import { login } from '../assets/utils/authen'
-import { supabase } from '../assets/utils/supabase'
+import { supabase } from '@/assets/utils/supabase';
+
 const router = useRouter()
 const user = ref({
   email: '',
@@ -53,25 +54,23 @@ const submit = async () => {
   //   router.replace('/menu')
   //   localStorage.setItem('user', JSON.stringify(user.value))
   // }
+  console.log('user', user.value);
+
 
   let { data, error } = await supabase.auth.signInWithPassword({
     email: user.value.email,
     password: user.value.password,
   })
+
   if (error) {
     console.log('login fail', error);
-    return
+  } else {
+    console.log('login ok', data);
+    router.replace('/menu')
   }
-  console.log('login ok', data);
-  router.replace('/menu')
 }
 
-// import { supabase } from '../assets/utils/supabase'
-// const getSession = async () => {
-//   const { data, error } = await supabase.auth.getSession()
-//   console.log(data, error);
 
-// }
 const retrivePassword = async () => {
   console.log('retrivePassword');
 

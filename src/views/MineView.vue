@@ -67,19 +67,22 @@
         <span>关注微信</span>
       </div>
     </div>
-    <XinHua />
+    <!-- <XinHua /> -->
   </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
-import XinHua from '@/components/XinHua.vue';
+// import XinHua from '@/components/XinHua.vue';
 import src from '@/assets/avatar.jpg';
 import { supabase } from '@/assets/utils/supabase';
 const router = useRouter();
 const toCenter = async () => {
   const { data, error } = await supabase.auth.getSession()
-  if (data.session) {
+  console.log(error);
+  console.log(data);
+
+  if (!error) {
     router.push('/center')
   } else {
     router.push('/login-email')
