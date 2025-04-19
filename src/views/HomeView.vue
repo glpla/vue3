@@ -54,14 +54,14 @@ onUnmounted(() => {
     <Swiper :imgs="imgsUrl" />
     <MainNav class="m-1" />
     <div class="section">
-      <Title class="m-b-1" title="我的优惠专区" :handle="toCoupon"></Title>
+      <Title title="我的优惠专区" :handle="toCoupon"></Title>
       <Promotion />
     </div>
     <div class="section">
-      <Title class="m-b-1" title="福利中心" :handle="toWelfare"></Title>
+      <Title title="福利中心" :handle="toWelfare"></Title>
       <Welfare />
     </div>
-    <div class="tab-box" ref="tab-box">
+    <div class="section tab-box" ref="tab-box">
       <div class="nav">
         <button v-for="(_, tab) in tabs" @click="currentTab = tab" :key="tab" class="nav-item"
           :class="{ 'active': currentTab === tab }">
@@ -91,8 +91,8 @@ onUnmounted(() => {
 }
 
 .section {
-  background-color: #fff;
-  border-radius: var(--p-m-g);
+  /* background-color: #fff; */
+  /* border-radius: var(--p-m-g); */
   margin: var(--p-m-g);
 }
 
@@ -104,10 +104,9 @@ onUnmounted(() => {
 .tab-box {
   display: flex;
   justify-content: space-between;
-  margin: var(--p-m-g);
   z-index: 90;
   transition: 0.5s;
-  line-height: 4rem;
+  line-height: var(--title-bar-height);
 }
 
 .tab-box.sticky {

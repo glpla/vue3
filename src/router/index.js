@@ -8,7 +8,9 @@ import { h } from "vue";
 import { supabase } from "@/assets/utils/supabase";
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  // 在 vite.config.js 中配置 base
+  // history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",

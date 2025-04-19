@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { supabase } from '../assets/utils/supabase';
 
@@ -48,8 +48,11 @@ const resetPassword = async () => {
 
   try {
     const { data, error } = await supabase.auth.updateUser(
-      { password: newPassword.value },
-      { accessToken }
+      {
+        email,
+        password: newPassword.value,
+        data: { updated: true }
+      }
     );
 
     if (error) {
@@ -58,13 +61,16 @@ const resetPassword = async () => {
     } else {
       console.log('Password updated successfully:', data);
       message.value = '密码重置成功，请重新登录。';
-      router.replace('/login');
+      router.replace('/login-email');
     }
   } catch (error) {
     console.error('Unexpected error:', error);
     message.value = '发生意外错误，请稍后再试。';
   }
 };
+onMounted(() => {
+  console.log(route.query);
+})
 
 </script>
 

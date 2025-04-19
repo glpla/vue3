@@ -26,7 +26,7 @@
         <button class="submit-btn" type="button" @click="getSession">获取会话</button>
       </div> -->
     </form>
-    <!-- <span class="warn" @click="retrivePassword">忘记密码？</span> -->
+    <span class="warn" @click="retrivePassword">忘记密码？</span>
     <span>还没有账户？请 <RouterLink class="link" to="/register-email">注册</RouterLink></span>
   </div>
 </template>
@@ -73,14 +73,18 @@ const submit = async () => {
 
 const retrivePassword = async () => {
   console.log('retrivePassword');
-
-  let { data, error } = await supabase.auth.resetPasswordForEmail(user.value.email)
-  console.log(error);
-  console.log(data);
-  if (!error) {
-    alert('已发送邮件，请查收')
+  if (user.value.email === '') {
+    alert('请输入邮箱')
+    return;
   }
-
+  let { data, error } = await supabase.auth.resetPasswordForEmail(user.value.email)
+  if (!error) {
+    console.log(data);
+    alert('已发送邮件，请查收')
+  } else {
+    console.log(error);
+    alert('发送邮件失败')
+  }
 }
 </script>
 

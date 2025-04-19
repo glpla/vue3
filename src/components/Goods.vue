@@ -4,7 +4,9 @@ import GoodsItem from '@/components/GoodsItem.vue';
 import { useGoodsStore } from '@/stores/goods';
 const goodsStore = useGoodsStore();
 onMounted(() => {
-  goodsStore.getGoods()
+  if (!goodsStore.goods.length) {
+    goodsStore.getGoods()
+  }
 
   // goodsStore.getGoods()
   // window.addEventListener('scroll', () => {

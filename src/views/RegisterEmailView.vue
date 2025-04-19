@@ -79,11 +79,11 @@ const submit = async () => {
     },
   });
   if (error) {
-    console.log(error);
-    return
+    console.log('register error', error);
+  } else {
+    console.log('register ok', data);
+    router.replace('/menu')
   }
-  console.log(data);
-  router.replace('/menu')
 }
 </script>
 

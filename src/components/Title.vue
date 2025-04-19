@@ -23,5 +23,6 @@ const props = defineProps({
   display: flex;
   align-items: center;
   justify-content: space-between;
+  line-height: var(--title-bar-height);
 }
 </style>

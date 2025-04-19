@@ -39,7 +39,8 @@
           </div>
           <div class="favor">
             <button>
-              <span class="iconfont icon-heart-like"></span>
+              <span @click="doFavorite" class="iconfont"
+                :class="goodsSelected.is_follow ? 'icon-heart-fill' : 'icon-heart'"></span>
             </button>
             <button @click.stop="sharePage">
               <span class="iconfont icon-fenxiang_o"></span>
@@ -173,7 +174,6 @@ const imgs = ref(['swiper0.jpg', 'swiper1.jpg', 'swiper2.jpg', 'swiper3.jpg', 's
 const imgsUrl = computed(() => {
   return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
 })
-
 const generateQRCode = () => {
   const urlStr = window.location.href;
   console.log(urlStr);

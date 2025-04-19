@@ -107,7 +107,7 @@ onMounted(() => {
   top: 5rem;
   padding: 0 var(--p-m-g);
   background-color: #fff;
-  height: 5rem;
+  line-height: var(--title-bar-height);
   margin-bottom: calc(2*var(--p-m-g));
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1;

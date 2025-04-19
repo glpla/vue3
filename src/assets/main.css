@@ -1,5 +1,5 @@
 @import './base.css';
-@import '//at.alicdn.com/t/c/font_3859342_k2avexb0kme.css';
+@import '//at.alicdn.com/t/c/font_3859342_58xcykby6qt.css';
 
 .sn {
   counter-reset: sn;
@@ -98,6 +98,12 @@
 .flex {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
