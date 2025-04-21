@@ -25,32 +25,33 @@ const router = createRouter({
     {
       path: "/menu",
       name: "menu",
+      redirect: "/menu/goods",
       component: () => import("@/views/MenuView.vue"),
       meta: { showNav: true, title: "菜单" },
       children: [
         {
-          path: "",
+          path: "goods",
           name: "goods",
           component: () => import("@/components/Goods.vue"),
-          meta: { showNav: true, title: "菜单-商品列表" },
+          meta: { title: "菜单-商品列表" },
         },
         {
           path: "vip",
           name: "vip",
           component: () => import("@/components/Vip.vue"),
-          meta: { showNav: true, title: "菜单-商品列表" },
+          meta: { title: "菜单-会员卡" },
         },
         {
           path: "rank",
           name: "rank",
           component: () => import("@/components/Rank.vue"),
-          meta: { showNav: true, title: "菜单-年度封神榜" },
+          meta: { title: "菜单-年度封神榜" },
         },
         {
           path: "favorite",
           name: "favorite",
           component: () => import("@/components/Favorite.vue"),
-          meta: { showNav: true, title: "菜单-我的常点" },
+          meta: { title: "菜单-我的常点" },
         },
       ],
     },

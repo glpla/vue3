@@ -1,5 +1,5 @@
 <template>
-  <div class="back-to-top">
+  <div class="back-to-top flex-center">
     <button @click="back2top">
       <span class="iconfont icon-zhiding_o"></span>
     </button>
@@ -17,9 +17,6 @@ const back2top = () => {
 
 <style scoped>
 .back-to-top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #fff;
   color: #000;
   width: 4rem;

@@ -22,7 +22,7 @@ const tabs = {
   "颜值水杯": AsyncCup
 }
 const tabBox = useTemplateRef('tab-box')
-
+const isShowBackToTop = ref(false)
 const toCoupon = () => {
   console.log('to coupon');
   alert('to coupon')
@@ -31,20 +31,26 @@ const toWelfare = () => {
   console.log('to welfare');
   alert('to welfare')
 }
+const showBackToTop = () => {
+  isShowBackToTop.value = window.scrollY > 500
+}
 
-onMounted(() => {
-  window.onscroll = function () {
-    const rect = tabBox.value.getBoundingClientRect()
-    if (rect.top <= 0) {
-      tabBox.value.classList.add('sticky')
-    } else {
-      tabBox.value.classList.remove('sticky')
-    }
+const stickyTabBox = () => {
+  const rect = tabBox.value.getBoundingClientRect()
+  if (rect.top <= 0) {
+    tabBox.value.classList.add('sticky')
+  } else {
+    tabBox.value.classList.remove('sticky')
   }
+}
+onMounted(() => {
+  window.addEventListener('scroll', stickyTabBox)
+  window.addEventListener('scroll', showBackToTop)
 })
 
 onUnmounted(() => {
-  window.onscroll = null
+  window.removeEventListener('scroll', stickyTabBox)
+  window.removeEventListener('scroll', showBackToTop)
 })
 </script>
 
@@ -73,7 +79,7 @@ onUnmounted(() => {
     <div class="tab-cont">
       <component :is="tabs[currentTab]" class="tab"></component>
     </div>
-    <BackToTop />
+    <BackToTop :class="{ 'active': isShowBackToTop }" />
   </div>
 </template>
 
@@ -151,7 +157,12 @@ html[data-theme='dark'] .tab-box.sticky .more {
 
 .back-to-top {
   position: fixed;
-  bottom: 10rem;
+  bottom: -10rem;
   right: 2rem;
+  transition: 0.5s;
+}
+
+.back-to-top.active {
+  bottom: 10rem;
 }
 </style>

@@ -9,7 +9,11 @@
       <span><span class="f-b">{{ city.title }}</span> | {{ city.distance }}m</span>
       <button>&gt;</button>
     </div>
-    <Tabbar :tabs="tabs"></Tabbar>
+    <!-- <Tabbar :tabs="tabs"></Tabbar> -->
+    <div class="links">
+      <RouterLink class="link f-b" v-for="(item, ind) in tabs" :key="item.id" :to="item.path">{{ item.title }}
+      </RouterLink>
+    </div>
     <div class="sub-view p-1">
       <RouterView />
     </div>
@@ -34,7 +38,7 @@ const center = ref({})
 const locs = ref({})
 const geometries = ref({})
 const tabs = [
-  { ind: 0, title: '经典菜单', path: '/menu', keyword: 'classic' },
+  { ind: 0, title: '经典菜单', path: '/menu/goods', keyword: 'classic' },
   { ind: 1, title: '会员卡', path: '/menu/vip', keyword: 'member' },
   { ind: 2, title: '年度封神榜', path: '/menu/rank', keyword: 'rank' },
   { ind: 3, title: '我的常点', path: '/menu/favorite', keyword: 'favor' },
@@ -129,5 +133,41 @@ onMounted(() => {
 .sub-view {
   background-color: #fff;
   padding-bottom: var(--app-nav-h);
+}
+
+.links {
+  position: sticky;
+  top: 5rem;
+  background-color: #fff;
+  margin-bottom: calc(2*var(--p-m-g));
+  display: flex;
+  gap: var(--p-m-g);
+  justify-content: space-around;
+  line-height: var(--title-bar-height);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.link {
+  position: relative;
+}
+
+/* router style */
+/* .nav-color {
+  color: var(--main-color);
+} */
+
+/* .exact-nav-color {
+  color: var(--main-color);
+} */
+.exact-nav-color::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 4px;
+  background-color: var(--main-color);
 }
 </style>

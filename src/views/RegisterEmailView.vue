@@ -5,19 +5,19 @@
     <p class="greeting">欢迎回来</p>
     <form @submit.prevent="submit">
       <div class="item">
-        <input type="text" v-model.trim.lazy="user.username" required maxlength="12" placeholder="用户名，最多12位">
+        <input type="text" v-model.trim="user.username" required maxlength="12" placeholder="用户名，最多12位">
         <span class="iconfont icon-gerentouxiang_o"></span>
       </div>
       <div class="item">
-        <input type="email" v-model.trim.lazy="user.email" required maxlength="20" placeholder="电子邮箱">
+        <input type="email" v-model.trim="user.email" required maxlength="30" placeholder="电子邮箱">
         <span class="iconfont icon-youjian_o"></span>
       </div>
       <div class="item">
-        <input type="password" v-model="user.password" required maxlength="8" placeholder="密码，最少6位">
+        <input type="password" v-model="user.password" required maxlength="20" placeholder="密码，最少6位">
         <span class="iconfont icon-suoding_o"></span>
       </div>
       <div class="item">
-        <input type="password" v-model="user.confirmPassword" required maxlength="8" placeholder="请确认密码">
+        <input type="password" v-model="user.confirmPassword" required maxlength="20" placeholder="请确认密码">
         <span class="iconfont icon-suoding_o"></span>
       </div>
       <div class="item">
@@ -68,22 +68,32 @@ const submit = async () => {
   //   router.replace('/menu')
   //   localStorage.setItem('user', JSON.stringify(user.value))
   // }
-  let { data, error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email: user.value.email,
     password: user.value.password,
     options: {
       data: {
         name: user.value.username,
-        avatar: "/avatar.png",
       },
     },
   });
+
   if (error) {
     console.log('register error', error);
-  } else {
-    console.log('register ok', data);
-    router.replace('/menu')
+    return;
   }
+
+  console.log('register ok', data);
+  if (data.user) {
+    const { error } = await supabase
+      .from('profile')
+      .insert({
+        id: data.user.id,
+        username: user.value.username,
+      })
+    if (error) return console.log(error);
+  }
+  router.replace('/menu')
 }
 </script>
 

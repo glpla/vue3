@@ -5,11 +5,11 @@
     <p class="greeting">欢迎回来</p>
     <form @submit.prevent="submit">
       <div class="item">
-        <input type="email" v-model.trim.lazy="user.email" required maxlength="30" placeholder="电子邮件">
+        <input type="email" v-model.trim="user.email" required maxlength="30" placeholder="电子邮件">
         <span class="iconfont icon-youjian_o"></span>
       </div>
       <div class="item">
-        <input type="password" v-model.trim.lazy="user.password" required maxlength="20" placeholder="密码，最少6位">
+        <input type="password" v-model.trim="user.password" required maxlength="20" placeholder="密码，最少6位">
         <span class="iconfont icon-suoding_o"></span>
       </div>
       <div class="item">
@@ -40,7 +40,7 @@ import { supabase } from '@/assets/utils/supabase';
 const router = useRouter()
 const user = ref({
   email: '',
-  password: null,
+  password: '',
   isAgree: false,
 })
 
@@ -57,17 +57,15 @@ const submit = async () => {
   console.log('user', user.value);
 
 
-  let { data, error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: user.value.email,
     password: user.value.password,
   })
 
-  if (error) {
-    console.log('login fail', error);
-  } else {
-    console.log('login ok', data);
-    router.replace('/menu')
-  }
+  if (error) return console.log('login fail', error);
+
+  console.log('login ok', data);
+  router.replace('/menu')
 }
 
 
