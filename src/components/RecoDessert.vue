@@ -17,11 +17,11 @@
 <script setup>
 import { computed } from 'vue';
 const props = defineProps(['dessert'])
+const dessertSelected = defineModel('dessertSelected', { default: [] })
 
-const dis = computed((item) => {
+const dis = computed(() => {
   return (item) => item.price_original * (1 - item.discount)
 })
-const dessertSelected = defineModel('dessertSelected', { default: [] })
 </script>
 
 <style scoped>

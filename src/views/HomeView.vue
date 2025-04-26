@@ -60,11 +60,15 @@ onUnmounted(() => {
     <Swiper :imgs="imgsUrl" />
     <MainNav class="m-1" />
     <div class="section">
-      <Title title="我的优惠专区" :handle="toCoupon"></Title>
+      <Title :handle="toCoupon">
+        <h3>我的优惠专区</h3>
+      </Title>
       <Promotion />
     </div>
     <div class="section">
-      <Title title="福利中心" :handle="toWelfare"></Title>
+      <Title :handle="toWelfare">
+        <h3>福利中心</h3>
+      </Title>
       <Welfare />
     </div>
     <div class="section tab-box" ref="tab-box">

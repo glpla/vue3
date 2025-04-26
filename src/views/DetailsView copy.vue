@@ -8,9 +8,35 @@
         <div class="header p-1">
           <h3 class="title mb-1">{{ goodsStore.good.name }}</h3>
           <div class="m-b-2">{{ goodsStore.good.desc }}</div>
-          <Specification class="mb-1" :items="goodsStore.good.cup" v-model="goodsSelected.cup" />
-          <Specification class="mb-1" :items="goodsStore.good.ther" v-model="goodsSelected.ther" />
-          <Specification class="mb-1" :items="goodsStore.good.sugar" v-model="goodsSelected.sugar" />
+          <div class="specification">
+            <div class="items">
+              <span>杯型</span>
+              <span class="item" v-for="item in goodsStore.good.cup">
+                <input type="radio" name="cup" :id="`cup${item.id}`" :value="item.tag" hidden
+                  v-model="goodsSelected.cup">
+                <label :for="`cup${item.id}`">{{ item.tag }}</label>
+              </span>
+            </div>
+            <!-- <div>{{ goodsSelected.cup }}</div> -->
+            <div class="items">
+              <span>温度</span>
+              <span class="item" v-for="item in goodsStore.good.ther">
+                <input type="radio" name="ther" :id="`ther${item.id}`" :value="item.tag" hidden
+                  v-model="goodsSelected.ther">
+                <label :for="`ther${item.id}`">{{ item.tag }}</label>
+              </span>
+            </div>
+            <!-- <div>{{ goodsSelected.ther }}</div> -->
+            <div class="items">
+              <span>糖度</span>
+              <span class="item" v-for="item in goodsStore.good.sugar">
+                <input type="radio" name="sugar" :id="`sugar${item.id}`" :value="item.tag" hidden
+                  v-model="goodsSelected.sugar">
+                <label :for="`sugar${item.id}`">{{ item.tag }}</label>
+              </span>
+            </div>
+            <!-- <div>{{ goodsSelected.sugar }}</div> -->
+          </div>
           <div class="favor">
             <button>
               <span @click="doFavorite" class="iconfont"
@@ -132,7 +158,6 @@ import { useCartStore } from '@/stores/cart';
 import { useGoodsStore } from '@/stores/goods';
 import QRCode from 'qrcode';
 import Swiper from '@/components/Swiper.vue';
-import Specification from '@/components/Specification.vue';
 import RecoItems from '@/components/RecoItems.vue';
 import RecoDessert from '@/components/RecoDessert.vue';
 import Guarantee from '@/components/Guarantee.vue';
@@ -198,9 +223,9 @@ const handleGoods = async (id) => {
   goodsSelected.value = {
     ...res,
     quantity: 1,
-    cup: res.cup.options.find(item => item.sel)?.tag || '中杯',
-    ther: res.ther.options.find(item => item.sel)?.tag || '冷',
-    sugar: res.sugar.options.find(item => item.sel)?.tag || '标准糖',
+    cup: res.cup.find(item => item.sel)?.tag || '中杯',
+    ther: res.ther.find(item => item.sel)?.tag || '冷',
+    sugar: res.sugar.find(item => item.sel)?.tag || '标准杯',
     dessert: [],
     recommend: []
   }
@@ -232,6 +257,26 @@ onMounted(() => {
   position: relative;
   border-radius: 1rem;
   background-color: #fff;
+}
+
+.specification .items {
+  display: flex;
+  align-items: center;
+  gap: var(--p-m-g);
+  margin-bottom: 2rem;
+}
+
+.specification .item label {
+  display: inline-block;
+  background-color: var(--second-bg-color);
+  width: 8rem;
+  padding: 4px var(--p-m-g);
+  text-align: center;
+}
+
+.specification .item input:checked+label {
+  background-color: var(--third-bg-color);
+  color: var(--main-color);
 }
 
 .favor {
