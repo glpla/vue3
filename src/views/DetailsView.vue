@@ -5,8 +5,8 @@
     <template v-else>
       <Swiper :imgs="imgsUrl" />
       <div class="cont">
-        <div class="header p-1">
-          <h3 class="title mb-1">{{ goodsStore.good.name }}</h3>
+        <div class="cont-item">
+          <h3 class="title mb-1">{{ goodsStore.good.name }}·{{ goodsStore.good.flavour }}</h3>
           <div class="m-b-2">{{ goodsStore.good.desc }}</div>
           <Specification class="mb-1" :items="goodsStore.good.cup" v-model="goodsSelected.cup" />
           <Specification class="mb-1" :items="goodsStore.good.ther" v-model="goodsSelected.ther" />
@@ -21,24 +21,22 @@
             </button>
           </div>
         </div>
-        <!-- <img v-if="qrCode" :src="qrCode" alt="QR Code" /> -->
-        <!-- <button @click="generateQRCode">分享页面</button> -->
-        <RecoDessert :dessert="goodsStore.good.dessert" v-model:dessertSelected="goodsSelected.dessert" />
-        <!-- <div>{{ goodsSelected.dessert }}</div> -->
-        <RecoItems :reco="goodsStore.good.recommend" />
-        <div>
-          <h3 class="cont-title">商品详情</h3>
+        <RecoDessert class="cont-item" :dessert="goodsStore.good.dessert"
+          v-model:dessertSelected="goodsSelected.dessert" />
+        <RecoItems class="cont-item" :reco="goodsStore.good.recommend" />
+        <div class="cont-item">
+          <h3>商品详情</h3>
           <img src="" alt="">
         </div>
-        <Guarantee @show-guarantee="isShowModal = true" />
-        <div>
-          <h3 class="cont-title">主要原料</h3>
+        <Guarantee class="cont-item" @show-guarantee="isShowModal = true" />
+        <div class="cont-item">
+          <h3>主要原料</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt omnis eius dolore temporibus velit
             voluptate
             ipsa esse commodi dignissimos animi!</p>
         </div>
-        <div class="cont-price" :class="{ 'show-cont-all': isShow }">
-          <h3 class="cont-title">价格说明</h3>
+        <div class="cont-item cont-price" :class="{ 'show-cont-all': isShow }">
+          <h3>价格说明</h3>
           <ul class="sn">
             <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum ducimus labore ullam ratione
               excepturi
@@ -62,12 +60,13 @@
               enim ea voluptatibus distinctio? Magni recusandae, aspernatur optio ullam dicta accusamus impedit mollitia
               eligendi corrupti unde.</li>
           </ul>
-          <button class="more" @click="isShow = !isShow">
+          <button class="cont-more" @click="isShow = !isShow">
             <span v-if="isShow" class="iconfont icon-jiantou_liebiaoshouqi_o"></span>
             <span v-else class="iconfont icon-jiantou_liebiaozhankai_o"></span>
           </button>
         </div>
       </div>
+      <GuaranteeModal :close-modal="closeModal" v-show="isShowModal" />
       <footer class="w">
         <div class="info">
           <div class="price">
@@ -85,42 +84,6 @@
           <button class="add" @click="addToCart">加入购物车</button>
         </div>
       </footer>
-      <div class="modal" :class="{ 'show': isShowModal }" @click.self="isShowModal = false">
-        <div class="w modal-cont">
-          <button class="btn modal-btn" @click.prevent="isShowModal = false">
-            <span class="iconfont icon-jiantou_liebiaozhankai_o"></span>
-          </button>
-          <div class="modal-header">
-            <div class="modal-title">
-              <Security />
-              <h3>交易保障</h3>
-            </div>
-            <div class="modal-sub-title">以获得小程序交易保障认证</div>
-          </div>
-          <div class="modal-items">
-            <span class="iconfont icon-balance"></span>
-            <div class="modal-item">
-              <h3>先行赔付</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sapiente autem ut impedit? Quis,
-                suscipit!</p>
-            </div>
-            <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-            <span class="iconfont icon-si-glyph-balance"></span>
-            <div class="modal-item">
-              <h3>消费者权益保障</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, omnis.</p>
-            </div>
-            <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-            <span class="iconfont icon-kefu"></span>
-            <div class="modal-item">
-              <h3>客服应答</h3>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
-          </div>
-          <h4 class="modal-help">交易遇到问题？</h4>
-        </div>
-      </div>
     </template>
   </div>
 </template>
@@ -136,7 +99,7 @@ import Specification from '@/components/Specification.vue';
 import RecoItems from '@/components/RecoItems.vue';
 import RecoDessert from '@/components/RecoDessert.vue';
 import Guarantee from '@/components/Guarantee.vue';
-import Security from '@/components/Security.vue';
+import GuaranteeModal from '@/components/GuaranteeModal.vue';
 const route = useRoute()
 const router = useRouter()
 const cartStore = useCartStore()
@@ -150,6 +113,9 @@ const imgsUrl = computed(() => {
   return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
 })
 
+const closeModal = () => {
+  isShowModal.value = false
+}
 const generateQRCode = () => {
   const urlStr = window.location.href;
   console.log(urlStr);
@@ -224,16 +190,6 @@ onMounted(() => {
   background-color: #f5f5f5;
 }
 
-.cont {
-  padding: var(--p-m-g);
-}
-
-.header {
-  position: relative;
-  border-radius: 1rem;
-  background-color: #fff;
-}
-
 .favor {
   position: absolute;
   right: 1rem;
@@ -242,12 +198,12 @@ onMounted(() => {
   gap: var(--p-m-g);
 }
 
-.reco-dessert,
-.reco-items {
-  border-radius: 1rem;
+.cont {
+  padding: var(--p-m-g);
+  margin-bottom: calc(var(--app-nav-h) + 3rem);
 }
 
-.cont>* {
+.cont-item {
   position: relative;
   border-radius: 1rem;
   background-color: #fff;
@@ -255,14 +211,10 @@ onMounted(() => {
   margin-bottom: var(--p-m-g);
 }
 
-.cont .more {
+.cont-more {
   position: absolute;
   top: 1rem;
   right: 1rem;
-}
-
-.cont-price {
-  margin-bottom: calc(var(--app-nav-h) + 2*var(--p-m-g));
 }
 
 .cont-price ul {
@@ -276,10 +228,6 @@ onMounted(() => {
 
 .cont-price.show-cont-all ul {
   height: auto;
-}
-
-.guarantee {
-  border-radius: 1rem;
 }
 
 footer {
@@ -355,84 +303,10 @@ footer {
   color: #fff;
 }
 
-.modal {
+.guarantee-modal {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99;
-  background-color: rgba(0, 0, 0, 0.2);
-  transform: translateY(100%);
-  overflow: hidden;
-}
-
-.modal-cont {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  background-color: #fff;
-  padding: 2rem 1rem;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  transform: translateX(-50%) translateY(100%);
-  transition: 0.5s;
-}
-
-/* .details:has(.modal.show) {
-  height: 100vh;
-  overflow: hidden;
-} */
-
-.modal.show {
-  transform: translateY(0);
-}
-
-.modal.show .modal-cont {
-  transform: translateX(-50%) translateY(0);
-}
-
-.modal-btn {
-  display: block;
-  width: max-content;
-  margin: 0 auto;
-}
-
-.modal-btn .iconfont {
-  background-color: #f5f5f5;
-  padding: 0rem 2rem;
-  border-radius: 0.5rem;
-}
-
-.modal-header {
-  text-align: center;
-  padding: 4rem 0;
-}
-
-.modal-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.8rem;
-  color: var(--security-color);
-}
-
-.modal-items {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  align-items: center;
-  gap: 2rem 1rem;
-  padding-bottom: 6rem;
-}
-
-.modal-items .iconfont {
-  font-size: 3rem;
-  color: var(--security-color);
-}
-
-.modal-help {
-  text-align: center;
-  color: var(--tips-color);
+  inset: 0;
+  z-index: 100;
 }
 
 .loading {

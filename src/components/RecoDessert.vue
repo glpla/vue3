@@ -29,8 +29,6 @@ const dis = computed(() => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--p-m-g);
-  padding: 2rem 1rem;
-  background-color: #fff;
 }
 
 .item {

@@ -25,8 +25,6 @@ const props = defineProps(['reco'])
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 2rem 1rem;
-  background-color: #fff;
 }
 
 .item {

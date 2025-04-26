@@ -1,5 +1,5 @@
 <template>
-  <div class="guarantee f-s-m">
+  <div class="guarantee">
     <Security />
     <h3 class="em">小程序交易保障</h3>
     <span class="ellipsis">先行赔付 · 消费者权益保护</span>
@@ -22,13 +22,10 @@ const handleGuarantee = () => {
   display: flex;
   align-items: center;
   gap: var(--p-m-g);
-  padding: 2rem 1rem;
-  background-color: #fff;
-  font-size: 1.5rem;
 }
 
 .em {
-  color: #41b883;
+  color: var(--security-color);
 }
 
 .ellipsis {
