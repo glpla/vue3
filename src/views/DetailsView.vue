@@ -28,7 +28,7 @@
           <h3>商品详情</h3>
           <img src="" alt="">
         </div>
-        <Guarantee class="cont-item" @show-guarantee="isShowModal = true" />
+        <Guarantee class="cont-item" @show-guarantee="switchModal" />
         <div class="cont-item">
           <h3>主要原料</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt omnis eius dolore temporibus velit
@@ -66,7 +66,7 @@
           </button>
         </div>
       </div>
-      <GuaranteeModal :close-modal="closeModal" v-show="isShowModal" />
+      <GuaranteeModal :close-guarantee="switchModal" v-show="isShowModal" />
       <footer class="w">
         <div class="info">
           <div class="price">
@@ -113,8 +113,8 @@ const imgsUrl = computed(() => {
   return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
 })
 
-const closeModal = () => {
-  isShowModal.value = false
+const switchModal = () => {
+  isShowModal.value = !isShowModal.value
 }
 const generateQRCode = () => {
   const urlStr = window.location.href;

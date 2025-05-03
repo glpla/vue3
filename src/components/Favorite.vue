@@ -9,6 +9,8 @@
 import { ref, onMounted } from 'vue';
 const img = ref('')
 onMounted(() => {
+  console.log('favorite mounted');
+
   fetch('https://png.pngtree.com/png-vector/20250119/ourmid/pngtree-young-deer-in-a-floral-setting-symbolizing-innocence-and-nature-png-image_15277297.png', {
     headers: {
       'Accept': 'image/png'
@@ -18,8 +20,6 @@ onMounted(() => {
     .then(blob => {
       const url = URL.createObjectURL(blob);
       img.value = url;
-      console.log(img.value);
-
     })
     .catch(error => console.error('Error:', error));
 })

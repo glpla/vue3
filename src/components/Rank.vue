@@ -8,6 +8,8 @@
 import { ref, onMounted } from 'vue';
 const img = ref('')
 onMounted(() => {
+  console.log('rank mounted');
+
   fetch('https://png.pngtree.com/png-vector/20241115/ourmid/pngtree-cute-running-deer-png-image_14430526.png', {
     headers: {
       'Accept': 'image/png'
@@ -17,8 +19,6 @@ onMounted(() => {
     .then(blob => {
       const url = URL.createObjectURL(blob);
       img.value = url;
-      console.log(img.value);
-
     })
     .catch(error => console.error('Error:', error));
 })

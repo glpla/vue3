@@ -1,7 +1,7 @@
 <template>
-  <div class="guarantee-modal" @click.self="props.closeModal">
+  <div class="guarantee-modal" @click.self="props.closeGuarantee">
     <div class="modal-cont">
-      <button class="btn modal-btn" @click.prevent="props.closeModal">
+      <button class="btn modal-btn" @click.stop="props.closeGuarantee">
         <span class="iconfont icon-jiantou_liebiaozhankai_o"></span>
       </button>
       <div class="modal-header">
@@ -40,7 +40,7 @@
 <script setup>
 import Security from '@/components/Security.vue';
 const props = defineProps({
-  closeModal: {
+  closeGuarantee: {
     type: Function,
     default: () => { }
   }

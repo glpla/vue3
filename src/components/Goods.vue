@@ -4,6 +4,8 @@ import GoodsItem from '@/components/GoodsItem.vue';
 import { useGoodsStore } from '@/stores/goods';
 const goodsStore = useGoodsStore();
 onMounted(() => {
+  console.log('goods mounted');
+
   if (!goodsStore.goods.length) {
     goodsStore.getGoods()
   }

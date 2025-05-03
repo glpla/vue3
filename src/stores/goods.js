@@ -45,6 +45,9 @@ export const useGoodsStore = defineStore("goods", () => {
     }
   };
 
+  console.log("pinia ready");
+  console.log("goods", goods);
+
   return {
     isLoading,
     error,

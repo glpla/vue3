@@ -15,7 +15,11 @@
       </RouterLink>
     </div>
     <div class="sub-view p-1">
-      <RouterView />
+      <RouterView v-slot="{ Component, route }">
+        <KeepAlive>
+          <Component :is="Component" :key="route.fullPath"></Component>
+        </KeepAlive>
+      </RouterView>
     </div>
     <Cart class="w cart" v-if="cartStore.cart.length" :class="{ 'pos': $route.meta.showNav }"></Cart>
   </div>

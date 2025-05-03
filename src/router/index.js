@@ -9,23 +9,25 @@ import { supabase } from "@/assets/utils/supabase";
 
 const router = createRouter({
   // 在 vite.config.js 中配置 base
-  // history: createWebHashHistory(import.meta.env.BASE_URL),
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "index",
       component: HomeView,
       meta: { showNav: true, title: "大树小咖" },
     },
     {
       path: "/home",
+      name: "home",
       redirect: "/",
     },
     {
       path: "/menu",
       name: "menu",
-      redirect: "/menu/goods",
+      // redirect: "/menu/goods",
+      redirect: { name: "goods" },
       component: () => import("@/views/MenuView.vue"),
       meta: { showNav: true, title: "菜单" },
       children: [
@@ -208,6 +210,9 @@ router.afterEach((to, from) => {
   document.title = to.meta.title;
   window.scrollTo(0, 0);
 });
+
+console.log("router ready");
+
 // router.options.linkActiveClass = "nav-color";
 // router.options.linkExactActiveClass = "nav-color";
 export default router;
