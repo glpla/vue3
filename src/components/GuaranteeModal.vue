@@ -57,6 +57,7 @@ const props = defineProps({
   position: absolute;
   left: 50%;
   bottom: 0;
+  width: 100%;
   max-width: var(--max-width);
   background-color: #fff;
   padding: 2rem 1rem;

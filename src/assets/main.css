@@ -23,11 +23,11 @@
   text-overflow: ellipsis;
 }
 
-.w {
+/* .w {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-}
+} */
 
 .warn {
   color: var(--warn-color);
