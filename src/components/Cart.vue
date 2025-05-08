@@ -1,5 +1,5 @@
 <template>
-  <div class="cart" :class="{ 'show-cont-all': isShowCartDetail }" @click.self="closeCartDetail">
+  <div class="cart" :class="{ 'show-cont-all': isShowCartDetail }" @click.self="isShowCartDetail = false">
     <div class="cont">
       <header class="header">
         <div class="all">
@@ -11,7 +11,8 @@
           <span>清空购物车</span>
         </button>
       </header>
-      <div class="item" v-for="(item, ind) in cartStore.cart" :key="item.id">
+      <CartItem v-for="(item, ind) in cartStore.cart" :key="item.id" :cart="item" v-model="selectedGoods"></CartItem>
+      <!-- <div class="item" v-for="(item, ind) in cartStore.cart" :key="item.id">
         <input type="checkbox" name="" id="" v-model="selectedGoods" :value="item">
         <img class="img" :src="`https://glpla.github.io/utils${item.img}`" alt="">
         <div class="info">
@@ -27,7 +28,7 @@
           <span class="num">{{ item.quantity }}</span>
           <button class="btn inc" @click="item.quantity++">+</button>
         </div>
-      </div>
+      </div> -->
     </div>
     <footer>
       <button class="btn cart-left" @click.stop="isShowCartDetail = !isShowCartDetail">
@@ -42,7 +43,7 @@
         </div>
         <div class="total-promotion f-s-s">
           <span>已享受更多优惠，共减免 </span>
-          <span>&yen;{{ getPriceDiscount().toFixed(2) }}</span>
+          <span>&yen;{{ getPriceDiscount }}</span>
         </div>
       </div>
       <router-link class="btn pay-btn f-s-b" to="/order">去结算</router-link>
@@ -51,12 +52,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, computed } from 'vue';
 import { useCartStore } from '@/stores/cart';
-const isShowCartDetail = ref(false)
+import CartItem from './CartItem.vue';
 
 const cartStore = useCartStore()
 const selectedGoods = ref([...cartStore.cart])
+const isShowCartDetail = ref(true)
 const isSelectAll = ref(true)
 const sum = ref(0)
 const count = ref(0)
@@ -72,7 +74,7 @@ watch(selectedGoods, () => {
     flag = false
   }
   // count sum
-  sum.value = selectedGoods.value.reduce((total, item) => total + item.price * item.quantity * (1 - item.discount), 0)
+  sum.value = selectedGoods.value.reduce((total, item) => total + item.quantity * item.price * (1 - item.discount), 0)
   count.value = selectedGoods.value.reduce((total, item) => total + item.quantity, 0)
 }, { deep: true, immediate: true })
 
@@ -83,31 +85,20 @@ watch(isSelectAll, (newVal) => {
     if (flag) selectedGoods.value = []
   }
 })
+const getPriceDiscount = computed(() => {
+  let res = selectedGoods.value.reduce((total, item) => total + item.quantity * item.price * item.discount, 0);
+  console.log(res);
+  return res.toFixed(2)
+})
+
 const clearCart = () => {
   cartStore.clearCart()
   selectedGoods.value = []
   isSelectAll.value = false
 }
-const closeCartDetail = () => {
-  isShowCartDetail.value = false
-}
-const getPriceDiscount = () => {
-  return cartStore.cart.reduce(
-    (total, item) => total + item.price * item.discount * item.quantity,
-    0
-  );
-};
 
 onMounted(() => {
-  // fetch('https://glpla.github.io/utils/data/coffee.json')
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     console.log(data.cont);
-  //     cartData.value = data.cont.map(item => ({ ...item, num: 1 }))
-  //   })
-  // cartStore.fetchCart()
   console.log('cart loading', cartStore.cart);
-
 })
 </script>
 
@@ -153,73 +144,6 @@ onMounted(() => {
 
 .header .iconfont {
   margin-left: auto;
-}
-
-.item {
-  display: flex;
-  gap: var(--p-m-g);
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.img {
-  width: 8rem;
-  height: 8rem;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-}
-
-.info {
-  flex: 1;
-  overflow: hidden;
-}
-
-.info .sub-title {
-  margin-bottom: 2rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.info .price-new {
-  font-size: 1.6rem;
-  color: var(--warn-color);
-}
-
-.info .price-old {
-  color: #999;
-  text-decoration: line-through;
-  font-size: 1.4rem;
-  margin-left: 6px;
-}
-
-.oper {
-  display: flex;
-}
-
-.oper .num {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-}
-
-.oper .btn {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-}
-
-.oper .dec {
-  border: 1px solid var(--main-color);
-}
-
-.oper .inc {
-  background-color: var(--main-color);
-  color: #fff;
 }
 
 footer {

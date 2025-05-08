@@ -28,7 +28,7 @@
           <h3>商品详情</h3>
           <img src="" alt="">
         </div>
-        <Guarantee class="cont-item" @show-guarantee="switchModal" />
+        <Guarantee class="cont-item" v-model="isShowModal" />
         <div class="cont-item">
           <h3>主要原料</h3>
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt omnis eius dolore temporibus velit
@@ -66,7 +66,7 @@
           </button>
         </div>
       </div>
-      <GuaranteeModal :close-guarantee="switchModal" v-show="isShowModal" />
+      <GuaranteeModal v-model="isShowModal" v-show="isShowModal" />
       <footer class="w">
         <div class="info">
           <div class="price">
@@ -74,9 +74,10 @@
             <span class="f-s-s">预估到手</span>
           </div>
           <div class="nums">
-            <button class="btn dec" @click="goodsSelected.quantity--">-</button>
+            <button class="btn dec" @click="goodsSelected.quantity--" :disabled="goodsSelected.quantity == 1">-</button>
             <span class="num f-s-m">{{ goodsSelected.quantity }}</span>
-            <button class="btn inc" @click="goodsSelected.quantity++">+</button>
+            <button class="btn inc" @click="goodsSelected.quantity++"
+              :disabled="goodsSelected.quantity >= goodsSelected.stock">+</button>
           </div>
         </div>
         <div class="btns">
@@ -113,9 +114,6 @@ const imgsUrl = computed(() => {
   return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
 })
 
-const switchModal = () => {
-  isShowModal.value = !isShowModal.value
-}
 const generateQRCode = () => {
   const urlStr = window.location.href;
   console.log(urlStr);

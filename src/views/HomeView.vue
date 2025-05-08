@@ -4,7 +4,7 @@ import Swiper from '@/components/Swiper.vue';
 import Theme from '@/components/Theme.vue';
 import MainNav from '@/components/MainNav.vue';
 import BackToTop from '@/components/BackToTop.vue';
-import Title from '@/components/Title.vue';
+import TitleSLot from '@/components/TitleSlot.vue';
 import Promotion from '@/components/Promotion.vue';
 import Welfare from '@/components/Welfare.vue';
 
@@ -60,15 +60,15 @@ onUnmounted(() => {
     <Swiper :imgs="imgsUrl" />
     <MainNav class="m-1" />
     <div class="section">
-      <Title :handle="toCoupon">
+      <TitleSLot :handle="toCoupon">
         <h3>我的优惠专区</h3>
-      </Title>
+      </TitleSLot>
       <Promotion />
     </div>
     <div class="section">
-      <Title :handle="toWelfare">
+      <TitleSLot :handle="toWelfare">
         <h3>福利中心</h3>
-      </Title>
+      </TitleSLot>
       <Welfare />
     </div>
     <div class="section tab-box" ref="tab-box">

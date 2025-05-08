@@ -1,7 +1,7 @@
 <template>
-  <div class="guarantee-modal" @click.self="props.closeGuarantee">
+  <div class="guarantee-modal" @click.self="model = false">
     <div class="modal-cont">
-      <button class="btn modal-btn" @click.stop="props.closeGuarantee">
+      <button class="btn modal-btn" @click.stop="model = false">
         <span class="iconfont icon-jiantou_liebiaozhankai_o"></span>
       </button>
       <div class="modal-header">
@@ -39,12 +39,7 @@
 
 <script setup>
 import Security from '@/components/Security.vue';
-const props = defineProps({
-  closeGuarantee: {
-    type: Function,
-    default: () => { }
-  }
-})
+const model = defineModel()
 </script>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
-  <div class="title">
-    <slot></slot>
+  <div class="title-props">
+    <h3>{{ title }}</h3>
     <button @click="handle">查看全部 &gt;</button>
   </div>
 </template>
@@ -19,7 +19,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.title {
+.title-props {
   display: flex;
   align-items: center;
   justify-content: space-between;
