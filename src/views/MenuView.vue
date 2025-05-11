@@ -9,7 +9,6 @@
       <span><span class="f-b">{{ city.title }}</span> | {{ city.distance }}m</span>
       <button>&gt;</button>
     </div>
-    <!-- <Tabbar :tabs="tabs"></Tabbar> -->
     <div class="links">
       <RouterLink class="link f-b" v-for="(item, ind) in tabs" :key="item.id" :to="item.path">{{ item.title }}
       </RouterLink>
@@ -21,7 +20,7 @@
         </KeepAlive>
       </RouterView>
     </div>
-    <Cart class="w cart" v-if="cartStore.cart.length" :class="{ 'pos': $route.meta.showNav }"></Cart>
+    <Cart class="w cart" v-if="cartStore.carts.length" :class="{ 'pos': $route.meta.showNav }"></Cart>
   </div>
 </template>
 
@@ -31,7 +30,6 @@ import { useCartStore } from '@/stores/cart'
 import { apiKey, keyword, radius } from '@/assets/config/tbl';
 import Switch from '@/components/Switch.vue';
 import Search from '@/components/Search.vue';
-import Tabbar from '@/components/Tabbar.vue';
 import Cart from '@/components/Cart.vue';
 const cartStore = useCartStore()
 const axios = inject('axios');

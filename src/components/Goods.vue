@@ -25,7 +25,7 @@ onMounted(() => {
 
 <template>
   <div class="goods">
-    <div class="loading" v-if="goodsStore.isLoading">loading...</div>
+    <div class="loading" v-if="goodsStore.isLoading">Loading...</div>
     <template v-else-if="goodsStore.goods.length">
       <GoodsItem v-for="(item, ind) in goodsStore.goods" :key="item.id" :product="item" />
       <footer class="f-s-s">我是有底线的~</footer>

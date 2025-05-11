@@ -40,9 +40,18 @@
         <span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span>
       </button>
     </div>
-    <div class="flex tips-box">
-      <h4>备注特别要求</h4>
-      <button>&gt;</button>
+    <div class="tips-box">
+      <div class="flex">
+        <h4>取餐方式</h4>
+        <div class="flex">
+          <label class="radio"><input type="radio" name="takeout" value="店内用餐" checked>店内用餐</label>
+          <label class="radio"><input type="radio" name="takeout" value="自提带走">自提带走</label>
+        </div>
+      </div>
+      <div class="flex">
+        <h4>备注特别要求</h4>
+        <button>&gt;</button>
+      </div>
     </div>
     <div class="p-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur esse iure itaque nam
       atque,
@@ -74,6 +83,8 @@ import itemImg from '@/assets/logo.png'
 
 .order-view {
   padding: var(--p-m-g);
+  margin-bottom: var(--app-nav-h);
+  background-color: #f5f6f7;
 }
 
 .order-view>div {
@@ -118,7 +129,7 @@ import itemImg from '@/assets/logo.png'
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* height: 8rem; */
+  height: var(--app-nav-h);
   background-color: #fff;
   bottom: 0;
   padding: var(--p-m-g);
@@ -134,5 +145,28 @@ import itemImg from '@/assets/logo.png'
   width: 15rem;
   height: var(--el-h);
   border-radius: var(--el-h);
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+}
+
+.radio input {
+  appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--second-color);
+}
+
+.radio input:checked {
+  background-color: var(--second-color);
+  text-align: center;
+}
+
+.radio input:checked::before {
+  content: '\2713';
+  color: #fff
 }
 </style>

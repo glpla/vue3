@@ -15,7 +15,10 @@ export const useGoodsStore = defineStore("goods", () => {
         console.log("error", error);
         return;
       }
+      // 更新状态
       goods.value = data;
+      // 显式返回结果
+      return data;
     } catch (error) {
       error.value = "Failed to load data";
       goods.value = [];
@@ -34,7 +37,9 @@ export const useGoodsStore = defineStore("goods", () => {
         console.log("error", error);
         return;
       }
+      // 更新状态
       good.value = data[0];
+      // 显式返回结果
       return data[0];
     } catch (error) {
       error.value = "Failed to load data";

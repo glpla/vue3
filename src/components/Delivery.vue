@@ -1,7 +1,7 @@
 <template>
   <div class="delivery">
-    <button class="item" :class="{ active: !isTakeout }" @click="isTakeout = false">自提</button>
-    <button class="item" :class="{ active: isTakeout }" @click="isTakeout = true">外送</button>
+    <button class="item" :class="{ active: isTakeout }" @click="isTakeout = true">自提</button>
+    <button class="item" :class="{ active: !isTakeout }" @click="isTakeout = false">外送</button>
   </div>
 </template>
 

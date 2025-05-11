@@ -11,7 +11,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.49.3",
     "axios": "^1.7.9",
-    "nanoid": "^5.0.9",
+    "nanoid": "^5.1.5",
     "pinia": "^2.3.0",
     "qrcode": "^1.5.4",
     "swiper": "^11.2.1",

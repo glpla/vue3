@@ -1,46 +1,36 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import { nanoid } from "nanoid";
 
 export const useCartStore = defineStore("cart", () => {
-  const cart = ref([]);
-
-  const addToCart = (product) => {
-    // const existingItem = cart.value.find((item) => item.id === product.id);
-    // if (existingItem) {
-    //   existingItem.quantity++;
-    //   console.log("++");
-    // } else {
-    //   cart.value.push({ ...product, quantity: 1 });
-    //   console.log("1");
-    // }
-    const res = cart.value.filter((item) => item.id === product.id)[0];
-    if (res) {
-      res.quantity += product.quantity;
+  const carts = ref([]);
+  const addToCarts = (product) => {
+    const existingItem = carts.value.find(
+      (item) => item.productId === product.productId
+    );
+    if (existingItem) {
+      existingItem.quantity += product.quantity;
     } else {
-      cart.value.push({ ...product });
+      // replace id with nanoid
+      carts.value.push({ ...product, id: nanoid() });
     }
   };
 
-  const removeFromCart = (id) => {
-    cart.value = cart.value.filter((item) => item.id !== id);
-  };
-
-  const fetchCart = async () => {
+  const fetchCarts = async () => {
     let response = await fetch("../data/cart.json");
     let data = await response.json();
-    cart.value = data;
+    carts.value = data;
     console.log("cart", data);
   };
 
-  const clearCart = () => {
-    cart.value = [];
+  const clearCarts = () => {
+    carts.value = [];
   };
 
   return {
-    cart,
-    addToCart,
-    removeFromCart,
-    fetchCart,
-    clearCart,
+    carts,
+    addToCarts,
+    fetchCarts,
+    clearCarts,
   };
 });

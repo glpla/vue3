@@ -114,41 +114,15 @@ const imgsUrl = computed(() => {
   return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
 })
 
-const generateQRCode = () => {
-  const urlStr = window.location.href;
-  console.log(urlStr);
-
-  QRCode.toDataURL(urlStr, (err, code) => {
-    if (err) {
-      console.error('生成二维码失败', err);
-    } else {
-      qrCode.value = code;
-      console.log(code);
-    }
-  });
-};
-
-const sharePage = () => {
-  if (navigator.share) {
-    navigator.share({
-      title: document.title,
-      text: '分享页面内容',
-      url: window.location.href,
-    })
-      .then(() => console.log('分享成功'))
-      .catch((error) => console.error('分享失败', error));
-  } else {
-    alert('您的浏览器不支持分享功能');
-  }
-};
-
 const addToCart = () => {
-
-  cartStore.addToCart(goodsSelected.value)
-  console.log(goodsSelected.value);
-
-  alert('添加成功')
+  const cartItem = {
+    ...goodsSelected.value,
+    productId: goodsSelected.value.id,
+  };
+  console.log(cartItem);
+  cartStore.addToCarts(cartItem)
   router.replace('/menu')
+  alert('添加成功')
 }
 
 const toOrder = () => {
@@ -178,6 +152,33 @@ watch(() => route.params.id, (newId, oldId) => {
   handleGoods(newId)
 })
 
+const generateQRCode = () => {
+  const urlStr = window.location.href;
+  console.log(urlStr);
+
+  QRCode.toDataURL(urlStr, (err, code) => {
+    if (err) {
+      console.error('生成二维码失败', err);
+    } else {
+      qrCode.value = code;
+      console.log(code);
+    }
+  });
+};
+
+const sharePage = () => {
+  if (navigator.share) {
+    navigator.share({
+      title: document.title,
+      text: '分享页面内容',
+      url: window.location.href,
+    })
+      .then(() => console.log('分享成功'))
+      .catch((error) => console.error('分享失败', error));
+  } else {
+    alert('您的浏览器不支持分享功能');
+  }
+};
 onMounted(() => {
   handleGoods(route.params.id)
 })
