@@ -125,3 +125,20 @@
 .exact-nav-color {
   color: var(--main-color);
 }
+
+/* transition style */
+.fade-list-move,
+.fade-list-enter-active,
+.fade-list-leave-active {
+  transition: all 0.5s var(--delay) ease;
+}
+
+.fade-list-leave-active {
+  position: absolute;
+}
+
+.fade-list-enter-from,
+.fade-list-leave-to {
+  opacity: 0;
+  transform: translateY(-30px) translateX(30px);
+}

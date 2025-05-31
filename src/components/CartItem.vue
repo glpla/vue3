@@ -3,7 +3,7 @@
     <input type="checkbox" name="cart" v-model="model" :value="cart">
     <img class="img" :src="`https://glpla.github.io/utils${cart.img}`" alt="">
     <div class="info">
-      <h3 class="title">{{ cart.name }}</h3>
+      <h3 class="title">{{ cart.title }}</h3>
       <div class="sub-title">{{ cart.desc }}</div>
       <div>
         <span class="price-new">&yen;{{ cart.price }}</span>

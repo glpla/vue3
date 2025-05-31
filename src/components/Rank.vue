@@ -9,18 +9,19 @@
         <span>ucredit</span>
       </li>
     </div>
-    <TransitionGroup tag="ul">
+    <FadeTransition>
       <li class="item" v-for="(item, ind) in lists" :key="item.id" :style="`--delay:${ind * 0.1}s`">
         <span>{{ item.usn }}</span>
         <span>{{ item.uname }}</span>
         <span>{{ item.ucredit }}</span>
       </li>
-    </TransitionGroup>
+    </FadeTransition>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import FadeTransition from './FadeTransition.vue';
 const lists = ref([])
 onMounted(() => {
   console.log('rank mounted');
@@ -67,21 +68,5 @@ button {
 
 .leading {
   text-transform: capitalize;
-}
-
-.v-move,
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.5s var(--delay) ease;
-}
-
-.v-leave-active {
-  position: absolute;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-  transform: translateY(-30px) translateX(30px);
 }
 </style>

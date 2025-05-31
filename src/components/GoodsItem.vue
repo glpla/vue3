@@ -2,7 +2,7 @@
   <div class="goods-item m-b-2" @click.stop="$router.push('/details/' + product.id)">
     <img class="img" :src="'https://glpla.github.io/utils' + product.img" alt="">
     <div class="info">
-      <h3 class="title mb-1">{{ product.name }} <span class="flavour f-s-s">{{ product.flavour }}</span> </h3>
+      <h3 class="title mb-1">{{ product.title }} <span class="flavour f-s-s">{{ product.flavour }}</span> </h3>
       <div class="desc">{{ product.desc }}</div>
       <div class="price f-b">
         <span>&yen;{{ product.price }}</span>

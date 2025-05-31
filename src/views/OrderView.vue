@@ -116,10 +116,6 @@ onMounted(() => {
   padding: var(--p-m-g);
 }
 
-.submit-box .warn {
-  font-size: 1.2rem;
-}
-
 .submit-btn {
   background-color: var(--warn-color);
   color: #fff;
