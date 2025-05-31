@@ -20,7 +20,9 @@
         </KeepAlive>
       </RouterView>
     </div>
-    <Cart class="w cart" v-if="cartStore.carts.length" :class="{ 'pos': $route.meta.showNav }"></Cart>
+    <KeepAlive>
+      <Cart class="w cart" v-if="cartStore.carts.length" :class="{ 'pos': $route.meta.showNav }"></Cart>
+    </KeepAlive>
   </div>
 </template>
 

@@ -211,8 +211,6 @@ router.afterEach((to, from) => {
   window.scrollTo(0, 0);
 });
 
-console.log("router ready");
-
 // router.options.linkActiveClass = "nav-color";
 // router.options.linkExactActiveClass = "nav-color";
 export default router;

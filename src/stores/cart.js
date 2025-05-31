@@ -12,7 +12,7 @@ export const useCartStore = defineStore("cart", () => {
       existingItem.quantity += product.quantity;
     } else {
       // replace id with nanoid
-      carts.value.push({ ...product, id: nanoid() });
+      carts.value.push({ ...product, id: nanoid(), create_time: Date.now() });
     }
   };
 

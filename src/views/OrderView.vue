@@ -1,9 +1,9 @@
 <template>
-  <div class="w order-view">
+  <div class="order-view">
     <div class="flex address-box">
       <div class="loc">
         <div class="title">
-          <span>桂林万达广场店 | 0.5km&nbsp;</span>
+          <h4>桂林万达广场店 | 0.5km&nbsp;</h4>
           <button @click="$router.push('/location')">&gt;</button>
         </div>
         <div>树先生 &nbsp; 137xxxx5481</div>
@@ -12,25 +12,13 @@
     </div>
     <div class="flex delivery-box">
       <div>
-        <div>立即可取，约10:21可取</div>
+        <h4>立即可取，约10:21可取</h4>
         <p>金牌咖啡正在等你下单</p>
       </div>
       <img :src="logo" alt="">
     </div>
-    <div class="good-box">
-      <div class="flex item" v-for="item in 5" :key="item.id">
-        <img :src="itemImg" alt="" class="img">
-        <div class="info">
-          <h4 class="f-s-m">title</h4>
-          <div class="">Lorem, ipsum dolor.</div>
-          <div class="warn">Lorem, ipsum.</div>
-        </div>
-        <div class="price">
-          <div class="f-s-m f-b">&yen;8.88</div>
-          <div class="del-txt">&yen;8.88</div>
-          <div class="num-txt f-s-s">x8</div>
-        </div>
-      </div>
+    <div class="p-1">
+      <OrderItem v-for="cart in orderStore.orders" :key="itemImg.id" :order="cart"></OrderItem>
     </div>
     <div class="flex pay-box">
       <h4>支付方式</h4>
@@ -50,7 +38,7 @@
       </div>
       <div class="flex">
         <h4>备注特别要求</h4>
-        <button>&gt;</button>
+        <button><span class="iconfont icon-jiantou_liebiaoxiangyou_o"></span></button>
       </div>
     </div>
     <div class="p-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur esse iure itaque nam
@@ -61,19 +49,28 @@
       <div>
         <p>
           <span class="">应付&nbsp;</span>
-          <span class="f-s-m f-b">&yen;9.88</span>
+          <span class="f-s-m f-b">&yen;{{ orderStore.sum.toFixed(2) }}</span>
         </p>
-        <p class="warn f-s-s">总计优惠&nbsp;&yen;8.8</p>
+        <p class="warn f-s-s">总计优惠&nbsp;&yen;{{ orderStore.discount.toFixed(2) }}</p>
       </div>
-      <button class="btn submit-btn f-s-b">去支付</button>
+      <button class="btn submit-btn f-s-b" @click="submitOrder">去支付</button>
     </footer>
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { useOrderStore } from '@/stores/order'
 import Delivery from '@/components/Delivery.vue'
 import logo from '@/assets/luckin-coffee.png'
 import itemImg from '@/assets/logo.png'
+import OrderItem from '@/components/OrderItem.vue'
+const orderStore = useOrderStore()
+const submitOrder = () => {
+  alert('提交订单成功')
+}
+onMounted(() => {
+})
 </script>
 
 <style scoped>
@@ -100,22 +97,6 @@ import itemImg from '@/assets/logo.png'
 
 .delivery-box img {
   width: 10rem;
-}
-
-.item {
-  gap: var(--p-m-g);
-  margin-bottom: var(--p-m-g);
-}
-
-.item img {
-  width: 8rem;
-  /* height: 8rem; */
-  object-fit: cover;
-  border-radius: 4rem;
-}
-
-.item .info {
-  flex: 1;
 }
 
 .pay-box .wx {

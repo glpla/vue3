@@ -1,24 +1,18 @@
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { defineStore } from "pinia";
-import { supabase } from "@/assets/utils/supabase";
 
 export const useGoodsStore = defineStore("goods", () => {
   const goods = ref([]);
   const good = ref({});
   const isLoading = ref(false);
   const error = ref(null);
-  const getGoods = async () => {
+  const getAll = async () => {
     try {
       isLoading.value = true;
-      const { data, error } = await supabase.from("coffee").select();
-      if (error) {
-        console.log("error", error);
-        return;
-      }
-      // 更新状态
-      goods.value = data;
-      // 显式返回结果
-      return data;
+      let res = await fetch("https://glpla.github.io/utils/data/coffee.json");
+      let data = await res.json();
+      goods.value = data.cont;
+      return goods.value;
     } catch (error) {
       error.value = "Failed to load data";
       goods.value = [];
@@ -26,39 +20,20 @@ export const useGoodsStore = defineStore("goods", () => {
       isLoading.value = false;
     }
   };
-  const getGoodById = async (id) => {
-    try {
-      isLoading.value = true;
-      const { data, error } = await supabase
-        .from("coffee")
-        .select("*")
-        .eq("id", id);
-      if (error) {
-        console.log("error", error);
-        return;
-      }
-      // 更新状态
-      good.value = data[0];
-      // 显式返回结果
-      return data[0];
-    } catch (error) {
-      error.value = "Failed to load data";
-      good.value = {};
-      return {};
-    } finally {
-      isLoading.value = false;
+  const getById = async (id) => {
+    if (goods.value.length === 0) {
+      await getAll();
     }
+    good.value = goods.value.find((item) => item.id == id);
+    return good.value;
   };
-
-  console.log("pinia ready");
-  console.log("goods", goods);
 
   return {
     isLoading,
     error,
     goods,
     good,
-    getGoods,
-    getGoodById,
+    getAll,
+    getById,
   };
 });

@@ -26,18 +26,22 @@
           <span>&yen;{{ getPriceDiscount }}</span>
         </div>
       </div>
-      <router-link class="btn pay-btn f-s-m" to="/order" v-if="sum">去结算</router-link>
-      <router-link class="btn pay-btn f-s-m" to="/order" v-else>不可结算</router-link>
+      <div class="btn pay-btn f-s-m" @click="toOrder" v-if="sum">去结算</div>
+      <div class="btn pay-btn f-s-m" t v-else>不可结算</div>
     </footer>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch, computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useCartStore } from '@/stores/cart';
+import { useOrderStore } from '@/stores/order';
 import CartItem from './CartItem.vue';
 
+const router = useRouter()
 const cartStore = useCartStore()
+const orderStore = useOrderStore()
 const selectedGoods = ref([...cartStore.carts])
 const isShowCartDetail = ref(false)
 const isSelectAll = ref(true)
@@ -69,6 +73,13 @@ const clearCarts = () => {
   cartStore.clearCarts()
   selectedGoods.value = []
   isSelectAll.value = false
+}
+
+const toOrder = () => {
+  orderStore.gerTempOrder(selectedGoods.value)
+  router.push({
+    name: 'order'
+  })
 }
 
 onMounted(() => {

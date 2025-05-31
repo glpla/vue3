@@ -6,11 +6,11 @@
       <Swiper :imgs="imgsUrl" />
       <div class="cont">
         <div class="cont-item">
-          <h3 class="title mb-1">{{ goodsStore.good.name }}·{{ goodsStore.good.flavour }}</h3>
+          <h3 class="title mb-1">{{ goodsStore.good.title }}·{{ goodsStore.good.flavour }}</h3>
           <div class="m-b-2">{{ goodsStore.good.desc }}</div>
-          <Specification class="mb-1" :items="goodsStore.good.cup" v-model="goodsSelected.cup" />
-          <Specification class="mb-1" :items="goodsStore.good.ther" v-model="goodsSelected.ther" />
-          <Specification class="mb-1" :items="goodsStore.good.sugar" v-model="goodsSelected.sugar" />
+          <Specification class="mb-1" :items="cups" v-model="goodsSelected.cup" />
+          <Specification class="mb-1" :items="ther" v-model="goodsSelected.ther" />
+          <Specification class="mb-1" :items="sugar" v-model="goodsSelected.sugar" />
           <div class="favor">
             <button>
               <span @click="doFavorite" class="iconfont"
@@ -66,8 +66,10 @@
           </button>
         </div>
       </div>
-      <GuaranteeModal v-model="isShowModal" v-show="isShowModal" />
-      <footer class="w">
+      <Transition name="fade">
+        <GuaranteeModal v-model="isShowModal" v-show="isShowModal" />
+      </Transition>
+      <footer>
         <div class="info">
           <div class="price">
             <span class="f-b f-s-m">&yen;{{ sum }}&nbsp;</span>
@@ -94,6 +96,7 @@ import { ref, onMounted, computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useCartStore } from '@/stores/cart';
 import { useGoodsStore } from '@/stores/goods';
+import { useOrderStore } from '@/stores/order';
 import QRCode from 'qrcode';
 import Swiper from '@/components/Swiper.vue';
 import Specification from '@/components/Specification.vue';
@@ -105,14 +108,19 @@ const route = useRoute()
 const router = useRouter()
 const cartStore = useCartStore()
 const goodsStore = useGoodsStore()
+const orderStore = useOrderStore()
 const qrCode = ref(null);
 const isShow = ref(false)
 const isShowModal = ref(false)
+const goods = ref({})
 const goodsSelected = ref({})
 const imgs = ref(['swiper0.jpg', 'swiper1.jpg', 'swiper2.jpg', 'swiper3.jpg', 'swiper4.jpg', 'swiper5.jpg', 'swiper6.jpg'])
 const imgsUrl = computed(() => {
   return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
 })
+const cups = ref({})
+const ther = ref({})
+const sugar = ref({})
 
 const addToCart = () => {
   const cartItem = {
@@ -126,19 +134,29 @@ const addToCart = () => {
 }
 
 const toOrder = () => {
+  const cartItem = {
+    ...goodsSelected.value,
+    productId: goodsSelected.value.id,
+  };
+  orderStore.addToOrders(selectedGoods.value)
   router.push('/order')
 }
 
 const handleGoods = async (id) => {
-  const res = await goodsStore.getGoodById(id);
-  console.log('res', res);
+  console.log('id', id);
+  const res = await goodsStore.getById(id);
+  goods.value = res
+  console.log('res', goods.value);
+  cups.value = res.specification[0]
+  ther.value = res.specification[1]
+  sugar.value = res.specification[2]
 
   goodsSelected.value = {
     ...res,
     quantity: 1,
-    cup: res.cup.options.find(item => item.sel)?.tag || '中杯',
-    ther: res.ther.options.find(item => item.sel)?.tag || '冷',
-    sugar: res.sugar.options.find(item => item.sel)?.tag || '标准糖',
+    cup: res.specification[0].options.find(item => item.sel)?.tag || '中杯',
+    ther: res.specification[1].options.find(item => item.sel)?.tag || '冷',
+    sugar: res.specification[2].options.find(item => item.sel)?.tag || '标准糖',
     dessert: [],
     recommend: []
   }
@@ -181,6 +199,7 @@ const sharePage = () => {
 };
 onMounted(() => {
   handleGoods(route.params.id)
+  console.log('timestamp ', Date.now());
 })
 </script>
 
@@ -305,6 +324,7 @@ footer {
 .guarantee-modal {
   position: fixed;
   inset: 0;
+  bottom: 0;
   z-index: 100;
 }
 
@@ -315,5 +335,15 @@ footer {
   justify-content: center;
   align-items: center;
   z-index: 100;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.3s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  bottom: -100%;
 }
 </style>
