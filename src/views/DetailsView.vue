@@ -8,9 +8,8 @@
         <div class="cont-item">
           <h3 class="title mb-1">{{ goodsStore.good.title }}·{{ goodsStore.good.flavour }}</h3>
           <div class="m-b-2">{{ goodsStore.good.desc }}</div>
-          <Specification class="mb-1" :items="cups" v-model="goodsSelected.cup" />
-          <Specification class="mb-1" :items="ther" v-model="goodsSelected.ther" />
-          <Specification class="mb-1" :items="sugar" v-model="goodsSelected.sugar" />
+          <Specification class="mb-1" v-for="(item, ind) in goods.specification" :key="item.id" :items="item"
+            v-model="goodsSelected.specification[ind].value"></Specification>
           <div class="favor">
             <button>
               <span @click="doFavorite" class="iconfont"
@@ -118,16 +117,11 @@ const imgs = ref(['swiper0.jpg', 'swiper1.jpg', 'swiper2.jpg', 'swiper3.jpg', 's
 const imgsUrl = computed(() => {
   return imgs.value.map(img => new URL(`../assets/swiper/${img}`, import.meta.url).href)
 })
-const cups = ref({})
-const ther = ref({})
-const sugar = ref({})
-
 const addToCart = () => {
   const cartItem = {
     ...goodsSelected.value,
     productId: goodsSelected.value.id,
   };
-  console.log(cartItem);
   cartStore.addToCarts(cartItem)
   router.replace('/menu')
   alert('添加成功')
@@ -143,20 +137,17 @@ const toOrder = () => {
 }
 
 const handleGoods = async (id) => {
-  console.log('id', id);
+  console.log({ id });
   const res = await goodsStore.getById(id);
   goods.value = res
-  console.log('res', goods.value);
-  cups.value = res.specification[0]
-  ther.value = res.specification[1]
-  sugar.value = res.specification[2]
-
   goodsSelected.value = {
     ...res,
     quantity: 1,
-    cup: res.specification[0].options.find(item => item.sel)?.tag || '中杯',
-    ther: res.specification[1].options.find(item => item.sel)?.tag || '冷',
-    sugar: res.specification[2].options.find(item => item.sel)?.tag || '标准糖',
+    specification: [
+      { name: '杯型', value: res.specification[0].options.find(item => item.sel)?.label || '中杯' },
+      { name: '温度', value: res.specification[1].options.find(item => item.sel)?.label || '冷' },
+      { name: '糖度', value: res.specification[2].options.find(item => item.sel)?.label || '标准糖' }
+    ],
     dessert: [],
     recommend: []
   }

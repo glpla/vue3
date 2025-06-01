@@ -2,7 +2,7 @@
   <div class="specification">
     <span>{{ items.label }}</span>
     <label class="specification-item" v-for="item in items.options" :key="item.id">
-      <input type="radio" :name="items.tag" :value="item.label" v-model="model" hidden>
+      <input type="radio" :name="items.name" :value="item.value" v-model="model" hidden>
       <span>{{ item.label }}</span>
     </label>
   </div>
