@@ -1,5 +1,7 @@
 @import './base.css';
-@import '//at.alicdn.com/t/c/font_3859342_lu3tklgf91.css';
+@import '//at.alicdn.com/t/c/font_3859342_6edyvdmtfj.css';
+/* ok */
+/* @import url(//at.alicdn.com/t/c/font_3859342_6edyvdmtfj.css); */
 
 .sn {
   counter-reset: sn;
@@ -17,6 +19,7 @@
   font-size: 2.4rem;
 }
 
+ol>li,
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;

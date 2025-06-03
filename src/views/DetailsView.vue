@@ -64,6 +64,13 @@
             <span v-else class="iconfont icon-jiantou_liebiaozhankai_o"></span>
           </button>
         </div>
+        <div class="txt-center" @click="showComment">
+          <p>展开评论</p>
+          <span class="iconfont icon-details"></span>
+        </div>
+      </div>
+      <div class="sub-view">
+        <RouterView></RouterView>
       </div>
       <Transition name="fade">
         <GuaranteeModal v-model="isShowModal" v-show="isShowModal" />
@@ -188,6 +195,12 @@ const sharePage = () => {
     alert('您的浏览器不支持分享功能');
   }
 };
+
+const showComment = () => {
+  // router.push(`/details/${route.params.id}/comment`)
+  router.push({ name: 'comment' })
+}
+
 onMounted(() => {
   handleGoods(route.params.id)
   console.log('timestamp ', Date.now());
@@ -209,7 +222,6 @@ onMounted(() => {
 
 .cont {
   padding: var(--p-m-g);
-  margin-bottom: calc(var(--app-nav-h) + 3rem);
 }
 
 .cont-item {
@@ -336,5 +348,10 @@ footer {
 .fade-enter-from,
 .fade-leave-to {
   bottom: -100%;
+}
+
+.sub-view {
+  margin-bottom: calc(var(--app-nav-h) + 5rem);
+
 }
 </style>

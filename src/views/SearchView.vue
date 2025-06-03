@@ -32,7 +32,7 @@ const search = ref('')
 const clearRef = useTemplateRef('clear-ref')
 const dataSearch = computed(() => {
   if (!search.value) return []
-  return goodsStore.goods.filter(item => item.name.includes(search.value))
+  return goodsStore.goods.filter(item => item.title.includes(search.value))
 })
 watch(search, (newVal) => {
   if (newVal) {
@@ -45,6 +45,7 @@ watch(search, (newVal) => {
 const doSearch = () => {
   if (search.value) {
     alert(search.value)
+    goodsStore.getByQuery(search.value)
   } else {
     alert('请输入搜索内容')
   }

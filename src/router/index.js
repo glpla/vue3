@@ -80,6 +80,14 @@ const router = createRouter({
       name: "details",
       component: () => import("@/views/DetailsView.vue"),
       meta: { showNav: false, title: "商品详情" },
+      children: [
+        {
+          path: "comment",
+          name: "comment",
+          component: () => import("@/components/Comment.vue"),
+          meta: { showNav: false, title: "商品详情 - 留言" },
+        },
+      ],
     },
     {
       path: "/search",
@@ -208,7 +216,7 @@ router.beforeEach(async (to, from, next) => {
 });
 router.afterEach((to, from) => {
   document.title = to.meta.title;
-  window.scrollTo(0, 0);
+  // window.scrollTo(0, 0);
 });
 
 // router.options.linkActiveClass = "nav-color";

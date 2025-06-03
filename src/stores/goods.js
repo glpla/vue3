@@ -27,7 +27,13 @@ export const useGoodsStore = defineStore("goods", () => {
     good.value = goods.value.find((item) => item.id == id);
     return good.value;
   };
-
+  const getByQuery = async (query) => {
+    if (!goods.value.length) {
+      await getAll();
+    }
+    let res = goods.value.filter((item) => item.title.includes(query));
+    return res;
+  };
   return {
     isLoading,
     error,
@@ -35,5 +41,6 @@ export const useGoodsStore = defineStore("goods", () => {
     good,
     getAll,
     getById,
+    getByQuery,
   };
 });
