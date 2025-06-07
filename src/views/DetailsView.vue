@@ -327,7 +327,6 @@ footer {
 .guarantee-modal {
   position: fixed;
   inset: 0;
-  bottom: 0;
   z-index: 100;
 }
 

@@ -16,8 +16,9 @@
     <div class="sub-view p-1">
       <RouterView v-slot="{ Component, route }">
         <KeepAlive>
-          <Component :is="Component" :key="route.fullPath"></Component>
+          <Component :is="Component" :key="route.fullPath" v-if="route.meta.keepalive"></Component>
         </KeepAlive>
+        <Component :is="Component" :key="route.fullPath" v-if="!route.meta.keepalive"></Component>
       </RouterView>
     </div>
     <KeepAlive>

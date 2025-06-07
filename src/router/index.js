@@ -35,7 +35,7 @@ const router = createRouter({
           path: "goods",
           name: "goods",
           component: () => import("@/components/Goods.vue"),
-          meta: { title: "菜单-商品列表" },
+          meta: { title: "菜单-商品列表", keepalive: true },
         },
         {
           path: "vip",
